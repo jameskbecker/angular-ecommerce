@@ -1,0 +1,41 @@
+.product-page--container {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-page--content {
+  display: flex;
+  gap: 16px;
+}
+
+.product-page--image-container {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 50%;
+
+  img {
+    position: absolute;
+    object-fit: scale-down;
+  }
+}
+
+.product-page--title {
+  display: flex;
+  flex-direction: column;
+
+  :first-child {
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  :not(:first-child) {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.product-page--price {
+  font-size: 1.75rem;
+  font-weight: 700;
+}

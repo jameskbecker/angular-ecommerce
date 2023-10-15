@@ -1,0 +1,25 @@
+@import '../../../../styles';
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-form--size-grid {
+  display: grid;
+  justify-content: start;
+  align-items: start;
+  grid-template-columns: repeat(4, auto);
+  grid-auto-rows: auto;
+  gap: 8px;
+}
+
+p {
+  color: $muted-foreground;
+}
+
+.product-form--atc-container {
+  display: flex;
+  gap: 8px;
+}

@@ -1,0 +1,16 @@
+@import '../../../../styles';
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 64px;
+
+  & > * {
+    border-bottom: 1px solid $border;
+  }
+
+  & :last-child {
+    border: none;
+  }
+}

@@ -1,0 +1,3306 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [
+        {
+            "name": "ProductService",
+            "id": "injectable-ProductService-4cf171d34fe6e9e7aa0e89824d12ae0692adea63d94be0dfb6ce45fef0702f543678bad73bcf4534dbec9bd012372a1e74ffc8df95e5b6b601bb0bef3fb0a6d2",
+            "file": "src/app/services/product.service.ts",
+            "properties": [
+                {
+                    "name": "apiUrl",
+                    "defaultValue": "'/api/v1/products'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getProductById",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<Product>",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport {HttpClient} from \"@angular/common/http\";\nimport {Observable} from \"rxjs\";\nimport {Product} from \"../types/Product\";\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class ProductService {\n  private apiUrl = '/api/v1/products';\n\n  constructor(private http: HttpClient) {}\n\n  getProductById(id: number): Observable<Product> {\n    return this.http.get<Product>(`${this.apiUrl}/${id}`);\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-70c2ec4d6b78d79c4c228e8877a723579926d14bcf0ef1b2c438784b12707bad56e2c1624930e0e2d340cdde861e678cf4dfd96e416b94ce3be3cc7e6f1d4459",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'angular-ecommerce'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n  title = 'angular-ecommerce';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<app-product/>\n<app-cart></app-cart>\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-2f2da4742fc7daced5af7a0d1a6c428280d74dfe29e8d508f17b9f30e770acf3a444b91874f613a25870db6b424d15b49d842c14b6df5a95d3ce79ed0d4a47d1",
+            "file": "src/app/components/ui/button/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-button",
+            "styleUrls": [
+                "./button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "Size",
+                    "decorators": []
+                },
+                {
+                    "name": "variant",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "Variant",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "handleClick",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, EventEmitter, Input, Output} from '@angular/core';\n\ntype Variant = 'primary' | 'secondary';\ntype Size = 'small' | 'medium' | 'large';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\n\nexport class ButtonComponent {\n  @Input()\n  public label: string;\n\n  @Input()\n  public variant: Variant;\n\n  @Input()\n  public size: Size;\n\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  constructor() {\n    this.label = ''\n    this.variant = 'primary';\n    this.size = 'medium';\n  }\n\n  public handleClick(event: Event) {\n    this.onClick.emit(event)\n  }\n\n  public get classes(): string[] {\n    return [\n      'btn',\n      `btn-${this.size}`,\n      `btn-${this.variant}`\n    ];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../styles';\n\n.btn {\n  display: inline-flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n\n  border: none;\n  border-radius: $radius;\n  font-size: 1rem;\n  line-height: 1.5rem;\n  font-weight: 600;\n\n  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 300ms;\n  appearance: none;\n  cursor: pointer;\n}\n\n.btn-primary {\n  background: $primary;\n  color: $primary-foreground;\n  border-width: 2px solid $border;\n  user-select: none;\n\n  &:hover {\n    background: mix($primary, white, $weight: 90%);\n  }\n}\n\n.btn-secondary {\n  background: $secondary;\n  color: $secondary-foreground;\n\n  &:hover {\n    background: mix($secondary, white, $weight: 80%);\n  }\n}\n\n.btn-small {\n  padding: 0.25rem;\n  border-radius: $radius;\n}\n\n.btn-medium {\n  height: 40px;\n  padding: 8px 16px;\n}\n\n.btn-large {\n  padding: 1rem;\n  border-radius: 0.75rem;\n  border-radius: $radius;\n}\n",
+                    "styleUrl": "./button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 23
+            },
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 35
+                    }
+                }
+            },
+            "templateData": "<button\n  type=\"button\"\n  (click)=\"handleClick($event)\"\n  [ngClass]=\"classes\"\n>\n  {{ label }}\n</button>\n"
+        },
+        {
+            "name": "CartComponent",
+            "id": "component-CartComponent-b645a3dd55e618b81fb5300fc6e195f6b8e51b51b16b85e5a1cf84bad2bed20ba713d6ad075d37a5731620d628d5574d042f9f55f3dccb3cc8cf78116ac1a072",
+            "file": "src/app/pages/cart/cart.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-cart",
+            "styleUrls": [
+                "./cart.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./cart.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "cartTotal",
+                    "defaultValue": "'0.00'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "items",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "CartItem[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport {CartItem} from \"../../components/features/cart-list/cart-list.component\";\n\n@Component({\n  selector: 'app-cart',\n  templateUrl: './cart.component.html',\n  styleUrls: ['./cart.component.scss']\n})\nexport class CartComponent {\n  items: CartItem[] = [];\n  cartTotal = '0.00';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../styles';\n\n.cart--subtotal-container {\n  display: grid;\n  grid-template-columns: repeat(2, auto);\n\n  gap: 4px 8px;\n\n  align-items: center;\n  justify-content: end;\n  padding: 16px;\n\n  span {\n    font-size: 1.125rem;\n    font-weight: 600;\n  }\n\n  p {\n    font-size: 0.875rem;\n    color: $muted-foreground;\n  }\n}\n\n.cart--subtotal {\n  grid-row: span 2;\n}\n\n.container {\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 1rem; // You can adjust this padding to match your design\n  padding-right: 1rem; // You can adjust this padding to match your design\n\n  @media (min-width: 640px) {\n    max-width: 640px; // Adjust this value to your preferred maximum width\n  }\n\n  @media (min-width: 768px) {\n    max-width: 768px; // Adjust this value to your preferred maximum width\n  }\n\n  @media (min-width: 1024px) {\n    max-width: 1024px; // Adjust this value to your preferred maximum width\n  }\n\n  @media (min-width: 1280px) {\n    max-width: 1280px; // Adjust this value to your preferred maximum width\n  }\n}\n",
+                    "styleUrl": "./cart.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<app-header/>\n<div class=\"container\">\n  <h1>Cart</h1>\n  <app-separator/>\n\n  <app-cart-list [items]=\"items\"/>\n  <app-separator/>\n\n  <div class=\"cart--subtotal-container\">\n    <span>Subtotal</span>\n    <div class=\"cart--subtotal\">€{{cartTotal}}</div>\n    <p>(Shipping & taxes calculated at checkout)</p>\n    <app-button size=\"large\" label=\"Go to Checkout\"/>\n  </div>\n</div>\n"
+        },
+        {
+            "name": "CartListComponent",
+            "id": "component-CartListComponent-033d1894529d8e2116ecde0e2a364a827fe3c55d648dd2b0b859956bf18c260df2e3b09487a89eaf89e551d4cd53d08c7e1bdd3fce83990507cc37d50942951d",
+            "file": "src/app/components/features/cart-list/cart-list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-cart-list",
+            "styleUrls": [
+                "./cart-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./cart-list.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "items",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "CartItem[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input} from '@angular/core';\n\nexport type CartItem = string;\n\n@Component({\n  selector: 'app-cart-list',\n  templateUrl: './cart-list.component.html',\n  styleUrls: ['./cart-list.component.scss']\n})\nexport class CartListComponent {\n  @Input() items: CartItem[] = [];\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../styles';\n\n.cart-list {\n  display: flex;\n  flex-direction: column;\n\n  padding: 0 64px;\n\n  & > * {\n    border-bottom: 1px solid $border;\n  }\n\n  & :last-child {\n    border: none;\n  }\n}\n",
+                    "styleUrl": "./cart-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"cart-list\">\n  <app-cart-list-item\n    *ngFor=\"let item of items\"\n    name=\"CDG Shirt\"\n    size=\"Size Medium\"\n    sku=\"FLP0100511M\"\n    quantity=\"3\"\n  />\n</div>\n"
+        },
+        {
+            "name": "CartListItemComponent",
+            "id": "component-CartListItemComponent-b6fbd464f50ebf348de6e0047ff142da484fd396b8abe6d5b6250df76c3c38b649c82298539bc8102127d7b0be8f305d40ad74f83eeebe0c63c9e4bd74697cfa",
+            "file": "src/app/components/cart-list-item/cart-list-item.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-cart-list-item",
+            "styleUrls": [
+                "./cart-list-item.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./cart-list-item.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "quantity",
+                    "defaultValue": "'0'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "sku",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "src",
+                    "defaultValue": "'https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_09691copy.jpg?v=1697127065'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        146
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input} from '@angular/core';\n\n@Component({\n  selector: 'app-cart-list-item',\n  templateUrl: './cart-list-item.component.html',\n  styleUrls: ['./cart-list-item.component.scss']\n})\nexport class CartListItemComponent {\n  readonly src = 'https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_09691copy.jpg?v=1697127065';\n\n  @Input() name: string = '';\n  @Input() size: string = '';\n  @Input() sku: string = '';\n  @Input() quantity: string = '0';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../styles';\n\n.cart-list-item--container {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  width: 100%;\n  gap: 16px;\n\n  h2, h3 {\n    margin: 0;\n    padding: 0;\n  }\n\n  :last-child {\n    align-items: flex-end;\n  }\n}\n\n\n\n.cart-list-item--column {\n  flex: 1 1 300px;\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n\n  padding: 32px 0;\n\n  :last-child {\n    align-items: flex-start;\n  }\n}\n\n.cart-list-item--image-container {\n  padding: 0;\n}\n\n.btn {\n  width: 100% !important;\n}\n\n.sub-row-container {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n\n\n}\n",
+                    "styleUrl": "./cart-list-item.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"cart-list-item--container\">\n  <div class=\"cart-list-item--column cart-list-item--image-container\">\n    <img [src]=\"src\" width=\"300\" height=\"300\"/>\n  </div>\n  <div class=\"cart-list-item--column\">\n    <div class=\"sub-row-container\">\n      <h2>Item</h2>\n      <div>{{name}}</div>\n    </div>\n\n    <div class=\"sub-row-container\">\n      <h3>Size</h3>\n      <div>{{size}}</div>\n    </div>\n\n    <div class=\"sub-row-container\">\n      <h3>SKU</h3>\n      <div>{{sku}}</div>\n    </div>\n  </div>\n  <div class=\"cart-list-item--column\">\n    <h2>Quantity</h2>\n    <app-cart-update-form [quantity]=\"quantity\"/>\n    <app-button size=\"small\" label=\"Remove Item\" variant=\"secondary\"/>\n  </div>\n\n  <div class=\"cart-list-item--column\">\n    <h2>Subtotal</h2>\n    <span>€1305.00</span>\n  </div>\n\n</div>\n"
+        },
+        {
+            "name": "CartUpdateFormComponent",
+            "id": "component-CartUpdateFormComponent-b589ab72855c75149c1db3bdf46d39c202412ea8a1913051e6964f7dd4714ae2705bcd1c4fb7244964d1d4d1e14c77bfcb43e1a8966b2568fa795c30dcdce8a1",
+            "file": "src/app/components/features/cart-update-form/cart-update-form.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-cart-update-form",
+            "styleUrls": [
+                "./cart-update-form.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./cart-update-form.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "quantity",
+                    "defaultValue": "'-1'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input} from '@angular/core';\nimport {UiModule} from \"../../ui/ui.module\";\n\n@Component({\n  selector: 'app-cart-update-form',\n  templateUrl: './cart-update-form.component.html',\n  styleUrls: ['./cart-update-form.component.scss'],\n})\nexport class CartUpdateFormComponent {\n  @Input() quantity = '-1';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".cart-update-form {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n",
+                    "styleUrl": "./cart-update-form.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<form class=\"cart-update-form\">\n  <app-input type=\"number\" [value]=\"quantity\"/>\n  <app-button size=\"small\" label=\"Update\"/>\n</form>\n"
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-baa6f1e1884016686299891336046df42f1901ff07c5282c0fc5a1a8a53691ee057b6ac78066e221dfb300978f96324b07ce32407df543404604b0b144188f82",
+            "file": "src/app/components/header/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-header",
+            "styleUrls": [
+                "./header.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./header.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss']\n})\nexport class HeaderComponent {\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../styles';\n\nheader {\n  display: flex;\n  align-items: center;\n  height: 64px;\n  border-bottom: 1px solid $border;\n\n  padding: 8px;\n  box-sizing: border-box;\n}\n\na {\n  text-decoration: none;\n  color: $primary;\n}\n\n.header-brand-name {\n  flex: 1 0 auto;\n\n  font-size: 1.25rem;\n  font-weight: 600;\n}\n",
+                    "styleUrl": "./header.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<header>\n  <img src=\"https://hotpotmedia.s3.us-east-2.amazonaws.com/8-PvAv7OzmHQxExac.png\" height=\"32\" width=\"32\"/>\n  <span class=\"header-brand-name\">AnguStreetwear</span>\n  <a href=\"#\">Cart (0)</a>\n</header>\n"
+        },
+        {
+            "name": "InputComponent",
+            "id": "component-InputComponent-fb7939da726456021f96382f36b3d26a7dabae13fcbb113b038360dc7d4b694165252faf5d9507d77c4e938c38416762b04e398dc9d0cb8e007a267e09882272",
+            "file": "src/app/components/ui/input/input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputComponent), multi: true,\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "app-input",
+            "styleUrls": [
+                "./input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "autocomplete",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "autofocus",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "max",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "min",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "pattern",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "readonly",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "required",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "step",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "HTMLInputTypeAttribute",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "onChange",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 45,
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "onTouch",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 44,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "val",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "val",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input, forwardRef} from '@angular/core';\nimport {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from \"@angular/forms\";\n\ntype HTMLInputTypeAttribute =\n  | 'email'\n  | 'file'\n  | 'number'\n  | 'password'\n  | 'search'\n  | 'tel'\n  | 'text'\n  | 'url';\n\n@Component({\n  selector: 'app-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss'],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => InputComponent),\n      multi: true,\n    },\n  ],\n})\nexport class InputComponent implements ControlValueAccessor {\n  @Input() type?: HTMLInputTypeAttribute = 'text';\n  @Input() id?: string;\n  @Input() name?: string;\n  @Input() value?: string = '';\n  @Input() placeholder?: string;\n  @Input() disabled?: boolean;\n  @Input() readonly?: boolean;\n  @Input() required?: boolean;\n  // @Input() minLength?: number;\n  // @Input() maxLength?: number;\n  @Input() pattern?: string;\n  @Input() min?: string;\n  @Input() max?: string;\n  @Input() step?: string;\n  @Input() autocomplete?: string;\n  @Input() autofocus?: boolean;\n\n  private onTouch: any;\n  private onChange: any;\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouch = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n  }\n\n  writeValue(val: string): void {\n    this.value = val;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../styles';\n\n.input {\n  display: flex;\n  height: 40px;\n  width: 100%;\n\n\n  border-radius: $radius;\n  border: 1px solid $input;\n  box-sizing: border-box;\n  background: $background;\n  padding: 8px 12px;\n  font-size: 1rem;\n\n  box-shadow: 0 0 0 1px $background;\n\n  &::placeholder {\n    color: $muted-foreground;\n  }\n\n  &:focus-visible {\n    outline: none;\n    box-shadow: 0 0 0 2px $ring;\n\n  }\n\n  &:disabled {\n    cursor: not-allowed;\n    opacity: 0.5;\n  }\n\n  &[type=\"file\"] {\n    appearance: none;\n  }\n}\n",
+                    "styleUrl": "./input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "implements": [
+                "ControlValueAccessor"
+            ],
+            "templateData": "<input\n  [(ngModel)]=\"value\"\n  [type]=\"type\"\n  [id]=\"id\"\n  [name]=\"name || ''\"\n  [value]=\"value\"\n  [placeholder]=\"placeholder\"\n  [disabled]=\"disabled || false\"\n  [readonly]=\"readonly || false\"\n  [required]=\"required || false\"\n  [pattern]=\"pattern || ''\"\n  [min]=\"min\"\n  [max]=\"max\"\n  [step]=\"step\"\n  [autocomplete]=\"autocomplete\"\n  [autofocus]=\"autofocus\"\n  class=\"input\"\n/>\n"
+        },
+        {
+            "name": "LabelComponent",
+            "id": "component-LabelComponent-6292f8eea378a5c9aa3b9e3b71f7b7124e4261bf42f158464d163e5a1d378c36e6282943bd59b6132bfb6ac23a3a1405329d22217adf48668b30ec4948f8550c",
+            "file": "src/app/components/ui/label/label.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-label",
+            "styleUrls": [
+                "./label.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./label.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "htmlFor",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input} from '@angular/core';\n\n@Component({\n  selector: 'app-label',\n  templateUrl: './label.component.html',\n  styleUrls: ['./label.component.scss']\n})\nexport class LabelComponent {\n  @Input() htmlFor: string = '';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".label {\n  font-size: 0.875rem;\n  font-weight: 500;\n  font-family: sans-serif;\n}\n\n\n",
+                    "styleUrl": "./label.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<label\n  [for]=\"htmlFor\"\n  class=\"label\">\n  <ng-content/>\n</label>\n"
+        },
+        {
+            "name": "ProductComponent",
+            "id": "component-ProductComponent-1251140447d086614741a11408d5ec4dd3b92efd5ab3293dd346c41b7df122f812bf822ed3dd6a123df80513a13a74997b2d53afb80bdfc8a200aa8671c41ce8",
+            "file": "src/app/pages/product/product.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-product",
+            "styleUrls": [
+                "./product.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./product.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "id",
+                    "defaultValue": "-1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "product",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Product | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "src",
+                    "defaultValue": "'https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_09691copy.jpg?v=1697127065'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        146
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input, OnInit} from '@angular/core';\nimport {Product, Variant} from \"../../types/Product\";\nimport {ProductService} from \"../../services/product.service\";\n\n@Component({\n  selector: 'app-product',\n  templateUrl: './product.component.html',\n  styleUrls: ['./product.component.scss'],\n})\nexport class ProductComponent implements OnInit {\n  readonly src = 'https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_09691copy.jpg?v=1697127065';\n  @Input() id: number = -1;\n\n  product: Product | null = null;\n\n  constructor(private productService: ProductService) {}\n\n  ngOnInit(): void {\n    this.productService\n      .getProductById(this.id)\n      .subscribe((product: Product): void => {\n      this.product = product;\n    })\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".product-page--container {\n  display: flex;\n  flex-direction: column;\n}\n\n.product-page--content {\n  display: flex;\n  gap: 16px;\n}\n\n.product-page--image-container {\n  position: relative;\n  overflow: hidden;\n  flex: 0 0 50%;\n\n  img {\n    position: absolute;\n    object-fit: scale-down;\n  }\n}\n\n.product-page--title {\n  display: flex;\n  flex-direction: column;\n\n  :first-child {\n    font-size: 2rem;\n    font-weight: 800;\n    text-transform: uppercase;\n  }\n\n  :not(:first-child) {\n    font-size: 1.5rem;\n    font-weight: 600;\n  }\n}\n\n.product-page--price {\n  font-size: 1.75rem;\n  font-weight: 700;\n}\n",
+                    "styleUrl": "./product.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "productService",
+                        "type": "ProductService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "productService",
+                        "type": "ProductService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"product-page--container\">\n  <app-header/>\n  <div *ngIf=\"product !== null\" ng class=\"product-page--content\">\n    <img class=\"product-page--image-container\"\n      [src]=\"product.images[0].src\"\n      alt=\"product\"\n\n    />\n\n    <div>\n      <h1 class=\"product-page--title\">\n    <span *ngFor=\"let part of product.title?.split(' - ')\">\n      {{part}}\n    </span>\n      </h1>\n      <div class=\"product-page--price\">€{{product.variants[0].price}}</div>\n\n      <app-product-form\n        [title]=\"product.title\"\n        [variants]=\"product.variants\"\n      />\n\n      <div [innerHTML]=\"product!.body_html\"></div>\n    </div>\n\n  </div>\n</div>\n"
+        },
+        {
+            "name": "ProductFormComponent",
+            "id": "component-ProductFormComponent-1da3c9fa93f9087f5c1e6aaab36e21edceb5a287bb6f5291f28f59a9119f261ec63bf02ad53ffcac6f7a64694a8f9a74ce4f45a96a35bab3e348f05677282784",
+            "file": "src/app/components/features/product-form/product-form.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-product-form",
+            "styleUrls": [
+                "./product-form.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./product-form.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "variants",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "Variant[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getSize",
+                    "args": [
+                        {
+                            "name": "code",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "\"S\" | \"M\" | \"L\" | \"XL\" | \"N/A\"",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "code",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, Input} from '@angular/core';\nimport {Product, Variant} from \"../../../types/Product\";\nimport {ProductService} from \"../../../services/product.service\";\n\n@Component({\n  selector: 'app-product-form',\n  templateUrl: './product-form.component.html',\n  styleUrls: ['./product-form.component.scss']\n})\nexport class ProductFormComponent {\n  @Input() title = '';\n  @Input() variants: Variant[] = [];\n\n  // constructor(private productService: ProductService) {}\n  //\n  // ngOnInit(): void {\n  //   this.productService.getProduct().subscribe((product: Product): void => {\n  //     this.variants = product.variants;\n  //   });\n  // }\n\n  public getSize(code: string) {\n    switch (code) {\n      case 'Size Small': return 'S';\n      case 'Size Medium': return 'M';\n      case 'Size Large': return 'L';\n      case 'Size X-Large': return 'XL';\n\n      default: return 'N/A'\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../styles';\n\n.product-form {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\n.product-form--size-grid {\n  display: grid;\n  justify-content: start;\n  align-items: start;\n  grid-template-columns: repeat(4, auto);\n  grid-auto-rows: auto;\n  gap: 8px;\n}\n\np {\n  color: $muted-foreground;\n}\n\n.product-form--atc-container {\n  display: flex;\n  gap: 8px;\n}\n",
+                    "styleUrl": "./product-form.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<form class=\"product-form\">\n  <div class=\"product-form--size-grid\">\n    <app-button\n      *ngFor=\"let variant of variants\"\n      label=\"{{getSize(variant.title)}}\"\n      variant=\"secondary\"\n    />\n  </div>\n  <div class=\"product-form--atc-container\">\n    <app-input placeholder=\"Quantity\"/>\n    <app-button label=\"Add to Cart\"/>\n  </div>\n</form>\n"
+        },
+        {
+            "name": "SeparatorComponent",
+            "id": "component-SeparatorComponent-524e77c0381bc2357c439da81ed76a867e545541d4f825a146003fd26f2b7b5c74418e1d4d1afbb44993247c09a157c4f45a938c8e09346e1573125dd9ca3eb8",
+            "file": "src/app/components/ui/separator/separator.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-separator",
+            "styleUrls": [
+                "./separator.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./separator.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-separator',\n  templateUrl: './separator.component.html',\n  styleUrls: ['./separator.component.scss']\n})\nexport class SeparatorComponent {\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../../styles';\n\n.separator {\n  width: 100%;\n  height: 1px;\n  background: $border;\n}\n",
+                    "styleUrl": "./separator.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"separator\"></div>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-09d1113bb74399bb995fc7f783c3ed8dacc95f223cb7044b614a8fe1eb370b34541166b1b2c533338bcc22654a4fb04203a2a0a74f42d704cccc23fea50c0e62",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppComponent } from './app.component';\nimport { ButtonComponent } from './components/ui/button/button.component';\nimport { InputComponent } from './components/ui/input/input.component';\nimport {FormsModule} from \"@angular/forms\";\nimport { LabelComponent } from './components/ui/label/label.component';\nimport { ProductFormComponent } from './components/features/product-form/product-form.component';\nimport { ProductComponent } from './pages/product/product.component';\nimport {NgOptimizedImage} from \"@angular/common\";\nimport { HeaderComponent } from './components/header/header.component';\nimport { CartListComponent } from './components/features/cart-list/cart-list.component';\nimport { CartListItemComponent } from './components/cart-list-item/cart-list-item.component';\nimport { CartComponent } from './pages/cart/cart.component';\nimport { SeparatorComponent } from './components/ui/separator/separator.component';\nimport { CartUpdateFormComponent } from './components/features/cart-update-form/cart-update-form.component';\nimport {HttpClientModule} from \"@angular/common/http\";\nimport {UiModule} from \"./components/ui/ui.module\";\nimport {FeaturesModule} from \"./components/features/features.module\";\nimport {ProductService} from \"./services/product.service\";\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    HeaderComponent,\n    // CartListItemComponent,\n    CartComponent,\n    ProductComponent,\n\n    // ButtonComponent,\n    // InputComponent,\n    // LabelComponent,\n    // SeparatorComponent,\n\n    // CartUpdateFormComponent,\n    // CartListComponent,\n    // ProductFormComponent\n  ],\n  imports: [\n      BrowserModule,\n      FormsModule,\n      NgOptimizedImage,\n      HttpClientModule,\n      UiModule,\n      FeaturesModule\n  ],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "CartComponent"
+                        },
+                        {
+                            "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "ProductComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "FeaturesModule"
+                        },
+                        {
+                            "name": "NgOptimizedImage"
+                        },
+                        {
+                            "name": "UiModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "FeaturesModule",
+            "id": "module-FeaturesModule-9bc17847f4d2dd4d0000db54deac1c8b5ee44a980a04e42009d7be6107bfb0d6e5a395efd509bfb8b9fd2eb89c9f55af1d64d3083fea34b2d46867c83f68559a",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/features/features.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport {CartUpdateFormComponent} from \"./cart-update-form/cart-update-form.component\";\nimport {CartListComponent} from \"./cart-list/cart-list.component\";\nimport {ProductFormComponent} from \"./product-form/product-form.component\";\nimport {CartListItemComponent} from \"../cart-list-item/cart-list-item.component\";\nimport {UiModule} from \"../ui/ui.module\";\nimport {HeaderComponent} from \"../header/header.component\";\nimport {BrowserModule} from \"@angular/platform-browser\";\nimport {CommonModule} from \"@angular/common\";\n\n\n\n@NgModule({\n  imports: [\n    CommonModule,\n    UiModule\n  ],\n  declarations: [\n    CartUpdateFormComponent,\n    CartListComponent,\n    ProductFormComponent,\n    CartListItemComponent,\n  ],\n  exports: [\n    CartUpdateFormComponent,\n    CartListComponent,\n    ProductFormComponent\n  ]\n})\nexport class FeaturesModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CartListComponent"
+                        },
+                        {
+                            "name": "CartListItemComponent"
+                        },
+                        {
+                            "name": "CartUpdateFormComponent"
+                        },
+                        {
+                            "name": "ProductFormComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "UiModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "CartListComponent"
+                        },
+                        {
+                            "name": "CartUpdateFormComponent"
+                        },
+                        {
+                            "name": "ProductFormComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "UiModule",
+            "id": "module-UiModule-c18f36a59a12de05a33df057d337ca588517fd0eabd013bb5934b781545fbab2b35c6ced14893656dd6418bd6dc41118cc0f5a13baf42e5edcb4e85debd77d3b",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/ui/ui.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport {ButtonComponent} from \"./button/button.component\";\nimport {InputComponent} from \"./input/input.component\";\nimport {LabelComponent} from \"./label/label.component\";\nimport {SeparatorComponent} from \"./separator/separator.component\";\nimport {FormsModule} from \"@angular/forms\";\nimport {CommonModule} from \"@angular/common\";\n\n@NgModule({\n  imports: [\n    CommonModule,\n    FormsModule\n  ],\n  declarations: [\n    ButtonComponent,\n    InputComponent,\n    LabelComponent,\n    SeparatorComponent\n  ],\n  exports: [\n    ButtonComponent,\n    InputComponent,\n    LabelComponent,\n    SeparatorComponent\n  ]\n})\nexport class UiModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "InputComponent"
+                        },
+                        {
+                            "name": "LabelComponent"
+                        },
+                        {
+                            "name": "SeparatorComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "InputComponent"
+                        },
+                        {
+                            "name": "LabelComponent"
+                        },
+                        {
+                            "name": "SeparatorComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "buttonDecorator",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "componentWrapperDecorator(story => `\n        <div style=\"display: flex; width: 100%; align-items: center; gap: 8px;\">\n            ${story}\n            <app-button label=\"Subscribe\"/>\n        </div>\n      `)"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    name: 'STONE ISLAND\\n' +\n      'DSM Men\\'s David-TC Heavy Coat\\n' +\n      '(Black)\\n',\n    size: 'Size small',\n    sku: '123456789',\n    quantity: '1'\n  }\n\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/features/cart-list/cart-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n\n  }\n\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n\n  }\n\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/features/product-form/product-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    title: \"Stone Island - DSM Men's David-TC Heavy Coat - (Black)\",\n    variants: mockVariants\n  }\n\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/label/Label.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n\n  }\n\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/product/product.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    id: 7153296638214\n  }\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/cart/cart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n\n  }\n\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'email',\n    placeholder: 'Email'\n  }\n}"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    type: 'email',\n    placeholder: 'Email',\n    disabled: true\n  }\n}"
+            },
+            {
+                "name": "File",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  decorators: [ fileDecorator ],\n  render: (args) => ({\n    props: {\n      id: 'picture',\n      inputType: 'file',\n      placeholder: 'No file chosen',\n    },\n  })\n}"
+            },
+            {
+                "name": "fileDecorator",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "componentWrapperDecorator(story => {\n  return `\n          <div style=\"display: flex; flex-direction: column; gap: 8px;\">\n              <app-label htmlFor=\"picture\">Picture</app-label>\n              ${story}\n          </div>\n        `;\n})"
+            },
+            {
+                "name": "Form",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  decorators: [ formDecorator ],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  })\n}"
+            },
+            {
+                "name": "formDecorator",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "componentWrapperDecorator(story => `\n      <form style=\"display: flex; flex-direction: column; gap: 8px;\">\n        <div style=\"display: flex; flex-direction: column; gap: 8px;\">\n          <app-label htmlFor=\"email\">Email</app-label>\n          ${story}\n        </div>\n        <app-button label=\"Submit\"/>\n      </form>\n\n      `)"
+            },
+            {
+                "name": "handlers",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/handlers.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  rest.get('/api/v1/products/:id', (req, res, ctx) => {\n    return res(\n      ctx.status(200),\n      ctx.json(products[0])\n    )\n  })\n]"
+            },
+            {
+                "name": "imageA",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ProductImage",
+                "defaultValue": "{\n  \"id\": 34760918827270,\n  \"created_at\": \"2023-10-12T17:11:03+01:00\",\n  \"position\": 1,\n  \"updated_at\": \"2023-10-12T17:11:05+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_09691copy.jpg?v=1697127065\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+            },
+            {
+                "name": "imageB",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ProductImage",
+                "defaultValue": "{\n  \"id\": 34760918860038,\n  \"created_at\": \"2023-10-12T17:11:03+01:00\",\n  \"position\": 2,\n  \"updated_at\": \"2023-10-12T17:11:05+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_0973copy.jpg?v=1697127065\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+            },
+            {
+                "name": "imageC",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ProductImage",
+                "defaultValue": "{\n  \"id\": 34760924856582,\n  \"created_at\": \"2023-10-13T10:07:13+01:00\",\n  \"position\": 3,\n  \"updated_at\": \"2023-10-13T10:07:15+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_0973acopy.jpg?v=1697188035\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+            },
+            {
+                "name": "imageD",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ProductImage",
+                "defaultValue": "{\n  \"id\": 34760924889350,\n  \"created_at\": \"2023-10-13T10:07:13+01:00\",\n  \"position\": 4,\n  \"updated_at\": \"2023-10-13T10:07:15+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_0973ccopy.jpg?v=1697188035\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+            },
+            {
+                "name": "labelDecorator",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "componentWrapperDecorator(story => `\n        <div style=\"display: flex; flex-direction: column; gap: 4px;\">\n            <app-label htmlFor=\"email\">Email</app-label>\n            ${story}\n        </div>\n      `)"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    size: 'large',\n    label: 'Large Button',\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CartListItemComponent>",
+                "defaultValue": "{\n  title: 'Components/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FeaturesModule, UiModule ],\n    }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/features/cart-list/cart-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CartListComponent>",
+                "defaultValue": "{\n  title: 'Components/CartList',\n  component: CartListComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FormsModule, FeaturesModule, UiModule ],\n      declarations: [ CartListComponent ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CartUpdateFormComponent>",
+                "defaultValue": "{\n  title: 'Components/CartUpdateForm',\n  component: CartUpdateFormComponent,\n  tags: ['autodocs'],\n\n\n  render: (args: CartUpdateFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/features/product-form/product-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ProductFormComponent>",
+                "defaultValue": "{\n  title: 'Features/ProductForm',\n  component: ProductFormComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FormsModule, UiModule ],\n    })\n  ],\n\n  render: (args: ProductFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ButtonComponent>",
+                "defaultValue": "{\n  title: 'UI/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n\n  render: (args: ButtonComponent) => ({\n    props: {\n      backgroundColor: null,\n      ...args,\n    },\n  }),\n  argTypes: { onClick: { action: 'clicked' } }\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/label/Label.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<LabelComponent>",
+                "defaultValue": "{\n  title: 'UI/Label',\n  component: LabelComponent,\n  tags: ['autodocs'],\n\n  render: (args: LabelComponent) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <app-label>Hey</app-label>\n    `\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/product/product.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ProductComponent>",
+                "defaultValue": "{\n  title: 'Pages/Product',\n  component: ProductComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [ HeaderComponent ],\n      imports: [ HttpClientModule, FeaturesModule, UiModule, CommonModule ],\n      providers: [ ProductService ]\n    }),\n  ],\n\n  render: (args: ProductComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/cart/cart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CartComponent>",
+                "defaultValue": "{\n  component: CartComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [ FeaturesModule, UiModule ]\n    })\n  ],\n  render: (args: CartComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<InputComponent>",
+                "defaultValue": "{\n  title: 'UI/Input',\n  component: InputComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FormsModule ]\n    })\n  ],\n  render: (args: InputComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "mockVariants",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/features/product-form/product-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  sizeSmall, sizeMedium, sizeLarge, sizeXLarge\n]"
+            },
+            {
+                "name": "preview",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Preview",
+                "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\n    options: {\n      storySort: {\n        order: ['Pages', 'Features', 'Components', 'UI']\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    decorators: [\n      moduleMetadata({\n        declarations: [CartListItemComponent]\n      })\n    ],\n    msw: { handlers },\n\n  },\n  loaders: [mswLoader],\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Primary',\n    variant: 'primary',\n  }\n}"
+            },
+            {
+                "name": "products",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/index.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Product[]",
+                "defaultValue": "[\n  stoneIslandHeavyCoat\n]"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    variant: 'secondary',\n    label: 'Secondary Button',\n  },\n}"
+            },
+            {
+                "name": "sizeLarge",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Variant",
+                "defaultValue": "{\n  \"id\": 41366094610694,\n  \"title\": \"Size Large\",\n  \"option1\": \"Size Large\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584853\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": true,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 3,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+            },
+            {
+                "name": "sizeMedium",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Variant",
+                "defaultValue": "{\n  \"id\": 41366094577926,\n  \"title\": \"Size Medium\",\n  \"option1\": \"Size Medium\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584852\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": true,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 2,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+            },
+            {
+                "name": "sizeOption",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/options.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Option",
+                "defaultValue": "{\n  \"name\": \"Size\",\n  \"position\": 1,\n  \"values\": [\n    \"Size Small\",\n    \"Size Medium\",\n    \"Size Large\",\n    \"Size X-Large\"\n  ]\n}"
+            },
+            {
+                "name": "sizeSmall",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Variant",
+                "defaultValue": "{\n  \"id\": 41366094446854,\n  \"title\": \"Size Small\",\n  \"option1\": \"Size Small\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584851\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": true,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 1,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+            },
+            {
+                "name": "sizeXLarge",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Variant",
+                "defaultValue": "{\n  \"id\": 41366094643462,\n  \"title\": \"Size X-Large\",\n  \"option1\": \"Size X-Large\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584854\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": false,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 4,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Small Button',\n  },\n}"
+            },
+            {
+                "name": "stoneIslandHeavyCoat",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/index.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Product",
+                "defaultValue": "{\n  \"id\": 7153296638214,\n  \"title\": \"Stone Island - DSM Men's David-TC Heavy Coat - (Black)\",\n  \"handle\": \"stone-island-mens-giaccone-black-aw23-791571649\",\n  \"body_html\": \"<p>Exclusively produced for Dover Street Market London.</p>\\n<p>Iconic Stone Island pieces are reimagined in all black with a serigraphic Dover Street Market print under the Stone Island badge.</p>\\n<p>Collar with snap to wear it standing.<br> Epaulettes.<br> Two slanting hand pockets with fixed flap.<br> Stone Island badge on the left sleeve. <br>Adjustable buttoned straps at cuffs.<br> Fastened through two ways zip hidden under hidden buttons placket.</p>\",\n  \"published_at\": \"2023-10-13T11:00:22+01:00\",\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\",\n  \"vendor\": \"Stone Island\",\n  \"product_type\": \"Jackets\",\n  \"tags\": [\n    \"1600000584851\",\n    \"1600000584852\",\n    \"1600000584853\",\n    \"1600000584854\",\n    \"attribute:BLACK\",\n    \"brand:STONE ISLAND\",\n    \"category:3\",\n    \"category:JACKETS\",\n    \"COO:\",\n    \"dayslive:number:0\",\n    \"Fabric Comp:\",\n    \"jackets\",\n    \"mens\",\n    \"outerwear\",\n    \"Related Product:STONE ISLAND GIACCONE\",\n    \"season:AW23\",\n    \"sex:MENS\",\n    \"SHARED STOCK:FALSE\",\n    \"sizeguide:mens\",\n    \"Status:In Stock\",\n    \"Status:InStock\",\n    \"Supplier SKU:791571649-BLACK\",\n    \"whatsnew\"\n  ],\n  \"variants\": [\n    sizeSmall,\n    sizeMedium,\n    sizeLarge,\n    sizeXLarge\n  ],\n  \"images\": [\n    imageA,\n    imageB,\n    imageC,\n    imageD\n  ],\n  \"options\": [\n    sizeOption\n  ]\n}"
+            },
+            {
+                "name": "withButton",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  decorators: [ buttonDecorator ],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  })\n}"
+            },
+            {
+                "name": "withLabel",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  decorators: [labelDecorator],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  })\n}"
+            },
+            {
+                "name": "worker",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/mocks/browser.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "setupWorker(...handlers)"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "CartItem",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "string",
+                "file": "src/app/components/features/cart-list/cart-list.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 152
+            },
+            {
+                "name": "HTMLInputTypeAttribute",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"email\" | \"file\" | \"number\" | \"password\" | \"search\" | \"tel\" | \"text\" | \"url\"",
+                "file": "src/app/components/ui/input/input.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 189
+            },
+            {
+                "name": "Option",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/types/Product.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Product",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/types/Product.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "ProductImage",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/types/Product.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Size",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"small\" | \"medium\" | \"large\"",
+                "file": "src/app/components/ui/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 189
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CartListItemComponent>",
+                "file": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CartListComponent>",
+                "file": "src/app/components/features/cart-list/cart-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CartUpdateFormComponent>",
+                "file": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ProductFormComponent>",
+                "file": "src/app/components/features/product-form/product-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ButtonComponent>",
+                "file": "src/app/components/ui/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<LabelComponent>",
+                "file": "src/app/components/ui/label/Label.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ProductComponent>",
+                "file": "src/app/pages/product/product.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CartComponent>",
+                "file": "src/app/pages/cart/cart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<InputComponent>",
+                "file": "src/app/components/ui/input/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 180
+            },
+            {
+                "name": "Variant",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/types/Product.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Variant",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"primary\" | \"secondary\"",
+                "file": "src/app/components/ui/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 189
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/app/components/ui/input/Input.stories.ts": [
+                {
+                    "name": "buttonDecorator",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "componentWrapperDecorator(story => `\n        <div style=\"display: flex; width: 100%; align-items: center; gap: 8px;\">\n            ${story}\n            <app-button label=\"Subscribe\"/>\n        </div>\n      `)"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'email',\n    placeholder: 'Email'\n  }\n}"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    type: 'email',\n    placeholder: 'Email',\n    disabled: true\n  }\n}"
+                },
+                {
+                    "name": "File",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  decorators: [ fileDecorator ],\n  render: (args) => ({\n    props: {\n      id: 'picture',\n      inputType: 'file',\n      placeholder: 'No file chosen',\n    },\n  })\n}"
+                },
+                {
+                    "name": "fileDecorator",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "componentWrapperDecorator(story => {\n  return `\n          <div style=\"display: flex; flex-direction: column; gap: 8px;\">\n              <app-label htmlFor=\"picture\">Picture</app-label>\n              ${story}\n          </div>\n        `;\n})"
+                },
+                {
+                    "name": "Form",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  decorators: [ formDecorator ],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  })\n}"
+                },
+                {
+                    "name": "formDecorator",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "componentWrapperDecorator(story => `\n      <form style=\"display: flex; flex-direction: column; gap: 8px;\">\n        <div style=\"display: flex; flex-direction: column; gap: 8px;\">\n          <app-label htmlFor=\"email\">Email</app-label>\n          ${story}\n        </div>\n        <app-button label=\"Submit\"/>\n      </form>\n\n      `)"
+                },
+                {
+                    "name": "labelDecorator",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "componentWrapperDecorator(story => `\n        <div style=\"display: flex; flex-direction: column; gap: 4px;\">\n            <app-label htmlFor=\"email\">Email</app-label>\n            ${story}\n        </div>\n      `)"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<InputComponent>",
+                    "defaultValue": "{\n  title: 'UI/Input',\n  component: InputComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FormsModule ]\n    })\n  ],\n  render: (args: InputComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                },
+                {
+                    "name": "withButton",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  decorators: [ buttonDecorator ],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  })\n}"
+                },
+                {
+                    "name": "withLabel",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  decorators: [labelDecorator],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  })\n}"
+                }
+            ],
+            "src/app/components/cart-list-item/cart-list-item.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    name: 'STONE ISLAND\\n' +\n      'DSM Men\\'s David-TC Heavy Coat\\n' +\n      '(Black)\\n',\n    size: 'Size small',\n    sku: '123456789',\n    quantity: '1'\n  }\n\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CartListItemComponent>",
+                    "defaultValue": "{\n  title: 'Components/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FeaturesModule, UiModule ],\n    }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                }
+            ],
+            "src/app/components/features/cart-list/cart-list.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/features/cart-list/cart-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n\n  }\n\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/features/cart-list/cart-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CartListComponent>",
+                    "defaultValue": "{\n  title: 'Components/CartList',\n  component: CartListComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FormsModule, FeaturesModule, UiModule ],\n      declarations: [ CartListComponent ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                }
+            ],
+            "src/app/components/features/cart-update-form/cart-update-form.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n\n  }\n\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CartUpdateFormComponent>",
+                    "defaultValue": "{\n  title: 'Components/CartUpdateForm',\n  component: CartUpdateFormComponent,\n  tags: ['autodocs'],\n\n\n  render: (args: CartUpdateFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                }
+            ],
+            "src/app/components/features/product-form/product-form.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/features/product-form/product-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    title: \"Stone Island - DSM Men's David-TC Heavy Coat - (Black)\",\n    variants: mockVariants\n  }\n\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/features/product-form/product-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ProductFormComponent>",
+                    "defaultValue": "{\n  title: 'Features/ProductForm',\n  component: ProductFormComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ FormsModule, UiModule ],\n    })\n  ],\n\n  render: (args: ProductFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                },
+                {
+                    "name": "mockVariants",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/features/product-form/product-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  sizeSmall, sizeMedium, sizeLarge, sizeXLarge\n]"
+                }
+            ],
+            "src/app/components/ui/label/Label.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/label/Label.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n\n  }\n\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/label/Label.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<LabelComponent>",
+                    "defaultValue": "{\n  title: 'UI/Label',\n  component: LabelComponent,\n  tags: ['autodocs'],\n\n  render: (args: LabelComponent) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <app-label>Hey</app-label>\n    `\n  }),\n}"
+                }
+            ],
+            "src/app/pages/product/product.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/product/product.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    id: 7153296638214\n  }\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/product/product.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ProductComponent>",
+                    "defaultValue": "{\n  title: 'Pages/Product',\n  component: ProductComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      declarations: [ HeaderComponent ],\n      imports: [ HttpClientModule, FeaturesModule, UiModule, CommonModule ],\n      providers: [ ProductService ]\n    }),\n  ],\n\n  render: (args: ProductComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                }
+            ],
+            "src/app/pages/cart/cart.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/cart/cart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n\n  }\n\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/cart/cart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CartComponent>",
+                    "defaultValue": "{\n  component: CartComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [ FeaturesModule, UiModule ]\n    })\n  ],\n  render: (args: CartComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
+                }
+            ],
+            "src/mocks/handlers.ts": [
+                {
+                    "name": "handlers",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/handlers.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  rest.get('/api/v1/products/:id', (req, res, ctx) => {\n    return res(\n      ctx.status(200),\n      ctx.json(products[0])\n    )\n  })\n]"
+                }
+            ],
+            "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts": [
+                {
+                    "name": "imageA",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ProductImage",
+                    "defaultValue": "{\n  \"id\": 34760918827270,\n  \"created_at\": \"2023-10-12T17:11:03+01:00\",\n  \"position\": 1,\n  \"updated_at\": \"2023-10-12T17:11:05+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_09691copy.jpg?v=1697127065\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+                },
+                {
+                    "name": "imageB",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ProductImage",
+                    "defaultValue": "{\n  \"id\": 34760918860038,\n  \"created_at\": \"2023-10-12T17:11:03+01:00\",\n  \"position\": 2,\n  \"updated_at\": \"2023-10-12T17:11:05+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_0973copy.jpg?v=1697127065\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+                },
+                {
+                    "name": "imageC",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ProductImage",
+                    "defaultValue": "{\n  \"id\": 34760924856582,\n  \"created_at\": \"2023-10-13T10:07:13+01:00\",\n  \"position\": 3,\n  \"updated_at\": \"2023-10-13T10:07:15+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_0973acopy.jpg?v=1697188035\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+                },
+                {
+                    "name": "imageD",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ProductImage",
+                    "defaultValue": "{\n  \"id\": 34760924889350,\n  \"created_at\": \"2023-10-13T10:07:13+01:00\",\n  \"position\": 4,\n  \"updated_at\": \"2023-10-13T10:07:15+01:00\",\n  \"product_id\": 7153296638214,\n  \"variant_ids\": [],\n  \"src\": \"https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_0973ccopy.jpg?v=1697188035\",\n  \"width\": 4000,\n  \"height\": 4000\n}"
+                }
+            ],
+            "src/app/components/ui/button/button.stories.ts": [
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'large',\n    label: 'Large Button',\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ButtonComponent>",
+                    "defaultValue": "{\n  title: 'UI/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n\n  render: (args: ButtonComponent) => ({\n    props: {\n      backgroundColor: null,\n      ...args,\n    },\n  }),\n  argTypes: { onClick: { action: 'clicked' } }\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Primary',\n    variant: 'primary',\n  }\n}"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    variant: 'secondary',\n    label: 'Secondary Button',\n  },\n}"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/ui/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Small Button',\n  },\n}"
+                }
+            ],
+            ".storybook/preview.ts": [
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\n    options: {\n      storySort: {\n        order: ['Pages', 'Features', 'Components', 'UI']\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    decorators: [\n      moduleMetadata({\n        declarations: [CartListItemComponent]\n      })\n    ],\n    msw: { handlers },\n\n  },\n  loaders: [mswLoader],\n}"
+                }
+            ],
+            "src/mocks/products/index.ts": [
+                {
+                    "name": "products",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/index.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Product[]",
+                    "defaultValue": "[\n  stoneIslandHeavyCoat\n]"
+                }
+            ],
+            "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts": [
+                {
+                    "name": "sizeLarge",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Variant",
+                    "defaultValue": "{\n  \"id\": 41366094610694,\n  \"title\": \"Size Large\",\n  \"option1\": \"Size Large\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584853\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": true,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 3,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+                },
+                {
+                    "name": "sizeMedium",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Variant",
+                    "defaultValue": "{\n  \"id\": 41366094577926,\n  \"title\": \"Size Medium\",\n  \"option1\": \"Size Medium\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584852\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": true,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 2,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+                },
+                {
+                    "name": "sizeSmall",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Variant",
+                    "defaultValue": "{\n  \"id\": 41366094446854,\n  \"title\": \"Size Small\",\n  \"option1\": \"Size Small\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584851\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": true,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 1,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+                },
+                {
+                    "name": "sizeXLarge",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Variant",
+                    "defaultValue": "{\n  \"id\": 41366094643462,\n  \"title\": \"Size X-Large\",\n  \"option1\": \"Size X-Large\",\n  \"option2\": null,\n  \"option3\": null,\n  \"sku\": \"1600000584854\",\n  \"requires_shipping\": true,\n  \"taxable\": true,\n  \"featured_image\": null,\n  \"available\": false,\n  \"price\": \"1950.00\",\n  \"grams\": 500,\n  \"compare_at_price\": null,\n  \"position\": 4,\n  \"product_id\": 7153296638214,\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\"\n}"
+                }
+            ],
+            "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/options.ts": [
+                {
+                    "name": "sizeOption",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/options.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Option",
+                    "defaultValue": "{\n  \"name\": \"Size\",\n  \"position\": 1,\n  \"values\": [\n    \"Size Small\",\n    \"Size Medium\",\n    \"Size Large\",\n    \"Size X-Large\"\n  ]\n}"
+                }
+            ],
+            "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/index.ts": [
+                {
+                    "name": "stoneIslandHeavyCoat",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/index.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Product",
+                    "defaultValue": "{\n  \"id\": 7153296638214,\n  \"title\": \"Stone Island - DSM Men's David-TC Heavy Coat - (Black)\",\n  \"handle\": \"stone-island-mens-giaccone-black-aw23-791571649\",\n  \"body_html\": \"<p>Exclusively produced for Dover Street Market London.</p>\\n<p>Iconic Stone Island pieces are reimagined in all black with a serigraphic Dover Street Market print under the Stone Island badge.</p>\\n<p>Collar with snap to wear it standing.<br> Epaulettes.<br> Two slanting hand pockets with fixed flap.<br> Stone Island badge on the left sleeve. <br>Adjustable buttoned straps at cuffs.<br> Fastened through two ways zip hidden under hidden buttons placket.</p>\",\n  \"published_at\": \"2023-10-13T11:00:22+01:00\",\n  \"created_at\": \"2023-10-12T16:46:32+01:00\",\n  \"updated_at\": \"2023-10-13T15:21:33+01:00\",\n  \"vendor\": \"Stone Island\",\n  \"product_type\": \"Jackets\",\n  \"tags\": [\n    \"1600000584851\",\n    \"1600000584852\",\n    \"1600000584853\",\n    \"1600000584854\",\n    \"attribute:BLACK\",\n    \"brand:STONE ISLAND\",\n    \"category:3\",\n    \"category:JACKETS\",\n    \"COO:\",\n    \"dayslive:number:0\",\n    \"Fabric Comp:\",\n    \"jackets\",\n    \"mens\",\n    \"outerwear\",\n    \"Related Product:STONE ISLAND GIACCONE\",\n    \"season:AW23\",\n    \"sex:MENS\",\n    \"SHARED STOCK:FALSE\",\n    \"sizeguide:mens\",\n    \"Status:In Stock\",\n    \"Status:InStock\",\n    \"Supplier SKU:791571649-BLACK\",\n    \"whatsnew\"\n  ],\n  \"variants\": [\n    sizeSmall,\n    sizeMedium,\n    sizeLarge,\n    sizeXLarge\n  ],\n  \"images\": [\n    imageA,\n    imageB,\n    imageC,\n    imageD\n  ],\n  \"options\": [\n    sizeOption\n  ]\n}"
+                }
+            ],
+            "src/mocks/browser.ts": [
+                {
+                    "name": "worker",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/mocks/browser.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "setupWorker(...handlers)"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/app/components/features/cart-list/cart-list.component.ts": [
+                {
+                    "name": "CartItem",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "string",
+                    "file": "src/app/components/features/cart-list/cart-list.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 152
+                }
+            ],
+            "src/app/components/ui/input/input.component.ts": [
+                {
+                    "name": "HTMLInputTypeAttribute",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"email\" | \"file\" | \"number\" | \"password\" | \"search\" | \"tel\" | \"text\" | \"url\"",
+                    "file": "src/app/components/ui/input/input.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 189
+                }
+            ],
+            "src/app/types/Product.ts": [
+                {
+                    "name": "Option",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/types/Product.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                },
+                {
+                    "name": "Product",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/types/Product.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                },
+                {
+                    "name": "ProductImage",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/types/Product.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                },
+                {
+                    "name": "Variant",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/types/Product.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/components/ui/button/button.component.ts": [
+                {
+                    "name": "Size",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"small\" | \"medium\" | \"large\"",
+                    "file": "src/app/components/ui/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 189
+                },
+                {
+                    "name": "Variant",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"primary\" | \"secondary\"",
+                    "file": "src/app/components/ui/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 189
+                }
+            ],
+            "src/app/components/cart-list-item/cart-list-item.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CartListItemComponent>",
+                    "file": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/components/features/cart-list/cart-list.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CartListComponent>",
+                    "file": "src/app/components/features/cart-list/cart-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/components/features/cart-update-form/cart-update-form.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CartUpdateFormComponent>",
+                    "file": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/components/features/product-form/product-form.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ProductFormComponent>",
+                    "file": "src/app/components/features/product-form/product-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/components/ui/button/button.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ButtonComponent>",
+                    "file": "src/app/components/ui/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/components/ui/label/Label.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<LabelComponent>",
+                    "file": "src/app/components/ui/label/Label.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/pages/product/product.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ProductComponent>",
+                    "file": "src/app/pages/product/product.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/pages/cart/cart.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CartComponent>",
+                    "file": "src/app/pages/cart/cart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ],
+            "src/app/components/ui/input/Input.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<InputComponent>",
+                    "file": "src/app/components/ui/input/Input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 180
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": ".storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "preview",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/cart-list-item/cart-list-item.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CartListItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/cart-list-item/cart-list-item.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/cart-list/cart-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CartListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/cart-list/cart-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/cart-list/cart-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/cart-update-form/cart-update-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CartUpdateFormComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/cart-update-form/cart-update-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/product-form/product-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ProductFormComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/product-form/product-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/product-form/product-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/features/product-form/product-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockVariants",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/header/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "buttonDecorator",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "File",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "fileDecorator",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Form",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "formDecorator",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "labelDecorator",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "withButton",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/Input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "withLabel",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/input/input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "InputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/21",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/label/Label.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/label/Label.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/label/label.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LabelComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ui/separator/separator.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SeparatorComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/cart/cart.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CartComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/cart/cart.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/cart/cart.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/product/product.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ProductComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/product/product.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/product/product.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/product.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ProductService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/browser.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "worker",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/handlers.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "handlers",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/index.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "products",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "imageA",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "imageB",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "imageC",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "imageD",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/index.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "stoneIslandHeavyCoat",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/options.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "sizeOption",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "sizeLarge",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "sizeMedium",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "sizeSmall",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/variants.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "sizeXLarge",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

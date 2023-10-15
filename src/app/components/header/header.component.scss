@@ -1,0 +1,23 @@
+@import '../../../styles';
+
+header {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  border-bottom: 1px solid $border;
+
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
+.header-brand-name {
+  flex: 1 0 auto;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+}
