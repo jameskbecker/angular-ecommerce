@@ -1,0 +1,14 @@
+<ui-card *transloco="let t; read: 'orderOverview'">
+  <ui-card-header><h2>{{t('heading')}}</h2></ui-card-header>
+  <ui-card-content class="subtotal-container">
+      <span>{{t('subtotal')}}</span>
+      <div class="cart--subtotal">€{{subtotal}}</div>
+      <p>{{t('shippingTaxCosts')}}</p>
+  </ui-card-content>
+  <ui-card-footer>
+    <ui-button
+      [label]="t('checkoutLabel')"
+      size="large"
+    />
+  </ui-card-footer>
+</ui-card>

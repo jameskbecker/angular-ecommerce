@@ -1,0 +1,7 @@
+<ui-button
+        *ngFor="let language of langs"
+        (onClick)="switch(language)"
+        size="small"
+        [variant]="activeLanguage === language ? 'secondary' : 'ghost'"
+        [label]="language.toUpperCase()"
+/>

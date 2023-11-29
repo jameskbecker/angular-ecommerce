@@ -1,0 +1,20 @@
+<header>
+  <span class="logo-container">
+    <img ngSrc="assets/logo.png" alt="NG-Commerce Logo" height="32" width="32"/>
+    <span class="header-brand-name">ng-commerce</span>
+  </span>
+
+  <feature-navigation-menu/>
+
+
+
+  <div class="actions-container">
+    <feature-language-selector/>
+    <ui-separator orientation="vertical"/>
+    <a [routerLink]="['cart']" (click)="toCart()">
+      <icon-shopping-bag class="bag-icon"/>
+      <span *ngIf="itemCount !== -1" class="counter">{{itemCount}}</span>
+    </a>
+  </div>
+
+</header>

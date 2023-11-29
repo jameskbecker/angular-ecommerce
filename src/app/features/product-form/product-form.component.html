@@ -1,0 +1,21 @@
+<form class="product-form" (ngSubmit)="onSubmit()" *transloco="let t; read: 'cartAddForm'">
+  <ui-radio-button-group
+    name="variant-id"
+    [options]="getVariantFields()"
+    (onChange)="updateVariant($event)"
+  />
+
+  <div class="input-container">
+    <ui-label htmlFor="quantity">{{t('quantity')}}</ui-label>
+    <ui-input
+            id="quantity"
+            name="quantity"
+            [(ngModel)]="formData.quantity"
+    />
+  </div>
+
+  <ui-button
+    [label]="t('submitBtn')"
+    type="submit"
+  />
+</form>

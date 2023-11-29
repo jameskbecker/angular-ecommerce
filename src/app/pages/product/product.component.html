@@ -1,27 +1,29 @@
-<div class="product-page--container">
-  <app-header/>
-  <div *ngIf="product !== null" ng class="product-page--content">
-    <img class="product-page--image-container"
-      [src]="product.images[0].src"
+<ng-container *ngIf="product !== null">
+  <div class="product-page--image-container">
+    <img
+      [ngSrc]="product.images[0].src"
       alt="product"
-
+      fill
     />
-
-    <div>
-      <h1 class="product-page--title">
-    <span *ngFor="let part of product.title?.split(' - ')">
-      {{part}}
-    </span>
-      </h1>
-      <div class="product-page--price">€{{product.variants[0].price}}</div>
-
-      <app-product-form
-        [title]="product.title"
-        [variants]="product.variants"
-      />
-
-      <div [innerHTML]="product!.body_html"></div>
-    </div>
-
   </div>
-</div>
+
+  <div class="product-page--details">
+    <h1 class="product-page--title">
+      <span *ngFor="let part of product.title?.split(' - ')">
+        {{part}}
+      </span>
+    </h1>
+
+    <div class="product-page--price">€{{product.variants[0].price}}</div>
+    <ui-separator/>
+
+    <feature-product-form
+      [title]="product.title"
+      [variants]="product.variants"
+    />
+    <ui-separator/>
+
+    <div class="product-page--description" [innerHTML]="product!.body_html"></div>
+  </div>
+
+</ng-container>

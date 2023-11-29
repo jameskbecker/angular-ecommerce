@@ -1,0 +1,28 @@
+{
+  "cartAddForm": {
+    "quantity": "Quantity",
+    "submitBtn": "Add to Cart"
+  },
+  "cartPage": {
+    "heading": "Your Shopping Cart",
+    "emptyText": "Your Cart is Empty."
+  },
+  "orderOverview": {
+    "heading": "Order Overview",
+    "subtotal": "Subtotal",
+    "shippingTaxCosts": "Shipping & taxes calculated at checkout",
+    "checkoutLabel": "Go to Checkout"
+  },
+  "cartList": {
+    "headings": {
+      "item": "Item",
+      "quantity": "Quantity",
+      "subtotal": "Subtotal"
+    },
+    "item": {
+      "size": "Size",
+      "updateLabel": "Update",
+      "removeLabel": "Remove Item"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+
+<div class="content">
+    <feature-product-card
+            *ngFor="let product of products"
+            [image]="product.images[0]"
+            [name]="product.title"
+            [href]="'/products/' + product.handle"
+            [price]="product.variants[0].price"
+    />
+</div>
+

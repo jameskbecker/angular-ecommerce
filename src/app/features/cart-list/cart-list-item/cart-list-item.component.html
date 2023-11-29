@@ -1,0 +1,35 @@
+<li class="cart-list-item--container" *transloco="let t; read: 'cartList.item'">
+  <div class="cart-list-item--column cart-list-item--image-container">
+    <img [ngSrc]="src" [alt]="name" width="150" height="150"/>
+
+    <div class="sub-row-container">
+      <h3><a [routerLink]="[href]">{{name}}</a></h3>
+    </div>
+
+    <div class="sub-row-container">
+      <span><strong>{{t('size')}}: </strong></span>
+      <span class="details-text">{{size}}</span>
+    </div>
+
+    <div class="sub-row-container">
+      <span><strong>SKU: </strong></span>
+      <span class="details-text">{{sku}}</span>
+    </div>
+  </div>
+
+
+  <div class="cart-list-item--column">
+    <app-cart-update-form [quantity]="quantity"/>
+    <ui-button
+      i18n-label="@@CartListRemoveBtn"
+      [label]="t('removeLabel')"
+      size="small"
+      variant="secondary"
+      (onClick)="handleDelete()"/>
+  </div>
+
+  <div class="cart-list-item--column cart-list-item--align-right">
+    <span>€{{linePrice}}</span>
+  </div>
+
+</li>

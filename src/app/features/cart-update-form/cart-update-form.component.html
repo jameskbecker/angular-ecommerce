@@ -1,0 +1,10 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="cart-update-form" *transloco="let t; read: 'cartList.item'">
+  <ui-input type="number" name="quantity" formControlName="qty"/>
+  <ui-button
+    [label]="t('updateLabel')"
+    [disabled]="!form.dirty"
+    size="small"
+    type="submit"
+    variant="outline"
+  />
+</form>

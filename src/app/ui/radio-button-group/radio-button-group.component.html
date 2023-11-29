@@ -1,0 +1,23 @@
+<fieldset class="container">
+  <legend class="sr-only">Size</legend>
+    <label *ngFor="let option of options"
+      class="btn-label"
+           [htmlFor]="'option-'+option.value"
+      [class.btn-label-selected]="option.value === value"
+      (click)="writeValue(option.value)"
+           [attr.tabindex]="0"
+      >
+      <input
+        type="radio"
+        [name]="name"
+        [id]="'option-'+option.value"
+        [value]="option.value"
+        [checked]="option.value === value"
+
+        [attr.tabindex]="-1"
+
+        (change)="writeValue(option.value)"
+      />
+      {{option.label}}
+    </label>
+</fieldset>

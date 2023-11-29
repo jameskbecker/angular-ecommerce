@@ -1,0 +1,28 @@
+{
+  "cartAddForm": {
+    "quantity": "Menge",
+    "submitBtn": "Zum Warenkorb Hinzufügen"
+  },
+  "cartPage": {
+    "heading": "Dein Warenkorb",
+    "emptyText": "Dein Warenkorb ist leer."
+  },
+  "orderOverview": {
+    "heading": "Bestellungsübersicht",
+    "subtotal": "Zwischensumme",
+    "shippingTaxCosts": "Versand und Steuern werden an der Kasse berechnet",
+    "checkoutLabel": "Zur Kasse"
+  },
+  "cartList": {
+    "headings": {
+      "item": "Artikel",
+      "quantity": "Menge",
+      "subtotal": "Zwischensumme"
+    },
+    "item": {
+      "size": "Größe",
+      "updateLabel": "Aktualisieren",
+      "removeLabel": "Entfernen"
+    }
+  }
+}

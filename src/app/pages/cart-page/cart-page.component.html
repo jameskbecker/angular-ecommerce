@@ -1,0 +1,24 @@
+<ng-container *transloco="let t; read: 'cartPage'">
+  <h1 class="page-heading">{{t('heading')}}</h1>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart-container">
+      <div class="empty-cart-placeholder">
+        <icon-shopping-bag/>
+        <div>{{t('emptyText')}}</div>
+      </div>
+      <ui-separator/>
+      <a [routerLink]="['/products/stone-island-mens-giaccone-black-aw23-791571649']">
+        <ui-button  size="large" [label]="'Weiter Shoppen'"/>
+      </a>
+    </div>
+  </ng-template>
+
+  <ng-container *ngIf="itemCount > 0; else emptyCart">
+    <feature-cart-list  class="details-container" />
+
+    <ui-separator orientation="vertical"/>
+    <feature-cart-order-overview class="cart-overview-layout" [subtotal]="subtotal"/>
+  </ng-container>
+
+</ng-container>

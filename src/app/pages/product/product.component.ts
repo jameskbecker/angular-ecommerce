@@ -1,26 +1,29 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Product, Variant} from "../../types/Product";
-import {ProductService} from "../../services/product.service";
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../../../types/Product';
+import { ProductService } from '../../services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-product',
+  selector: 'page-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  readonly src = 'https://cdn.shopify.com/s/files/1/0487/8188/5596/files/STONE_ISLAND_DSM_056246022582_09691copy.jpg?v=1697127065';
-  @Input() id: number = -1;
-
+  handle: string = '';
   product: Product | null = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.handle = <string>this.activatedRoute.snapshot.paramMap.get('handle');
+
     this.productService
-      .getProductById(this.id)
+      .getProductByHandle(this.handle)
       .subscribe((product: Product): void => {
-      this.product = product;
-      console.log(this.product)
-    })
+        this.product = product;
+      });
   }
 }

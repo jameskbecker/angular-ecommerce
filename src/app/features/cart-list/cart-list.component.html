@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="cart-list--header" *transloco="let t; read: 'cartList.headings'">
+    <h2>{{t('item')}}</h2>
+    <h2>{{t('quantity')}}</h2>
+    <h2>{{t('subtotal')}}</h2>
+  </div>
+  <ui-separator/>
+  <ul class="cart-list--body">
+    <feature-cart-list-item
+      *ngFor="let item of cart.items"
+      [id]="item.variant_id.toString()"
+      [name]="item.title"
+      [size]="item.variant_title"
+      [sku]="item.sku"
+      [quantity]="item.quantity"
+      [linePrice]="formatPrice(item.line_price)"
+      [href]="item.url"
+      [src]="item.image"
+    />
+  </ul>
+</div>
+
+

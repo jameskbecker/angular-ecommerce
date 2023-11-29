@@ -1,24 +1,25 @@
-import type { Preview } from "@storybook/angular";
-import { setCompodocJson } from "@storybook/addon-docs/angular";
-import docJson from "../documentation.json";
-import {initialize, mswLoader} from "msw-storybook-addon";
-import {handlers} from "../src/mocks/handlers";
-import {moduleMetadata} from "@storybook/angular";
-import {UiModule} from "../src/app/components/ui/ui.module";
-import {CommonModule} from "@angular/common";
-import {ButtonComponent} from "../src/app/components/ui/button/button.component";
-import cartListItemStories from "../src/app/components/cart-list-item/cart-list-item.stories";
-import {CartListItemComponent} from "../src/app/components/cart-list-item/cart-list-item.component";
+import type { Preview } from '@storybook/angular';
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+import docJson from '../documentation.json';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+import handlers from '../src/mocks/handlers';
+import i18n from 'storybook-i18n/preview';
+import '@angular/localize/init';
 
 setCompodocJson(docJson);
-initialize({ onUnhandledRequest: 'bypass', });
+initialize({ onUnhandledRequest: 'warn' });
+
+// @ts-ignore
+const i18nDecorators = i18n?.decorators || [];
 
 const preview: Preview = {
+  ...i18n,
+  decorators: [...i18nDecorators],
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     options: {
       storySort: {
-        order: ['Pages', 'Features', 'Components', 'UI']
+        order: ['Pages', 'Features', 'Layout', 'UI'],
       },
     },
     controls: {
@@ -27,13 +28,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    decorators: [
-      moduleMetadata({
-        declarations: [CartListItemComponent]
-      })
-    ],
     msw: { handlers },
-
   },
   loaders: [mswLoader],
 };

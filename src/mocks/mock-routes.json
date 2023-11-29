@@ -1,0 +1,4 @@
+{
+  "/api/v1/*": "/$1",
+  "/products/:handle": "/products?handle=:handle&_page=1&_limit=1"
+}

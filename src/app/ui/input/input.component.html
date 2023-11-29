@@ -1,0 +1,22 @@
+<input
+    [(ngModel)]="value"
+    (ngModelChange)="onChange($event)"
+
+  [type]="type"
+  [id]="id"
+  [name]="name || ''"
+  [placeholder]="placeholder"
+
+  [disabled]="disabled"
+  [readonly]="readonly || false"
+  [required]="required || false"
+  [pattern]="pattern || ''"
+  [min]="min"
+  [max]="max"
+  [step]="step"
+
+  [autocomplete]="autocomplete"
+  [autofocus]="autofocus"
+
+  class="input"
+/>
