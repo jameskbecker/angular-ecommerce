@@ -1,0 +1,81 @@
+@import '../../../styles';
+
+@mixin base-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  border: 1px solid transparent;
+  border-radius: $radius;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  appearance: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.btn-primary {
+  @include base-btn();
+  background: $primary;
+  color: $primary-foreground;
+  border: 1px solid $primary;
+
+  &:hover {
+    background: mix($primary, white, $weight: 90%);
+  }
+}
+
+.btn-secondary {
+  @include base-btn();
+  background: $secondary;
+  color: $secondary-foreground;
+  border: 1px solid $secondary;
+
+  &:hover {
+    background: mix($secondary, white, $weight: 80%);
+  }
+}
+
+.btn-outline {
+  @include base-btn();
+  border: 1px solid $primary;
+  color: $primary;
+  background: transparent;
+
+  &:hover {
+    color: $primary-foreground;
+    background: mix($primary, white, $weight: 90%);
+  }
+}
+
+.btn-ghost {
+  @include base-btn;
+
+  background: transparent;
+}
+
+.btn-small {
+  padding: 0.25rem;
+  border-radius: $radius;
+}
+
+.btn-medium {
+  height: 40px;
+  padding: 8px 16px;
+}
+
+.btn-large {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border-radius: $radius;
+}
