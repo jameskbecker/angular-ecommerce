@@ -1,0 +1,22 @@
+@import 'shop/src/styles';
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+p {
+  color: $muted-foreground;
+}
+
+.product-form--atc-container {
+  display: flex;
+  gap: 8px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
