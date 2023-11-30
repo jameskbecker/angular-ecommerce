@@ -1,0 +1,28 @@
+name: Frontend UI Tests
+
+on: push
+
+jobs:
+  interaction-and-accessiblity:
+    name: Interaction and Accessibility
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: '20.x'
+            cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Storybook
+        run: pnpm build-storybook --quiet
+
+      - name: Serve Storybook and run tests
+        run: npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+          "npx http-server storybook-static --port 6006 --silent" \
+          "pnpm dlx wait-on tcp:6006 && yarn test-storybook"
