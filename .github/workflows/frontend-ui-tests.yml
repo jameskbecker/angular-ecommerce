@@ -29,9 +29,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build Storybook
-        run: pnpm --filter @angular-commerce/shop build-storybook
-
       - name: Serve Storybook
         run: |
           pnpm --filter @angular-commerce/shop storybook &
