@@ -32,5 +32,5 @@ jobs:
       - name: Serve Storybook
         run: |
           pnpm --filter @angular-commerce/shop storybook &
-          sleep 60
+          until curl -s http://127.0.0.1:6006; do sleep 40; done
           pnpm --filter @angular-commerce/shop test-storybook
