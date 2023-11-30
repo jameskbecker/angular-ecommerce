@@ -10,6 +10,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node and Angular CLI
+        run: |
+          npm install -g @angular/cli
+          node -v
+          npm -v
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
