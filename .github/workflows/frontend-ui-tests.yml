@@ -33,7 +33,9 @@ jobs:
         run: pnpm --filter @angular-commerce/shop build-storybook
 
       - name: Serve Storybook
-        run: pnpm --filter @angular-commerce/shop storybook
+        run: |
+          pnpm --filter @angular-commerce/shop storybook &
+          sleep 10
 
       - name: Serve Storybook and run tests
         run: pnpm --filter @angular-commerce/shop test-storybook
