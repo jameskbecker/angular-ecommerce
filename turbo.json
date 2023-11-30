@@ -3,15 +3,13 @@
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [
+        "dist/**",
+     "storybook-static/**"
+      ]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
+    "test-storybook": {
+      "dependsOn": ["^build-storybook"]
     }
   }
 }

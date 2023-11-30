@@ -1,5 +1,5 @@
 {
-  "name": "angular-ecommerce",
+  "name": "@angular-commerce/shop",
   "version": "0.0.0",
   "packageManager": "pnpm@8.9.0",
   "scripts": {
@@ -9,8 +9,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "cypress:open": "cypress open",
-    "storybook": "ng run angular-ecommerce:storybook",
-    "build-storybook": "ng run angular-ecommerce:build-storybook",
+    "storybook": "ng run shop:storybook",
+    "build-storybook": "ng run shop:build-storybook --quiet",
+    "test-storybook": "test-storybook",
     "server": "json-server src/mocks/mock-db.json --routes ./src/mocks/mock-routes.json --port 5000 --watch",
     "e2e": "ng e2e",
     "cypress:run": "cypress run"
@@ -45,6 +46,7 @@
     "@storybook/angular": "^7.4.6",
     "@storybook/blocks": "^7.4.6",
     "@storybook/builder-vite": "^7.4.6",
+    "@storybook/test-runner": "^0.16.0",
     "@storybook/testing-library": "^0.2.2",
     "@types/jasmine": "~4.3.0",
     "@types/node": "^20.8.6",

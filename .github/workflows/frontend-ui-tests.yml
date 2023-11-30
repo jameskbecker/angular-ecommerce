@@ -30,11 +30,10 @@ jobs:
         run: pnpm install
 
       - name: Build Storybook
-        run: pnpm build-storybook --quiet
-        working-directory: ./apps/shop
+        run: pnpm run build-storybook" --filter @angular-commerce/shop
+
+      - name: Serve Storybook
+        run: pnpm storybook --filter @angular-commerce/shop
 
       - name: Serve Storybook and run tests
-        run: npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-          "npx http-server storybook-static --port 6006 --silent" \
-          "npx wait-on tcp:6006 && pnpm test-storybook"
-        working-directory: ./apps/shop
+        run: pnpm test-storybook --filter @angular-commerce/shop
