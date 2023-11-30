@@ -345,8 +345,9 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 168,
-            "methods": []
+            "kind": 171,
+            "methods": [],
+            "extends": []
         },
         {
             "name": "FeaturedImage",
@@ -404,8 +405,9 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 168,
-            "methods": []
+            "kind": 171,
+            "methods": [],
+            "extends": []
         },
         {
             "name": "OptionsWithValue",
@@ -436,8 +438,9 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 168,
-            "methods": []
+            "kind": 171,
+            "methods": [],
+            "extends": []
         },
         {
             "name": "Properties",
@@ -449,7 +452,8 @@
             "sourceCode": "import { Variant } from './Product';\n\nexport type Cart = {\n  item_count: number;\n  items: CartItem[];\n  subtotal: string;\n};\n\nexport const DEFAULT_CART = {\n  item_count: -1,\n  items: [],\n  subtotal: '0.00',\n};\n\nexport interface CartItem {\n  id: number;\n  properties?: Properties;\n  quantity: number;\n  variant_id: number;\n  key?: string;\n  title: string;\n  price: number;\n  original_price?: number;\n  discounted_price?: number;\n  line_price: number;\n  original_line_price?: number;\n  total_discount?: number;\n  discounts?: any[];\n  sku: string;\n  grams?: number;\n  vendor: string;\n  taxable?: boolean;\n  product_id?: number;\n  product_has_only_default_variant?: boolean;\n  gift_card?: boolean;\n  final_price?: number;\n  final_line_price?: number;\n  url: string;\n  featured_image?: FeaturedImage;\n  image: string;\n  handle?: string;\n  requires_shipping?: boolean;\n  product_type?: string;\n  product_title?: string;\n  product_description?: string;\n  variant_title: string;\n  variant_options: string[];\n  options_with_values?: OptionsWithValue[];\n  line_level_discount_allocations?: any[];\n  line_level_total_discount?: number;\n  quantity_rule?: QuantityRule;\n  has_components?: boolean;\n}\n\nexport interface Properties {}\n\nexport interface FeaturedImage {\n  aspect_ratio: number;\n  alt: string;\n  height: number;\n  url: string;\n  width: number;\n}\n\nexport interface OptionsWithValue {\n  name: string;\n  value: string;\n}\n\nexport interface QuantityRule {\n  min: number;\n  max: any;\n  increment: number;\n}\n",
             "properties": [],
             "indexSignatures": [],
-            "methods": []
+            "methods": [],
+            "extends": []
         },
         {
             "name": "QuantityRule",
@@ -489,8 +493,9 @@
                 }
             ],
             "indexSignatures": [],
-            "kind": 168,
-            "methods": []
+            "kind": 171,
+            "methods": [],
+            "extends": []
         }
     ],
     "injectables": [
@@ -509,7 +514,7 @@
                     "description": "",
                     "line": 19,
                     "modifierKind": [
-                        146
+                        148
                     ]
                 },
                 {
@@ -522,7 +527,7 @@
                     "description": "",
                     "line": 22,
                     "modifierKind": [
-                        123
+                        125
                     ]
                 },
                 {
@@ -535,7 +540,7 @@
                     "description": "",
                     "line": 21,
                     "modifierKind": [
-                        121
+                        123
                     ]
                 }
             ],
@@ -569,7 +574,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -611,7 +616,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ]
                 },
                 {
@@ -631,7 +636,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -662,7 +667,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -708,6 +713,7 @@
                     }
                 ]
             },
+            "extends": [],
             "type": "injectable"
         },
         {
@@ -725,7 +731,7 @@
                     "description": "",
                     "line": 11,
                     "modifierKind": [
-                        121
+                        123
                     ]
                 }
             ],
@@ -846,6 +852,7 @@
                     }
                 ]
             },
+            "extends": [],
             "type": "injectable"
         },
         {
@@ -863,7 +870,7 @@
                     "description": "",
                     "line": 7,
                     "modifierKind": [
-                        121
+                        123
                     ]
                 }
             ],
@@ -902,6 +909,7 @@
             "description": "",
             "rawdescription": "\n",
             "sourceCode": "import { inject, Injectable } from \"@angular/core\";\nimport { Translation, TranslocoLoader } from \"@ngneat/transloco\";\nimport { HttpClient } from \"@angular/common/http\";\n\n@Injectable({ providedIn: 'root' })\nexport class TranslocoHttpLoader implements TranslocoLoader {\n    private http = inject(HttpClient);\n\n    getTranslation(lang: string) {\n        return this.http.get<Translation>(`/assets/i18n/${lang}.json`);\n    }\n}\n",
+            "extends": [],
             "type": "injectable"
         }
     ],
@@ -962,6 +970,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<layout-header/>\n<router-outlet></router-outlet>\n<layout-footer/>\n"
         },
         {
@@ -1068,7 +1077,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -1101,6 +1110,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "accessors": {
                 "classes": {
                     "name": "classes",
@@ -1153,7 +1163,8 @@
                     "styleUrl": "./card.component.scss"
                 }
             ],
-            "stylesData": ""
+            "stylesData": "",
+            "extends": []
         },
         {
             "name": "CardContentComponent",
@@ -1194,7 +1205,8 @@
                     "styleUrl": "./card-content.component.scss"
                 }
             ],
-            "stylesData": ""
+            "stylesData": "",
+            "extends": []
         },
         {
             "name": "CardFooterComponent",
@@ -1235,7 +1247,8 @@
                     "styleUrl": "./card-footer.component.scss"
                 }
             ],
-            "stylesData": ""
+            "stylesData": "",
+            "extends": []
         },
         {
             "name": "CardHeaderComponent",
@@ -1276,7 +1289,8 @@
                     "styleUrl": "./card-header.component.scss"
                 }
             ],
-            "stylesData": ""
+            "stylesData": "",
+            "extends": []
         },
         {
             "name": "CartListComponent",
@@ -1329,7 +1343,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -1398,6 +1412,7 @@
                     }
                 ]
             },
+            "extends": [],
             "implements": [
                 "OnInit"
             ],
@@ -1507,7 +1522,7 @@
                     "description": "",
                     "line": 17,
                     "modifierKind": [
-                        121
+                        123
                     ]
                 }
             ],
@@ -1522,7 +1537,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ]
                 }
             ],
@@ -1570,6 +1585,7 @@
                     }
                 ]
             },
+            "extends": [],
             "accessors": {
                 "linePrice": {
                     "name": "linePrice",
@@ -1661,6 +1677,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<ui-card *transloco=\"let t; read: 'orderOverview'\">\n  <ui-card-header><h2>{{t('heading')}}</h2></ui-card-header>\n  <ui-card-content class=\"subtotal-container\">\n      <span>{{t('subtotal')}}</span>\n      <div class=\"cart--subtotal\">€{{subtotal}}</div>\n      <p>{{t('shippingTaxCosts')}}</p>\n  </ui-card-content>\n  <ui-card-footer>\n    <ui-button\n      [label]=\"t('checkoutLabel')\"\n      size=\"large\"\n    />\n  </ui-card-footer>\n</ui-card>\n"
         },
         {
@@ -1724,7 +1741,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -1748,7 +1765,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ]
                 }
             ],
@@ -1796,6 +1813,7 @@
                     }
                 ]
             },
+            "extends": [],
             "implements": [
                 "OnInit"
             ],
@@ -1919,6 +1937,7 @@
                     }
                 ]
             },
+            "extends": [],
             "implements": [
                 "OnInit"
             ],
@@ -2039,6 +2058,7 @@
                     }
                 ]
             },
+            "extends": [],
             "templateData": "\n<div class=\"content\">\n    <feature-product-card\n            *ngFor=\"let product of products\"\n            [image]=\"product.images[0]\"\n            [name]=\"product.title\"\n            [href]=\"'/products/' + product.handle\"\n            [price]=\"product.variants[0].price\"\n    />\n</div>\n\n"
         },
         {
@@ -2082,7 +2102,8 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<ng-container>\n    <span class=\"logo-container\">\n        <img ngSrc=\"assets/logo.png\" alt=\"NG-Commerce Logo\" height=\"64\" width=\"64\"/>\n        <span class=\"header-brand-name\">ng-commerce</span>\n\n    </span>\n\n    <div>\n        <span>This project was built by <a href=\"#\">@jameskbecker</a>.</span>\n        <span> The source code is available on <a href=\"#\">GitHub</a>.</span>\n    </div>\n</ng-container>\n"
+            "extends": [],
+            "templateData": "<ng-container>\n    <span class=\"logo-container\">\n        <img ngSrc=\"../../../assets/logo.png\" alt=\"NG-Commerce Logo\" height=\"64\" width=\"64\"/>\n        <span class=\"header-brand-name\">ng-commerce</span>\n\n    </span>\n\n    <div>\n        <span>This project was built by <a href=\"#\">@jameskbecker</a>.</span>\n        <span> The source code is available on <a href=\"#\">GitHub</a>.</span>\n    </div>\n</ng-container>\n"
         },
         {
             "name": "HeaderComponent",
@@ -2198,14 +2219,15 @@
                     }
                 ]
             },
+            "extends": [],
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<header>\n  <span class=\"logo-container\">\n    <img ngSrc=\"assets/logo.png\" alt=\"NG-Commerce Logo\" height=\"32\" width=\"32\"/>\n    <span class=\"header-brand-name\">ng-commerce</span>\n  </span>\n\n  <feature-navigation-menu/>\n\n\n\n  <div class=\"actions-container\">\n    <feature-language-selector/>\n    <ui-separator orientation=\"vertical\"/>\n    <a [routerLink]=\"['cart']\" (click)=\"toCart()\">\n      <icon-shopping-bag class=\"bag-icon\"/>\n      <span *ngIf=\"itemCount !== -1\" class=\"counter\">{{itemCount}}</span>\n    </a>\n  </div>\n\n</header>\n"
+            "templateData": "<header>\n  <span class=\"logo-container\">\n    <img ngSrc=\"../../../assets/logo.png\" alt=\"NG-Commerce Logo\" height=\"32\" width=\"32\"/>\n    <span class=\"header-brand-name\">ng-commerce</span>\n  </span>\n\n  <feature-navigation-menu/>\n\n\n\n  <div class=\"actions-container\">\n    <feature-language-selector/>\n    <ui-separator orientation=\"vertical\"/>\n    <a [routerLink]=\"['cart']\" (click)=\"toCart()\">\n      <icon-shopping-bag class=\"bag-icon\"/>\n      <span *ngIf=\"itemCount !== -1\" class=\"counter\">{{itemCount}}</span>\n    </a>\n  </div>\n\n</header>\n"
         },
         {
             "name": "InputComponent",
-            "id": "component-InputComponent-f10f4843fe6c3e28e0030ea430b2447e98999676d51b28cc86bc98ff860450d46667dd07cffceee4a613b0001e47817f1a68ff620d9758b9eb63057aa15aefa7",
+            "id": "component-InputComponent-7e2462f1aeda49a8c9e70a4526645c30a59303fd3f8efbf4e043db6e796a512a86f2b5c60dc8914ae9b353c75de2d03530168fba5480f704533698fc73083f5f",
             "file": "src/app/ui/input/input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2233,7 +2255,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 55,
+                    "line": 53,
                     "type": "string",
                     "decorators": []
                 },
@@ -2242,7 +2264,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 56,
+                    "line": 54,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -2251,7 +2273,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 46,
+                    "line": 44,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -2259,7 +2281,7 @@
                     "name": "id",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 41,
+                    "line": 39,
                     "type": "string",
                     "decorators": []
                 },
@@ -2268,7 +2290,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 53,
+                    "line": 51,
                     "type": "string",
                     "decorators": []
                 },
@@ -2277,7 +2299,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 52,
+                    "line": 50,
                     "type": "string",
                     "decorators": []
                 },
@@ -2288,7 +2310,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "optional": false,
-                    "line": 42,
+                    "line": 40,
                     "type": "string",
                     "decorators": []
                 },
@@ -2297,7 +2319,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 51,
+                    "line": 49,
                     "type": "string",
                     "decorators": []
                 },
@@ -2306,7 +2328,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 45,
+                    "line": 43,
                     "type": "string",
                     "decorators": []
                 },
@@ -2315,7 +2337,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 47,
+                    "line": 45,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -2324,7 +2346,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 48,
+                    "line": 46,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -2333,7 +2355,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 54,
+                    "line": 52,
                     "type": "string",
                     "decorators": []
                 },
@@ -2342,7 +2364,7 @@
                     "defaultValue": "'text'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 43,
+                    "line": 41,
                     "type": "HTMLInputTypeAttribute",
                     "decorators": []
                 }
@@ -2357,7 +2379,7 @@
                     "type": "ValueChangeCallback",
                     "optional": false,
                     "description": "",
-                    "line": 59
+                    "line": 57
                 },
                 {
                     "name": "onTouch",
@@ -2367,7 +2389,7 @@
                     "type": "function",
                     "optional": false,
                     "description": "",
-                    "line": 58
+                    "line": 56
                 },
                 {
                     "name": "value",
@@ -2377,7 +2399,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 61
+                    "line": 59
                 }
             ],
             "methodsClass": [
@@ -2394,7 +2416,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 67,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2423,7 +2445,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 71,
+                    "line": 69,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2452,7 +2474,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 75,
+                    "line": 73,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2480,7 +2502,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 79,
+                    "line": 77,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2505,7 +2527,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  forwardRef,\n  EventEmitter,\n  Output,\n} from '@angular/core';\nimport {\n  ControlValueAccessor,\n  FormsModule,\n  NG_VALUE_ACCESSOR,\n} from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { EventHandler } from 'react';\n\ntype HTMLInputTypeAttribute =\n  | 'email'\n  | 'file'\n  | 'number'\n  | 'password'\n  | 'search'\n  | 'tel'\n  | 'text'\n  | 'url';\n\ntype ValueChangeCallback = (value?: string) => void;\n\n@Component({\n  selector: 'ui-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss'],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => InputComponent),\n      multi: true,\n    },\n  ],\n})\nexport class InputComponent implements ControlValueAccessor {\n  @Input() id?: string;\n  @Input({ required: true }) name: string = '';\n  @Input() type?: HTMLInputTypeAttribute = 'text';\n\n  @Input() placeholder: string = '';\n  @Input() disabled: boolean = false;\n  @Input() readonly: boolean = false;\n  @Input() required: boolean = false;\n  // @Input() minLength?: number;\n  // @Input() maxLength?: number;\n  @Input() pattern: string = '';\n  @Input() min: string = '';\n  @Input() max: string = '';\n  @Input() step: string = '';\n  @Input() autocomplete: string = '';\n  @Input() autofocus: boolean = false;\n\n  onTouch: () => void = () => {};\n  onChange: ValueChangeCallback = () => {};\n\n  value: string = '';\n\n  constructor() {\n    this.disabled = false;\n  }\n\n  registerOnChange(handler: ValueChangeCallback): void {\n    this.onChange = handler;\n  }\n\n  registerOnTouched(handler: () => void): void {\n    this.onTouch = handler;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n  }\n\n  writeValue(val: string): void {\n    this.value = val;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  forwardRef,\n  EventEmitter,\n  Output,\n} from '@angular/core';\nimport {\n  ControlValueAccessor,\n  FormsModule,\n  NG_VALUE_ACCESSOR,\n} from '@angular/forms';\n\ntype HTMLInputTypeAttribute =\n  | 'email'\n  | 'file'\n  | 'number'\n  | 'password'\n  | 'search'\n  | 'tel'\n  | 'text'\n  | 'url';\n\ntype ValueChangeCallback = (value?: string) => void;\n\n@Component({\n  selector: 'ui-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss'],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => InputComponent),\n      multi: true,\n    },\n  ],\n})\nexport class InputComponent implements ControlValueAccessor {\n  @Input() id?: string;\n  @Input({ required: true }) name: string = '';\n  @Input() type?: HTMLInputTypeAttribute = 'text';\n\n  @Input() placeholder: string = '';\n  @Input() disabled: boolean = false;\n  @Input() readonly: boolean = false;\n  @Input() required: boolean = false;\n  // @Input() minLength?: number;\n  // @Input() maxLength?: number;\n  @Input() pattern: string = '';\n  @Input() min: string = '';\n  @Input() max: string = '';\n  @Input() step: string = '';\n  @Input() autocomplete: string = '';\n  @Input() autofocus: boolean = false;\n\n  onTouch: () => void = () => {};\n  onChange: ValueChangeCallback = () => {};\n\n  value: string = '';\n\n  constructor() {\n    this.disabled = false;\n  }\n\n  registerOnChange(handler: ValueChangeCallback): void {\n    this.onChange = handler;\n  }\n\n  registerOnTouched(handler: () => void): void {\n    this.onTouch = handler;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n  }\n\n  writeValue(val: string): void {\n    this.value = val;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2520,8 +2542,9 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 61
+                "line": 59
             },
+            "extends": [],
             "implements": [
                 "ControlValueAccessor"
             ],
@@ -2578,6 +2601,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<label\n  [for]=\"htmlFor\"\n  class=\"label\">\n  <ng-content/>\n</label>\n"
         },
         {
@@ -2612,7 +2636,7 @@
                     "description": "",
                     "line": 10,
                     "modifierKind": [
-                        146
+                        148
                     ]
                 }
             ],
@@ -2700,6 +2724,7 @@
                     }
                 ]
             },
+            "extends": [],
             "implements": [
                 "OnInit"
             ],
@@ -2757,6 +2782,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<a [routerLink]=\"['categories', 'all']\" class=\"nav-link\">All Products</a>\n<a class=\"nav-link\">Jackets</a>\n<a class=\"nav-link\">Trainers</a>\n<a class=\"nav-link\">Sweatshirts</a>\n"
         },
         {
@@ -2836,6 +2862,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<div class=\"container\" [routerLink]=\"[href]\">\n    <div class=\"image-container\"><img [ngSrc]=\"image.src\" [alt]=\"name\" fill/></div>\n    <div class=\"product-card-footer\">\n        <h4>{{name}}</h4>\n        <h5 class=\"price-text\">€{{price}}</h5>\n    </div>\n</div>\n"
         },
         {
@@ -2952,6 +2979,7 @@
                     }
                 ]
             },
+            "extends": [],
             "implements": [
                 "OnInit"
             ],
@@ -3008,7 +3036,7 @@
                     "description": "",
                     "line": 15,
                     "modifierKind": [
-                        123
+                        125
                     ]
                 },
                 {
@@ -3021,7 +3049,7 @@
                     "description": "",
                     "line": 38,
                     "modifierKind": [
-                        123
+                        125
                     ]
                 },
                 {
@@ -3044,7 +3072,7 @@
                     "description": "",
                     "line": 49,
                     "modifierKind": [
-                        123
+                        125
                     ]
                 }
             ],
@@ -3066,7 +3094,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -3097,7 +3125,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
-                        123
+                        125
                     ],
                     "jsdoctags": [
                         {
@@ -3156,6 +3184,7 @@
                     }
                 ]
             },
+            "extends": [],
             "templateData": "<form class=\"product-form\" (ngSubmit)=\"onSubmit()\" *transloco=\"let t; read: 'cartAddForm'\">\n  <ui-radio-button-group\n    name=\"variant-id\"\n    [options]=\"getVariantFields()\"\n    (onChange)=\"updateVariant($event)\"\n  />\n\n  <div class=\"input-container\">\n    <ui-label htmlFor=\"quantity\">{{t('quantity')}}</ui-label>\n    <ui-input\n            id=\"quantity\"\n            name=\"quantity\"\n            [(ngModel)]=\"formData.quantity\"\n    />\n  </div>\n\n  <ui-button\n    [label]=\"t('submitBtn')\"\n    type=\"submit\"\n  />\n</form>\n"
         },
         {
@@ -3326,11 +3355,12 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import '../../../styles.scss';\n\n:host {\n  width: 100%;\n}\n\n.container {\n  width: 100%;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));\n  grid-auto-rows: auto;\n  gap: 8px;\n  border: none;\n  appearance: none;\n}\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\ninput {\n  appearance: none;\n}\n\n.btn-label:focus-visible     {\n  outline: none;\n  box-shadow: 0 0 0 2px $ring;\n}\n\n.btn-label {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 0.5rem;\n\n  background: $secondary;\n\n  font-size: 1.25rem;\n  border-radius: $radius;\n  box-sizing: border-box;\n\n  cursor: pointer;\n}\n\n.btn-label-selected {\n  background: $primary;\n  color: $primary-foreground;\n\n\n}\n",
+                    "data": "@import '../../../styles';\n\n:host {\n  width: 100%;\n}\n\n.container {\n  width: 100%;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));\n  grid-auto-rows: auto;\n  gap: 8px;\n  border: none;\n  appearance: none;\n}\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\ninput {\n  appearance: none;\n}\n\n.btn-label:focus-visible     {\n  outline: none;\n  box-shadow: 0 0 0 2px $ring;\n}\n\n.btn-label {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 0.5rem;\n\n  background: $secondary;\n\n  font-size: 1.25rem;\n  border-radius: $radius;\n  box-sizing: border-box;\n\n  cursor: pointer;\n}\n\n.btn-label-selected {\n  background: $primary;\n  color: $primary-foreground;\n\n\n}\n",
                     "styleUrl": "./radio-button-group.component.scss"
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "implements": [
                 "ControlValueAccessor"
             ],
@@ -3387,6 +3417,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<div class=\"separator\" [class.separator-vertical]=\"orientation === 'vertical'\"></div>\n"
         },
         {
@@ -3430,6 +3461,7 @@
                 }
             ],
             "stylesData": "",
+            "extends": [],
             "templateData": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  width=\"24\"\n  height=\"24\"\n  viewBox=\"0 0 24 24\"\n  fill=\"none\"\n  stroke=\"currentColor\"\n  stroke-width=\"2\"\n  stroke-linecap=\"round\"\n  stroke-linejoin=\"round\"\n>\n  <path d=\"M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z\"/><line x1=\"3\" y1=\"6\" x2=\"21\" y2=\"6\"/><path d=\"M16 10a4 4 0 0 1-8 0\"/>\n</svg>\n"
         }
     ],
@@ -4262,7 +4294,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<CartPageComponent>",
-                "defaultValue": "{\n  component: CartPageComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [FeaturesModule, UiModule],\n      providers: [CartService],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
+                "defaultValue": "{\n  component: CartPageComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        FeaturesModule,\n        UiModule,\n        CommonModule,\n        UiModule,\n        BrowserModule,\n        NgOptimizedImage,\n        HttpClientModule,\n        FeaturesModule,\n        TranslocoDirective,\n        IconsModule,\n      ],\n      providers: [],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
             },
             {
                 "name": "meta",
@@ -4496,7 +4528,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 184
+                "kind": 187
             },
             {
                 "name": "CartAddRequest",
@@ -4507,7 +4539,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 184
+                "kind": 187
             },
             {
                 "name": "CartUpdateForm",
@@ -4518,7 +4550,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 184
+                "kind": 187
             },
             {
                 "name": "HTMLInputTypeAttribute",
@@ -4529,7 +4561,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 189
+                "kind": 192
             },
             {
                 "name": "Option",
@@ -4540,7 +4572,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 184
+                "kind": 187
             },
             {
                 "name": "Product",
@@ -4551,7 +4583,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 184
+                "kind": 187
             },
             {
                 "name": "ProductImage",
@@ -4562,7 +4594,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 184
+                "kind": 187
             },
             {
                 "name": "Size",
@@ -4573,7 +4605,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 189
+                "kind": 192
             },
             {
                 "name": "Story",
@@ -4584,7 +4616,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4595,7 +4627,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4606,7 +4638,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4617,7 +4649,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4628,7 +4660,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4639,7 +4671,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4650,7 +4682,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4661,7 +4693,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "Story",
@@ -4672,7 +4704,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 180
+                "kind": 183
             },
             {
                 "name": "ValueChangeCallback",
@@ -4683,7 +4715,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 181
+                "kind": 184
             },
             {
                 "name": "ValueChangeCallback",
@@ -4694,7 +4726,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 181
+                "kind": 184
             },
             {
                 "name": "Variant",
@@ -4705,7 +4737,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 184
+                "kind": 187
             },
             {
                 "name": "Variant",
@@ -4716,7 +4748,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
-                "kind": 189
+                "kind": 192
             }
         ],
         "enumerations": [],
@@ -4980,7 +5012,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<CartPageComponent>",
-                    "defaultValue": "{\n  component: CartPageComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [FeaturesModule, UiModule],\n      providers: [CartService],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
+                    "defaultValue": "{\n  component: CartPageComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        FeaturesModule,\n        UiModule,\n        CommonModule,\n        UiModule,\n        BrowserModule,\n        NgOptimizedImage,\n        HttpClientModule,\n        FeaturesModule,\n        TranslocoDirective,\n        IconsModule,\n      ],\n      providers: [],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
                 }
             ],
             "src/app/pages/product/product.stories.ts": [
@@ -5373,7 +5405,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 184
+                    "kind": 187
                 }
             ],
             "src/types/CartAddRequest.ts": [
@@ -5386,7 +5418,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 184
+                    "kind": 187
                 }
             ],
             "src/app/features/cart-update-form/cart-update-form.component.ts": [
@@ -5399,7 +5431,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 184
+                    "kind": 187
                 }
             ],
             "src/app/ui/input/input.component.ts": [
@@ -5412,7 +5444,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 189
+                    "kind": 192
                 },
                 {
                     "name": "ValueChangeCallback",
@@ -5423,7 +5455,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 181
+                    "kind": 184
                 }
             ],
             "src/types/Product.ts": [
@@ -5436,7 +5468,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 184
+                    "kind": 187
                 },
                 {
                     "name": "Product",
@@ -5447,7 +5479,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 184
+                    "kind": 187
                 },
                 {
                     "name": "ProductImage",
@@ -5458,7 +5490,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 184
+                    "kind": 187
                 },
                 {
                     "name": "Variant",
@@ -5469,7 +5501,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 184
+                    "kind": 187
                 }
             ],
             "src/app/ui/button/button.component.ts": [
@@ -5482,7 +5514,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 189
+                    "kind": 192
                 },
                 {
                     "name": "Variant",
@@ -5493,7 +5525,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 189
+                    "kind": 192
                 }
             ],
             "src/app/features/cart-list/cart-list.stories.ts": [
@@ -5506,7 +5538,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/features/cart-update-form/cart-update-form.stories.ts": [
@@ -5519,7 +5551,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/features/product-form/product-form.stories.ts": [
@@ -5532,7 +5564,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/pages/cart-page/cart-page.stories.ts": [
@@ -5545,7 +5577,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/pages/product/product.stories.ts": [
@@ -5558,7 +5590,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/ui/button/button.stories.ts": [
@@ -5571,7 +5603,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/ui/input/Input.stories.ts": [
@@ -5584,7 +5616,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/ui/label/Label.stories.ts": [
@@ -5597,7 +5629,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts": [
@@ -5610,7 +5642,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 180
+                    "kind": 183
                 }
             ],
             "src/app/ui/radio-button-group/radio-button-group.component.ts": [
@@ -5623,7 +5655,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 181
+                    "kind": 184
                 }
             ]
         }

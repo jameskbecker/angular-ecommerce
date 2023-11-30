@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "shop": {
+    "@angular-commerce/shop": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-ecommerce",
+            "outputPath": "dist/@angular-commerce/shop",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-ecommerce:build:production"
+              "browserTarget": "@angular-commerce/shop:build:production"
             },
             "development": {
-              "browserTarget": "angular-ecommerce:build:development"
+              "browserTarget": "@angular-commerce/shop:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-ecommerce:build"
+            "browserTarget": "@angular-commerce/shop:build"
           }
         },
         "test": {
@@ -110,7 +110,7 @@
           "builder": "@storybook/angular:start-storybook",
           "options": {
             "configDir": ".storybook",
-            "browserTarget": "angular-ecommerce:build",
+            "browserTarget": "@angular-commerce/shop:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",
@@ -125,7 +125,7 @@
           "builder": "@storybook/angular:build-storybook",
           "options": {
             "configDir": ".storybook",
-            "browserTarget": "angular-ecommerce:build",
+            "browserTarget": "@angular-commerce/shop:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",
@@ -139,11 +139,11 @@
         "cypress-run": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "angular-ecommerce:serve"
+            "devServerTarget": "@angular-commerce/shop:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-ecommerce:serve:production"
+              "devServerTarget": "@angular-commerce/shop:serve:production"
             }
           }
         },
@@ -157,13 +157,13 @@
         "e2e": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "angular-ecommerce:serve",
+            "devServerTarget": "@angular-commerce/shop:serve",
             "watch": true,
             "headless": false
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-ecommerce:serve:production"
+              "devServerTarget": "@angular-commerce/shop:serve:production"
             }
           }
         }
