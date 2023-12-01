@@ -7,7 +7,7 @@ import i18n from 'storybook-i18n/preview';
 import '@angular/localize/init';
 
 setCompodocJson(docJson);
-initialize({ onUnhandledRequest: 'warn' });
+initialize({ onUnhandledRequest: 'bypass' });
 
 // @ts-ignore
 const i18nDecorators = i18n?.decorators || [];

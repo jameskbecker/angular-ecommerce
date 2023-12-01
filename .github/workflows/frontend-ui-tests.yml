@@ -35,7 +35,7 @@ jobs:
       - name: Build Storybook
         run: pnpm --filter @angular-commerce/shop build-storybook
 
-      - name: Serve Storybook\
+      - name: Serve Storybook
         run: |
           pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "pnpm dlx http-server ./apps/shop/storybook-static --port 6006 --silent" \
