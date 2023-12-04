@@ -4,34 +4,51 @@ import docJson from '../documentation.json';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import handlers from '../src/mocks/handlers';
 import '@angular/localize/init';
-import {moduleMetadata} from "@storybook/angular";
-import {TranslocoStorybookModule} from "../src/app/transloco/transloco-storybook.module";
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from "../src/app/transloco/supported-languages";
-import {translocoDecorators} from "../src/app/transloco/with-transloco";
+import { translocoDecorators } from './with-i18n/i18n-manager.component';
+import { applicationConfig, moduleMetadata } from '@storybook/angular';
+import {
+  provideTransloco,
+  translocoConfig,
+  TranslocoModule,
+} from '@ngneat/transloco';
+import { provideHttpClient } from '@angular/common/http';
+import { TranslocoHttpLoader } from '../src/app/transloco/transloco-loader';
+import { translocoConf } from '../src/app/transloco/transloco-root.module';
 
 setCompodocJson(docJson);
 initialize({ onUnhandledRequest: 'bypass' });
 
 export const globalTypes = {
-  // add a dropdown menu in the Storybook UI toolbar
-  language: {
-    name: "Language",
-    description: `Choose a language`,
-    defaultValue: DEFAULT_LANGUAGE.code,
+  locale: {
+    name: 'Locale',
+    title: 'Locale',
+    description: 'Internationalization locale',
+    defaultValue: 'en',
     toolbar: {
-      icon: "globe",
-      items: SUPPORTED_LANGUAGES.map((language) => ({
-        value: language.code,
-        right: language.icon,
-        title: language.title,
-      })),
+      icon: 'globe',
+      items: [
+        { value: 'en', title: 'English' },
+        { value: 'de', title: 'Deutsch' },
+      ],
     },
   },
 };
 
 const preview: Preview = {
-  //...i18n,
-  decorators: [...translocoDecorators],
+  decorators: [
+    moduleMetadata({
+      imports: [TranslocoModule],
+    }),
+    applicationConfig({
+      providers: [
+        provideHttpClient(),
+        provideTransloco({
+          config: translocoConf,
+          loader: TranslocoHttpLoader,
+        }),
+      ],
+    }),
+  ],
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     options: {

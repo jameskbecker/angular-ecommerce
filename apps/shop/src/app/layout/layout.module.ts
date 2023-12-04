@@ -3,8 +3,9 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { IconsModule } from '../icons/icons.module';
 import { FooterComponent } from './footer/footer.component';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { UiModule } from '../ui/ui.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -12,9 +13,9 @@ import { UiModule } from '../ui/ui.module';
     CommonModule,
     NgOptimizedImage,
     IconsModule,
-    //FeaturesModule,
-    RouterLink,
+    RouterModule,
     UiModule,
+    SharedModule,
   ],
   exports: [HeaderComponent, FooterComponent],
 })

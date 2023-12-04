@@ -7,9 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco/transloco-root.module';
 import { BrowserModule } from '@angular/platform-browser';
 import productRoutes from './product/product.routes';
+import { ProductModule } from './product/product.module';
+import { SharedModule } from './shared/shared.module';
+import { CartModule } from './cart/cart.module';
 
 const appRoutes: Routes = [
-  ...productRoutes,
+  //...productRoutes,
   { path: 'cart', component: CartPageComponent },
 ];
 
@@ -21,6 +24,9 @@ const appRoutes: Routes = [
     LayoutModule,
     HttpClientModule,
     TranslocoRootModule,
+    ProductModule,
+    SharedModule,
+    CartModule,
   ],
   exports: [RouterModule],
   bootstrap: [AppComponent],

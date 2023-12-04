@@ -857,7 +857,7 @@
         },
         {
             "name": "TranslocoHttpLoader",
-            "id": "injectable-TranslocoHttpLoader-6e6a3fbf302d7449bdf0d573a39ba6dd948be248d6d2f442520bbc27e484031e24a8389aeea8d850db9d81c25a638f1f258844668cbcdff0494185c18ea8e9dc",
+            "id": "injectable-TranslocoHttpLoader-19a0b67beead4c1d316243ebb60576beb4ac5ce2c43e4f5cd97c0e36da9cd2d37826bfe672a1249f0131c3c097ee8f59a755d1c331bd3a08460345bbf0b8988f",
             "file": "src/app/transloco/transloco-loader.ts",
             "properties": [],
             "methods": [
@@ -872,14 +872,11 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "Observable<Translation>",
+                    "returnType": "any",
                     "typeParameters": [],
                     "line": 9,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "modifierKind": [
-                        125
-                    ],
                     "jsdoctags": [
                         {
                             "name": "lang",
@@ -897,7 +894,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from \"@angular/common/http\"\nimport { Injectable } from \"@angular/core\"\nimport { TranslocoLoader, Translation } from \"@ngneat/transloco\"\nimport { Observable } from \"rxjs\"\n\n@Injectable({ providedIn: \"root\" })\nexport class TranslocoHttpLoader implements TranslocoLoader {\n  constructor(private http: HttpClient) {}\n  public getTranslation(lang: string): Observable<Translation> {\n    return this.http.get<Translation>(`./assets/i18n/${lang}.json`)\n  }\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { TranslocoLoader, Translation } from '@ngneat/transloco';\n\n@Injectable({ providedIn: 'root' })\nexport class TranslocoHttpLoader implements TranslocoLoader {\n  constructor(private http: HttpClient) {}\n\n  getTranslation(lang: string) {\n    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -911,7 +908,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 7,
+                "line": 6,
                 "jsdoctags": [
                     {
                         "name": "http",
@@ -1972,7 +1969,7 @@
         {
             "name": "CategoryComponent",
             "id": "component-CategoryComponent-2326c22fcb4669961368e8b3f1b5291dd54a54dc8d1b1b4eb3525f355eea7f0b2c0a1221884db4d5b9e2c06549cd9c557bbed22fa6d9f72f30aa806fab62236a",
-            "file": "src/app/product/category/category.component.ts",
+            "file": "src/app/product/category-page/category.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -2238,7 +2235,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<header>\n  <span class=\"logo-container\">\n    <img ngSrc=\"../../../assets/logo.png\" alt=\"NG-Commerce Logo\" height=\"32\" width=\"32\"/>\n    <span class=\"header-brand-name\">ng-commerce</span>\n  </span>\n\n  <feature-navigation-menu/>\n\n\n\n  <div class=\"actions-container\">\n    <feature-language-selector/>\n    <ui-separator orientation=\"vertical\"/>\n    <a [routerLink]=\"['cart']\" (click)=\"toCart()\">\n      <icon-shopping-bag class=\"bag-icon\"/>\n      <span *ngIf=\"itemCount !== -1\" class=\"counter\">{{itemCount}}</span>\n    </a>\n  </div>\n\n</header>\n"
+            "templateData": "<header >\n  <span class=\"logo-container\">\n    <img ngSrc=\"/assets/logo.png\" alt=\"NG-Commerce Logo\" height=\"32\" width=\"32\"/>\n    <span class=\"header-brand-name\">ng-commerce</span>\n  </span>\n\n  <feature-navigation-menu/>\n\n\n\n  <div class=\"actions-container\">\n    <feature-language-selector/>\n    <ui-separator orientation=\"vertical\"/>\n    <a [routerLink]=\"['cart']\" (click)=\"toCart()\">\n      <icon-shopping-bag class=\"bag-icon\"/>\n      <span *ngIf=\"itemCount !== -1\" class=\"counter\">{{itemCount}}</span>\n    </a>\n  </div>\n<!--<div>{{t('removeLabel')}}</div>-->\n</header>\n"
         },
         {
             "name": "InputComponent",
@@ -2798,7 +2795,7 @@
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<a [routerLink]=\"['categories', 'all']\" class=\"nav-link\">All Products</a>\n<a class=\"nav-link\">Jackets</a>\n<a class=\"nav-link\">Trainers</a>\n<a class=\"nav-link\">Sweatshirts</a>\n"
+            "templateData": "<a [routerLink]=\"['products', 'categories', 'all']\" class=\"nav-link\">All Products</a>\n<a class=\"nav-link\">Jackets</a>\n<a class=\"nav-link\">Trainers</a>\n<a class=\"nav-link\">Sweatshirts</a>\n"
         },
         {
             "name": "ProductCardComponent",
@@ -3574,13 +3571,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-cd175727ade8f89f10463f6317c77fed6216d8b38ecb3bfddef415230aab87a82eb401b1f3d465fbada9fd44710492635a3b120357ec56b4cf32e2b9098e3a52",
+            "id": "module-AppModule-15655e0ff33b22eb93505ced89d32b63ce551246817c9ff3fcdd19357ae509a9659e271988095246ca7277089865c5d42eee45e96e0235319b789b43fd115f1c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { AppComponent } from './app.component';\nimport { ProductPageComponent } from './product/product-page/product-page.component';\nimport { CartPageComponent } from './cart/cart-page/cart-page.component';\nimport { RouterModule, Routes } from '@angular/router';\nimport { LayoutModule } from './layout/layout.module';\nimport { HttpClientModule } from '@angular/common/http';\nimport { TranslocoRootModule } from './transloco/transloco-root.module';\nimport { CategoryComponent } from './product/category/category.component';\nimport {BrowserModule} from \"@angular/platform-browser\";\n\nconst appRoutes: Routes = [\n  { path: 'categories/:category', component: CategoryComponent },\n  { path: 'products/:handle', component: ProductPageComponent },\n  { path: 'cart', component: CartPageComponent },\n];\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [\n    BrowserModule,\n    RouterModule.forRoot(appRoutes),\n    LayoutModule,\n    HttpClientModule,\n    TranslocoRootModule,\n  ],\n  exports: [RouterModule],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { AppComponent } from './app.component';\nimport { CartPageComponent } from './cart/cart-page/cart-page.component';\nimport { RouterModule, Routes } from '@angular/router';\nimport { LayoutModule } from './layout/layout.module';\nimport { HttpClientModule } from '@angular/common/http';\nimport { TranslocoRootModule } from './transloco/transloco-root.module';\nimport { BrowserModule } from '@angular/platform-browser';\nimport productRoutes from './product/product.routes';\nimport { ProductModule } from './product/product.module';\nimport { SharedModule } from './shared/shared.module';\nimport { CartModule } from './cart/cart.module';\n\nconst appRoutes: Routes = [\n  //...productRoutes,\n  { path: 'cart', component: CartPageComponent },\n];\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [\n    BrowserModule,\n    RouterModule.forRoot(appRoutes),\n    LayoutModule,\n    HttpClientModule,\n    TranslocoRootModule,\n    ProductModule,\n    SharedModule,\n    CartModule,\n  ],\n  exports: [RouterModule],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3598,7 +3595,16 @@
                     "type": "imports",
                     "elements": [
                         {
+                            "name": "CartModule"
+                        },
+                        {
                             "name": "LayoutModule"
+                        },
+                        {
+                            "name": "ProductModule"
+                        },
+                        {
+                            "name": "SharedModule"
                         },
                         {
                             "name": "TranslocoRootModule"
@@ -3625,13 +3631,13 @@
         },
         {
             "name": "CartModule",
-            "id": "module-CartModule-cc7fb6c8849b6e90056b924c194a097fe805ca47fc1c13b1e60560936790997cab179371b7f9d46b538bd076cc8bcfa4288889050e9b98b5d7e6ec8a305cc88a",
+            "id": "module-CartModule-d0c8911cb1469005b700a78107e59ba25db1aa2eeb7430dbd72cf43c5963ed411f6b08ac970dbec9d2f7b426fa48bc76a042ac188a224c01d84da33048536036",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/cart/cart.module.ts",
             "methods": [],
-            "sourceCode": " import { NgModule } from '@angular/core';\nimport {CommonModule, NgOptimizedImage} from '@angular/common';\n import {HttpClientModule} from \"@angular/common/http\";\n import {CartService} from \"./cart.service\";\n import {CartListComponent} from \"./cart-list/cart-list.component\";\n import {CartListItemComponent} from \"./cart-list-item/cart-list-item.component\";\n import {CartOrderOverviewComponent} from \"./cart-order-overview/cart-order-overview.component\";\n import {CartPageComponent} from \"./cart-page/cart-page.component\";\n import {UiModule} from \"../ui/ui.module\";\n import {TranslocoModule} from \"@ngneat/transloco\";\n import {IconsModule} from \"../icons/icons.module\";\n import {RouterLink} from \"@angular/router\";\n import {CartUpdateFormComponent} from \"./cart-update-form/cart-update-form.component\";\n\n@NgModule({\n  declarations: [CartListComponent, CartListItemComponent, CartUpdateFormComponent, CartOrderOverviewComponent, CartPageComponent],\n  providers: [CartService],\n  imports: [\n    UiModule,\n    CommonModule,\n    HttpClientModule,\n    TranslocoModule,\n    // TranslocoDirective,\n    IconsModule,\n    NgOptimizedImage,\n    RouterLink\n  ],\n   exports: [CartListComponent, CartListItemComponent, CartUpdateFormComponent, CartOrderOverviewComponent, CartPageComponent]\n})\nexport class CartModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { HttpClientModule } from '@angular/common/http';\nimport { CartService } from './cart.service';\nimport { CartListComponent } from './cart-list/cart-list.component';\nimport { CartListItemComponent } from './cart-list-item/cart-list-item.component';\nimport { CartOrderOverviewComponent } from './cart-order-overview/cart-order-overview.component';\nimport { CartPageComponent } from './cart-page/cart-page.component';\nimport { UiModule } from '../ui/ui.module';\nimport { TranslocoModule } from '@ngneat/transloco';\nimport { IconsModule } from '../icons/icons.module';\nimport { RouterLink } from '@angular/router';\nimport { CartUpdateFormComponent } from './cart-update-form/cart-update-form.component';\nimport { ReactiveFormsModule } from '@angular/forms';\n\nconst moduleComponents = [\n  CartListComponent,\n  CartListItemComponent,\n  CartUpdateFormComponent,\n  CartOrderOverviewComponent,\n  CartPageComponent,\n];\n\n@NgModule({\n  declarations: moduleComponents,\n  providers: [CartService],\n  imports: [\n    UiModule,\n    CommonModule,\n    HttpClientModule,\n    TranslocoModule,\n    // TranslocoDirective,\n    IconsModule,\n    NgOptimizedImage,\n    RouterLink,\n    ReactiveFormsModule,\n  ],\n  exports: moduleComponents,\n})\nexport class CartModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3790,13 +3796,13 @@
         },
         {
             "name": "LayoutModule",
-            "id": "module-LayoutModule-41383ff6a35545eff3fe381af69d3b94788e818cb2e7c96d3533b36326a7cfa28cf6887351ac4f7d46f6c2050bf607bd78df51d416f6dab67878e1fa41547df6",
+            "id": "module-LayoutModule-b81749d028990cec4adeaf0cd5953cf44bb0c92ded64cde8134fe15d37120fe459c4de6813585eab955899cd6562a7383476362bd5a8c93ab2f8d5340cd44f8f",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/layout/layout.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { HeaderComponent } from './header/header.component';\nimport { IconsModule } from '../icons/icons.module';\nimport { FooterComponent } from './footer/footer.component';\nimport { RouterLink } from '@angular/router';\nimport { UiModule } from '../ui/ui.module';\n\n@NgModule({\n  declarations: [HeaderComponent, FooterComponent],\n  imports: [\n    CommonModule,\n    NgOptimizedImage,\n    IconsModule,\n    //FeaturesModule,\n    RouterLink,\n    UiModule,\n  ],\n  exports: [HeaderComponent, FooterComponent],\n})\nexport class LayoutModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { HeaderComponent } from './header/header.component';\nimport { IconsModule } from '../icons/icons.module';\nimport { FooterComponent } from './footer/footer.component';\nimport { RouterLink, RouterModule } from '@angular/router';\nimport { UiModule } from '../ui/ui.module';\nimport { SharedModule } from '../shared/shared.module';\nimport { TranslocoDirective } from '@ngneat/transloco';\n\n@NgModule({\n  declarations: [HeaderComponent, FooterComponent],\n  imports: [\n    CommonModule,\n    NgOptimizedImage,\n    IconsModule,\n    RouterModule,\n    UiModule,\n    SharedModule,\n  ],\n  exports: [HeaderComponent, FooterComponent],\n})\nexport class LayoutModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3823,7 +3829,7 @@
                             "name": "NgOptimizedImage"
                         },
                         {
-                            "name": "RouterLink"
+                            "name": "SharedModule"
                         },
                         {
                             "name": "UiModule"
@@ -3853,13 +3859,13 @@
         },
         {
             "name": "ProductModule",
-            "id": "module-ProductModule-50c6e078fef8c1340020fa7b541606b921e49030dddb4fc40228e0736d2a90c6722288820fe1ed23cd117335fa1c817ca4ce7f99adf26b934bddf9c88c66bc6e",
+            "id": "module-ProductModule-097681829eabbd9b01a397c13f9ce12a8fad0ccf325720ae67f97703d9afadfbfddb54f0fa301b8ef763fc2f557cc3e5e97c446a1851c931e613ed3645752400",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/product/product.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class ProductModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { CategoryComponent } from './category-page/category.component';\nimport { ProductCardComponent } from './product-card/product-card.component';\nimport { ProductFormComponent } from './product-form/product-form.component';\nimport { ProductPageComponent } from './product-page/product-page.component';\nimport { UiModule } from '../ui/ui.module';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { HttpClientModule } from '@angular/common/http';\nimport { TranslocoDirective } from '@ngneat/transloco';\nimport { RouterLink } from '@angular/router';\n\nconst moduleComponents = [\n  CategoryComponent,\n  ProductCardComponent,\n  ProductFormComponent,\n  ProductPageComponent,\n];\n\n@NgModule({\n  declarations: moduleComponents,\n  imports: [\n    CommonModule,\n    BrowserModule,\n    UiModule,\n    NgOptimizedImage,\n    FormsModule,\n    ReactiveFormsModule,\n    HttpClientModule,\n    TranslocoDirective,\n    RouterLink,\n  ],\n  exports: moduleComponents,\n})\nexport class ProductModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3867,15 +3873,57 @@
                 },
                 {
                     "type": "declarations",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "CartListComponent"
+                        },
+                        {
+                            "name": "CartListItemComponent"
+                        },
+                        {
+                            "name": "CartOrderOverviewComponent"
+                        },
+                        {
+                            "name": "CartPageComponent"
+                        },
+                        {
+                            "name": "CartUpdateFormComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "NgOptimizedImage"
+                        },
+                        {
+                            "name": "RouterLink"
+                        },
+                        {
+                            "name": "UiModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "CartListComponent"
+                        },
+                        {
+                            "name": "CartListItemComponent"
+                        },
+                        {
+                            "name": "CartOrderOverviewComponent"
+                        },
+                        {
+                            "name": "CartPageComponent"
+                        },
+                        {
+                            "name": "CartUpdateFormComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -3889,13 +3937,13 @@
         },
         {
             "name": "SharedModule",
-            "id": "module-SharedModule-183ede447108eea17d98ca2ab008f39499b128ca0894b75a50655364fb41afe822dfad5c8cf2731faa39ac4dcfaf5c3b954b9786de22296de915fd9a3a41c3ec",
+            "id": "module-SharedModule-fb7db30477ab27bf8d328a83761304e19b68a5954945e49758f4901d67a3e6d850875ea82c03695e814992c63b6a15f8f72241fb6af3181befb18b0c1a07b046",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/shared.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class SharedModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LanguageSelectorComponent } from './language-selector/language-selector.component';\nimport { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { UiModule } from '../ui/ui.module';\nimport { RouterModule } from '@angular/router';\n\nconst moduleComponents = [LanguageSelectorComponent, NavigationMenuComponent];\n\n@NgModule({\n  declarations: moduleComponents,\n  imports: [CommonModule, BrowserModule, UiModule, RouterModule],\n  exports: moduleComponents,\n})\nexport class SharedModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3903,15 +3951,51 @@
                 },
                 {
                     "type": "declarations",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "CartListComponent"
+                        },
+                        {
+                            "name": "CartListItemComponent"
+                        },
+                        {
+                            "name": "CartOrderOverviewComponent"
+                        },
+                        {
+                            "name": "CartPageComponent"
+                        },
+                        {
+                            "name": "CartUpdateFormComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "UiModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "CartListComponent"
+                        },
+                        {
+                            "name": "CartListItemComponent"
+                        },
+                        {
+                            "name": "CartOrderOverviewComponent"
+                        },
+                        {
+                            "name": "CartPageComponent"
+                        },
+                        {
+                            "name": "CartUpdateFormComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -3925,13 +4009,13 @@
         },
         {
             "name": "TranslocoRootModule",
-            "id": "module-TranslocoRootModule-3ec516d5a15b5d43f66d3c482627a8e80f05658ee534719fc07e9343b5243ddee64396059e165dba3264609eed24c2750a5851d5b4a318a6b24b5f7361436fc7",
+            "id": "module-TranslocoRootModule-4bfe01ad67877ccf889b1e0b9cbe4659bc41e7c334bbd4493d6adb086e82a4a43e120f9d74a5eb5b54495b72b0b8991a3f23345985973b9a66b97212a896d64d",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/transloco/transloco-root.module.ts",
             "methods": [],
-            "sourceCode": "import {provideTransloco, TRANSLOCO_LOADER, TranslocoModule} from '@ngneat/transloco';\nimport { NgModule } from '@angular/core';\nimport { TranslocoHttpLoader } from './transloco-loader';\nimport { environment } from '../../environments/environment.development';\nimport {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from \"./supported-languages\";\nimport {provideHttpClient} from \"@angular/common/http\";\n@NgModule({\n  exports: [TranslocoModule],\n  providers: [\n    provideHttpClient(),\n    provideTransloco({\n      config: {\n        availableLangs: SUPPORTED_LANGUAGES.map(l => l.code),\n        defaultLang: DEFAULT_LANGUAGE.code,\n        // Remove this option if your application doesn't support changing language in runtime.\n        reRenderOnLangChange: true,\n        prodMode: environment.production,\n      },\n      loader: TranslocoHttpLoader\n    }),\n  ],\n})\nexport class TranslocoRootModule {}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\nimport {\n  TRANSLOCO_LOADER,\n  Translation,\n  TranslocoLoader,\n  TRANSLOCO_CONFIG,\n  translocoConfig,\n  TranslocoModule,\n  TRANSLOCO_TRANSPILER,\n  DefaultTranspiler,\n  provideTransloco,\n} from '@ngneat/transloco';\n//aimport { TranslocoMessageFormatModule } from '@ngneat/transloco-messageformat';\nimport { Injectable, NgModule } from '@angular/core';\nimport { TranslocoHttpLoader } from './transloco-loader';\n//import { TranslocoLocaleModule } from '@ngneat/transloco-locale';\n\n@NgModule({\n  imports: [TranslocoModule],\n  exports: [TranslocoModule],\n  providers: [\n    provideTransloco({\n      config: translocoConfig({\n        availableLangs: [\n          { id: 'en', label: 'English' },\n          { id: 'de', label: 'German' },\n        ],\n        reRenderOnLangChange: true,\n        fallbackLang: 'es',\n        defaultLang: 'en',\n        missingHandler: {\n          useFallbackTranslation: false,\n        },\n      }),\n      loader: TranslocoHttpLoader,\n    }),\n  ],\n})\nexport class TranslocoRootModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3961,13 +4045,13 @@
         },
         {
             "name": "TranslocoStorybookModule",
-            "id": "module-TranslocoStorybookModule-ff9f958f2405279214aa09dd6c2de51998b76345c2853d2143ad9142b014a26dfc483c6e2d6d6a66b34a69059ef0427daee73aaff983fa0071197dc987c354e8",
+            "id": "module-TranslocoStorybookModule-ee205148da79bdaaf3245f547ea9f21f2b64e953d678cd121d4a47235027782e6016edf512570252da1febbcbbc88dee05de9bd8f6d2c58f6d91c6e92fbb2548",
             "description": "<p>This module provides translations for Storybook.\nIt must not be imported outside of Storybook stories.</p>\n",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/transloco/transloco-storybook.module.ts",
             "methods": [],
-            "sourceCode": "import { HttpClientModule } from '@angular/common/http';\nimport { forceReRender, Story } from '@storybook/angular';\nimport {\n  TRANSLOCO_LOADER,\n  TRANSLOCO_CONFIG,\n  translocoConfig,\n  TranslocoModule,\n  TranslocoService,\n} from '@ngneat/transloco';\nimport { APP_INITIALIZER, NgModule } from '@angular/core';\nimport { distinctUntilChanged, tap } from 'rxjs/operators';\nimport { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from './supported-languages';\nimport { TranslocoHttpLoader } from './transloco-loader';\n\nlet translocoServiceInstance: TranslocoService | null = null;\n\nexport function translocoStorybookInitializer(\n  translocoService: TranslocoService\n) {\n  return () => {\n    const subscription = translocoService.langChanges$\n      .pipe(\n        distinctUntilChanged(),\n        tap(() => forceReRender())\n      )\n      .subscribe();\n\n    translocoServiceInstance = translocoService;\n\n    const onDestroyCb = translocoService.ngOnDestroy.bind(translocoService);\n    translocoService.ngOnDestroy = () => {\n      onDestroyCb();\n      subscription?.unsubscribe();\n    };\n  };\n}\n\n/**\n * This module provides translations for Storybook.\n * It must not be imported outside of Storybook stories.\n *\n * @private\n */\n@NgModule({\n  exports: [TranslocoModule],\n  imports: [HttpClientModule],\n  providers: [\n    {\n      provide: TRANSLOCO_CONFIG,\n      useValue: translocoConfig({\n        availableLangs: SUPPORTED_LANGUAGES.map((l) => l.code),\n        defaultLang: DEFAULT_LANGUAGE.code,\n        reRenderOnLangChange: true,\n        missingHandler: {\n          logMissingKey: false,\n        },\n        fallbackLang: DEFAULT_LANGUAGE.code,\n        prodMode: false,\n      }),\n    },\n    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },\n    {\n      provide: APP_INITIALIZER,\n      useFactory: translocoStorybookInitializer,\n      multi: true,\n      deps: [TranslocoService],\n    },\n  ],\n})\nexport class TranslocoStorybookModule {}\n\nexport const TranslocoStory: Story = (args, { globals, ...rest }: any) => {\n  if (globals.language) {\n    translocoServiceInstance?.setActiveLang(globals.language);\n  }\n\n  return {\n    globals,\n    props: {\n      ...args,\n    },\n    ...rest,\n  };\n};\n",
+            "sourceCode": "import { HttpClientModule } from '@angular/common/http';\nimport {\n  TRANSLOCO_LOADER,\n  TRANSLOCO_CONFIG,\n  translocoConfig,\n  TranslocoModule,\n} from '@ngneat/transloco';\nimport { NgModule } from '@angular/core';\nimport { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from './supported-languages';\nimport { TranslocoHttpLoader } from './transloco-loader';\n\n/**\n * This module provides translations for Storybook.\n * It must not be imported outside of Storybook stories.\n *\n * @private\n */\n@NgModule({\n  exports: [TranslocoModule],\n  imports: [HttpClientModule],\n  providers: [\n    {\n      provide: TRANSLOCO_CONFIG,\n      useValue: translocoConfig({\n        availableLangs: SUPPORTED_LANGUAGES.map((l) => l.code),\n        defaultLang: DEFAULT_LANGUAGE.code,\n        reRenderOnLangChange: true,\n        missingHandler: {\n          logMissingKey: false,\n        },\n        fallbackLang: DEFAULT_LANGUAGE.code,\n        prodMode: false,\n      }),\n    },\n    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },\n  ],\n})\nexport class TranslocoStorybookModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -4134,7 +4218,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                "file": "src/app/layout/header/header.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4149,6 +4233,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    name: 'STONE ISLAND\\n' + \"DSM Men's David-TC Heavy Coat\\n\" + '(Black)\\n',\n    size: 'Size small',\n    sku: '123456789',\n    quantity: 1,\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n}"
             },
             {
                 "name": "Default",
@@ -4338,7 +4432,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  // add a dropdown menu in the Storybook UI toolbar\n  language: {\n    name: \"Language\",\n    description: `Choose a language`,\n    defaultValue: DEFAULT_LANGUAGE.code,\n    toolbar: {\n      icon: \"globe\",\n      items: SUPPORTED_LANGUAGES.map((language) => ({\n        value: language.code,\n        right: language.icon,\n        title: language.title,\n      })),\n    },\n  },\n}"
+                "defaultValue": "{\n  locale: {\n    name: 'Locale',\n    title: 'Locale',\n    description: 'Internationalization locale',\n    defaultValue: 'en',\n    toolbar: {\n      icon: 'globe',\n      items: [\n        { value: 'en', title: 'English' },\n        { value: 'de', title: 'Deutsch' },\n      ],\n    },\n  },\n}"
             },
             {
                 "name": "handlers",
@@ -4434,11 +4528,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                "file": "src/app/layout/header/header.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<CartListComponent>",
-                "defaultValue": "{\n  title: 'Cart/CartList',\n  component: CartListComponent,\n  // subcomponents: [CartListItemComponent],\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                "type": "Meta<HeaderComponent>",
+                "defaultValue": "{\n  title: 'Layout/Header',\n  component: HeaderComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      // declarations: [LocaleManagerComponent],\n      //imports: [TranslocoRootModule],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: HeaderComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
             },
             {
                 "name": "meta",
@@ -4449,6 +4543,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<CartListItemComponent>",
                 "defaultValue": "{\n  title: 'Cart/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [CartModule, UiModule]\n    }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CartListComponent>",
+                "defaultValue": "{\n  title: 'Cart/CartList',\n  component: CartListComponent,\n  // subcomponents: [CartListItemComponent],\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
             },
             {
                 "name": "meta",
@@ -4521,6 +4625,36 @@
                 "defaultValue": "{\n  title: 'UI/Label',\n  component: LabelComponent,\n  tags: ['autodocs'],\n\n  render: (args: LabelComponent) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <ui-label>Hey</ui-label>\n    `,\n  }),\n}"
             },
             {
+                "name": "moduleComponents",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/cart/cart.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  CartListComponent,\n  CartListItemComponent,\n  CartUpdateFormComponent,\n  CartOrderOverviewComponent,\n  CartPageComponent,\n]"
+            },
+            {
+                "name": "moduleComponents",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/product/product.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  CategoryComponent,\n  ProductCardComponent,\n  ProductFormComponent,\n  ProductPageComponent,\n]"
+            },
+            {
+                "name": "moduleComponents",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/shared.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[LanguageSelectorComponent, NavigationMenuComponent]"
+            },
+            {
                 "name": "preview",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4528,7 +4662,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  //...i18n,\n  decorators: [...translocoDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        //order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
+                "defaultValue": "{\n  decorators: [...translocoDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        //order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
             },
             {
                 "name": "Primary",
@@ -4681,26 +4815,6 @@
                 "defaultValue": "[\n  moduleMetadata({\n    declarations: [StoryTranslocoWrapper]\n  }),\n  applicationConfig({\n    providers: [importProvidersFrom(TranslocoStorybookModule)]\n  }),\n  withTranslocoDecorator\n]"
             },
             {
-                "name": "translocoServiceInstance",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/transloco/transloco-storybook.module.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "TranslocoService | null",
-                "defaultValue": "null"
-            },
-            {
-                "name": "TranslocoStory",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/transloco/transloco-storybook.module.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "(args, { globals, ...rest }: any) => {\n  if (globals.language) {\n    translocoServiceInstance?.setActiveLang(globals.language);\n  }\n\n  return {\n    globals,\n    props: {\n      ...args,\n    },\n    ...rest,\n  };\n}"
-            },
-            {
                 "name": "withButton",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4741,36 +4855,7 @@
                 "defaultValue": "setupWorker(...handlers)"
             }
         ],
-        "functions": [
-            {
-                "name": "translocoStorybookInitializer",
-                "file": "src/app/transloco/transloco-storybook.module.ts",
-                "ctype": "miscellaneous",
-                "subtype": "function",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "args": [
-                    {
-                        "name": "translocoService",
-                        "type": "TranslocoService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "jsdoctags": [
-                    {
-                        "name": "translocoService",
-                        "type": "TranslocoService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            }
-        ],
+        "functions": [],
         "typealiases": [
             {
                 "name": "Cart",
@@ -4864,8 +4949,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<CartListComponent>",
-                "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                "rawtype": "StoryObj<HeaderComponent>",
+                "file": "src/app/layout/header/header.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4877,6 +4962,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<CartListItemComponent>",
                 "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CartListComponent>",
+                "file": "src/app/cart/cart-list/cart-list.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -5180,12 +5276,12 @@
                     "defaultValue": "{\n  decorators: [labelDecorator],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  }),\n}"
                 }
             ],
-            "src/app/cart/cart-list/cart-list.stories.ts": [
+            "src/app/layout/header/header.component.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                    "file": "src/app/layout/header/header.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -5195,11 +5291,11 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                    "file": "src/app/layout/header/header.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<CartListComponent>",
-                    "defaultValue": "{\n  title: 'Cart/CartList',\n  component: CartListComponent,\n  // subcomponents: [CartListItemComponent],\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                    "type": "Meta<HeaderComponent>",
+                    "defaultValue": "{\n  title: 'Layout/Header',\n  component: HeaderComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      // declarations: [LocaleManagerComponent],\n      //imports: [TranslocoRootModule],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: HeaderComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
                 }
             ],
             "src/app/cart/cart-list-item/cart-list-item.stories.ts": [
@@ -5222,6 +5318,28 @@
                     "deprecationMessage": "",
                     "type": "Meta<CartListItemComponent>",
                     "defaultValue": "{\n  title: 'Cart/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [CartModule, UiModule]\n    }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                }
+            ],
+            "src/app/cart/cart-list/cart-list.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CartListComponent>",
+                    "defaultValue": "{\n  title: 'Cart/CartList',\n  component: CartListComponent,\n  // subcomponents: [CartListItemComponent],\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
                 }
             ],
             "src/app/cart/cart-page/cart-page.stories.ts": [
@@ -5433,7 +5551,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  // add a dropdown menu in the Storybook UI toolbar\n  language: {\n    name: \"Language\",\n    description: `Choose a language`,\n    defaultValue: DEFAULT_LANGUAGE.code,\n    toolbar: {\n      icon: \"globe\",\n      items: SUPPORTED_LANGUAGES.map((language) => ({\n        value: language.code,\n        right: language.icon,\n        title: language.title,\n      })),\n    },\n  },\n}"
+                    "defaultValue": "{\n  locale: {\n    name: 'Locale',\n    title: 'Locale',\n    description: 'Internationalization locale',\n    defaultValue: 'en',\n    toolbar: {\n      icon: 'globe',\n      items: [\n        { value: 'en', title: 'English' },\n        { value: 'de', title: 'Deutsch' },\n      ],\n    },\n  },\n}"
                 },
                 {
                     "name": "preview",
@@ -5443,7 +5561,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n  //...i18n,\n  decorators: [...translocoDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        //order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
+                    "defaultValue": "{\n  decorators: [...translocoDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        //order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
                 }
             ],
             "src/mocks/handlers/index.ts": [
@@ -5564,6 +5682,42 @@
                     "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Small Button',\n  },\n}"
                 }
             ],
+            "src/app/cart/cart.module.ts": [
+                {
+                    "name": "moduleComponents",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/cart/cart.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  CartListComponent,\n  CartListItemComponent,\n  CartUpdateFormComponent,\n  CartOrderOverviewComponent,\n  CartPageComponent,\n]"
+                }
+            ],
+            "src/app/product/product.module.ts": [
+                {
+                    "name": "moduleComponents",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/product/product.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  CategoryComponent,\n  ProductCardComponent,\n  ProductFormComponent,\n  ProductPageComponent,\n]"
+                }
+            ],
+            "src/app/shared/shared.module.ts": [
+                {
+                    "name": "moduleComponents",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/shared.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[LanguageSelectorComponent, NavigationMenuComponent]"
+                }
+            ],
             "src/mocks/products-response.ts": [
                 {
                     "name": "products",
@@ -5676,28 +5830,6 @@
                     "defaultValue": "(storyFn, context) => {\n  const { language } = context.globals;\n  return componentWrapperDecorator(StoryTranslocoWrapper, { language })(storyFn, context);\n}"
                 }
             ],
-            "src/app/transloco/transloco-storybook.module.ts": [
-                {
-                    "name": "translocoServiceInstance",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/transloco/transloco-storybook.module.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TranslocoService | null",
-                    "defaultValue": "null"
-                },
-                {
-                    "name": "TranslocoStory",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/transloco/transloco-storybook.module.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "(args, { globals, ...rest }: any) => {\n  if (globals.language) {\n    translocoServiceInstance?.setActiveLang(globals.language);\n  }\n\n  return {\n    globals,\n    props: {\n      ...args,\n    },\n    ...rest,\n  };\n}"
-                }
-            ],
             "src/mocks/browser.ts": [
                 {
                     "name": "worker",
@@ -5711,38 +5843,7 @@
                 }
             ]
         },
-        "groupedFunctions": {
-            "src/app/transloco/transloco-storybook.module.ts": [
-                {
-                    "name": "translocoStorybookInitializer",
-                    "file": "src/app/transloco/transloco-storybook.module.ts",
-                    "ctype": "miscellaneous",
-                    "subtype": "function",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "args": [
-                        {
-                            "name": "translocoService",
-                            "type": "TranslocoService",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "translocoService",
-                            "type": "TranslocoService",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
+        "groupedFunctions": {},
         "groupedEnumerations": {},
         "groupedTypeAliases": {
             "src/types/Cart.ts": [
@@ -5878,13 +5979,13 @@
                     "kind": 192
                 }
             ],
-            "src/app/cart/cart-list/cart-list.stories.ts": [
+            "src/app/layout/header/header.component.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<CartListComponent>",
-                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
+                    "rawtype": "StoryObj<HeaderComponent>",
+                    "file": "src/app/layout/header/header.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5898,6 +5999,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<CartListItemComponent>",
                     "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "src/app/cart/cart-list/cart-list.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CartListComponent>",
+                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -6170,6 +6284,16 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/cart/cart.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "moduleComponents",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/cart/cart.service.ts",
                 "type": "injectable",
                 "linktype": "injectable",
@@ -6207,6 +6331,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/layout/header/header.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/layout/header/header.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/layout/header/header.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -6216,7 +6360,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/product/category/category.component.ts",
+                "filePath": "src/app/product/category-page/category.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CategoryComponent",
@@ -6292,6 +6436,16 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/product/product.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "moduleComponents",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/product/product.service.ts",
                 "type": "injectable",
                 "linktype": "injectable",
@@ -6314,6 +6468,16 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "NavigationMenuComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/shared.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "moduleComponents",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -6345,36 +6509,6 @@
                 "name": "TranslocoHttpLoader",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/transloco/transloco-storybook.module.ts",
-                "type": "function",
-                "linktype": "miscellaneous",
-                "linksubtype": "function",
-                "name": "translocoStorybookInitializer",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/transloco/transloco-storybook.module.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "translocoServiceInstance",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/transloco/transloco-storybook.module.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "TranslocoStory",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
                 "status": "low"
             },
             {

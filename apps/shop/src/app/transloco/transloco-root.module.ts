@@ -1,22 +1,31 @@
-import {provideTransloco, TRANSLOCO_LOADER, TranslocoModule} from '@ngneat/transloco';
-import { NgModule } from '@angular/core';
+import {
+  translocoConfig,
+  TranslocoModule,
+  provideTransloco,
+} from '@ngneat/transloco';
+import { Injectable, NgModule } from '@angular/core';
 import { TranslocoHttpLoader } from './transloco-loader';
-import { environment } from '../../environments/environment.development';
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from "./supported-languages";
-import {provideHttpClient} from "@angular/common/http";
+
+export const translocoConf = translocoConfig({
+  availableLangs: [
+    { id: 'en', label: 'English' },
+    { id: 'de', label: 'German' },
+  ],
+  reRenderOnLangChange: true,
+  fallbackLang: 'es',
+  defaultLang: 'en',
+  missingHandler: {
+    useFallbackTranslation: false,
+  },
+});
+
 @NgModule({
+  imports: [TranslocoModule],
   exports: [TranslocoModule],
   providers: [
-    provideHttpClient(),
     provideTransloco({
-      config: {
-        availableLangs: SUPPORTED_LANGUAGES.map(l => l.code),
-        defaultLang: DEFAULT_LANGUAGE.code,
-        // Remove this option if your application doesn't support changing language in runtime.
-        reRenderOnLangChange: true,
-        prodMode: environment.production,
-      },
-      loader: TranslocoHttpLoader
+      config: translocoConf,
+      loader: TranslocoHttpLoader,
     }),
   ],
 })
