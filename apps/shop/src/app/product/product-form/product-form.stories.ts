@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { ProductFormComponent } from './product-form.component';
 import { moduleMetadata } from '@storybook/angular';
 import stoneIslandHeavyCoat from '../../../mocks/products/stone-island-mens-giaccone-black-aw23-791571649';
-import { CartService } from '../../services/cart.service';
-import { FeaturesModule } from '../features.module';
+import { CartService } from '../../cart/cart.service';
 
 const meta: Meta<ProductFormComponent> = {
   title: 'Features/ProductForm',

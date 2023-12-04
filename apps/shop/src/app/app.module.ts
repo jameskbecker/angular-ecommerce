@@ -1,26 +1,24 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './pages/product/product.component';
-import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { CartPageComponent } from './cart/cart-page/cart-page.component';
 import { RouterModule, Routes } from '@angular/router';
-import { PagesModule } from './pages/pages.module';
 import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
-import { TranslocoRootModule } from './transloco-root.module';
-import { CategoryComponent } from './pages/category/category.component';
+import { TranslocoRootModule } from './transloco/transloco-root.module';
+import { BrowserModule } from '@angular/platform-browser';
+import productRoutes from './product/product.routes';
 
 const appRoutes: Routes = [
-  { path: 'categories/:category', component: CategoryComponent },
-  { path: 'products/:handle', component: ProductComponent },
+  ...productRoutes,
   { path: 'cart', component: CartPageComponent },
 ];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    BrowserModule,
     RouterModule.forRoot(appRoutes),
     LayoutModule,
-    PagesModule,
     HttpClientModule,
     TranslocoRootModule,
   ],

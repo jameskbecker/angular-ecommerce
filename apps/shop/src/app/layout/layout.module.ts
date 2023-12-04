@@ -3,7 +3,6 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { IconsModule } from '../icons/icons.module';
 import { FooterComponent } from './footer/footer.component';
-import { FeaturesModule } from '../features/features.module';
 import { RouterLink } from '@angular/router';
 import { UiModule } from '../ui/ui.module';
 
@@ -13,7 +12,7 @@ import { UiModule } from '../ui/ui.module';
     CommonModule,
     NgOptimizedImage,
     IconsModule,
-    FeaturesModule,
+    //FeaturesModule,
     RouterLink,
     UiModule,
   ],

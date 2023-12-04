@@ -502,7 +502,7 @@
         {
             "name": "CartService",
             "id": "injectable-CartService-1089a3cb667c0c1c00e00e017ac9b6a291af8a884dc51b3786ec918f4d50b4f84b9cd182c05151c14b968a12ecc73cf55d6936757d6fbeb8a4a352db47c64b29",
-            "file": "src/app/services/cart.service.ts",
+            "file": "src/app/cart/cart.service.ts",
             "properties": [
                 {
                     "name": "API_URL",
@@ -719,7 +719,7 @@
         {
             "name": "ProductService",
             "id": "injectable-ProductService-05111d04c294187894dfe6f96aadf81d4b09ed0669a0953e305569bb2209c4f5e74f1dea30cf816a8a93e3771b4ebfceeacb214df36b88681a3e5ed281a41658",
-            "file": "src/app/services/product.service.ts",
+            "file": "src/app/product/product.service.ts",
             "properties": [
                 {
                     "name": "apiUrl",
@@ -857,23 +857,9 @@
         },
         {
             "name": "TranslocoHttpLoader",
-            "id": "injectable-TranslocoHttpLoader-fb5b6325ce0a4c869a929b1be8d006c314085434b10749b76062846d6411d6a5327129f76946970ce11718521924aa90fd9ebbd3fe83172d3634407cd40f7bde",
-            "file": "src/app/transloco-loader.ts",
-            "properties": [
-                {
-                    "name": "http",
-                    "defaultValue": "inject(HttpClient)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 7,
-                    "modifierKind": [
-                        123
-                    ]
-                }
-            ],
+            "id": "injectable-TranslocoHttpLoader-6e6a3fbf302d7449bdf0d573a39ba6dd948be248d6d2f442520bbc27e484031e24a8389aeea8d850db9d81c25a638f1f258844668cbcdff0494185c18ea8e9dc",
+            "file": "src/app/transloco/transloco-loader.ts",
+            "properties": [],
             "methods": [
                 {
                     "name": "getTranslation",
@@ -886,11 +872,14 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "any",
+                    "returnType": "Observable<Translation>",
                     "typeParameters": [],
                     "line": 9,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ],
                     "jsdoctags": [
                         {
                             "name": "lang",
@@ -908,7 +897,33 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { inject, Injectable } from \"@angular/core\";\nimport { Translation, TranslocoLoader } from \"@ngneat/transloco\";\nimport { HttpClient } from \"@angular/common/http\";\n\n@Injectable({ providedIn: 'root' })\nexport class TranslocoHttpLoader implements TranslocoLoader {\n    private http = inject(HttpClient);\n\n    getTranslation(lang: string) {\n        return this.http.get<Translation>(`/assets/i18n/${lang}.json`);\n    }\n}\n",
+            "sourceCode": "import { HttpClient } from \"@angular/common/http\"\nimport { Injectable } from \"@angular/core\"\nimport { TranslocoLoader, Translation } from \"@ngneat/transloco\"\nimport { Observable } from \"rxjs\"\n\n@Injectable({ providedIn: \"root\" })\nexport class TranslocoHttpLoader implements TranslocoLoader {\n  constructor(private http: HttpClient) {}\n  public getTranslation(lang: string): Observable<Translation> {\n    return this.http.get<Translation>(`./assets/i18n/${lang}.json`)\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 7,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
             "type": "injectable"
         }
@@ -1294,8 +1309,8 @@
         },
         {
             "name": "CartListComponent",
-            "id": "component-CartListComponent-32b83ac25065e0a4f3c5f1669f08509382315d949459d3d327c83b66e08e018720173ed1107de6f360e41e91b82ed953260cc7adaacd1accbeed1f1348a43027",
-            "file": "src/app/features/cart-list/cart-list.component.ts",
+            "id": "component-CartListComponent-4af6c5c21a65d1a753f4121f1fb1347e07899c0dfb0adb10b97bc2cef4ef414310aa4bf6b69c61ab38a0f1539a169fbebb0ede947b92f971097646c90a3c7702",
+            "file": "src/app/cart/cart-list/cart-list.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1377,7 +1392,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Cart, DEFAULT_CART } from '../../../types/Cart';\nimport { CartService } from '../../services/cart.service';\n\n@Component({\n  selector: 'feature-cart-list',\n  templateUrl: './cart-list.component.html',\n  styleUrls: ['./cart-list.component.scss'],\n})\nexport class CartListComponent implements OnInit {\n  cart: Cart = DEFAULT_CART;\n\n  constructor(private cartService: CartService) {\n    this.cartService.data$.subscribe((cart) => {\n      this.cart = cart;\n    });\n  }\n\n  ngOnInit() {\n    this.cartService.getCartData();\n  }\n\n  public formatPrice(intPrice: number) {\n    return `${intPrice / 100}`;\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Cart, DEFAULT_CART } from '../../../types/Cart';\nimport { CartService } from '../cart.service';\n\n@Component({\n  selector: 'feature-cart-list',\n  templateUrl: './cart-list.component.html',\n  styleUrls: ['./cart-list.component.scss'],\n})\nexport class CartListComponent implements OnInit {\n  cart: Cart = DEFAULT_CART;\n\n  constructor(private cartService: CartService) {\n    this.cartService.data$.subscribe((cart) => {\n      this.cart = cart;\n    });\n  }\n\n  ngOnInit() {\n    this.cartService.getCartData();\n  }\n\n  public formatPrice(intPrice: number) {\n    return `${intPrice / 100}`;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1420,8 +1435,8 @@
         },
         {
             "name": "CartListItemComponent",
-            "id": "component-CartListItemComponent-11dd1d7fd72639b3290597d0dc2d9f56deb30d350f56324b2c158a816ad4c794d8f3a1814511955b77d9f4c779250a5f7ac931b91fe8b393f756a1d019e3d356",
-            "file": "src/app/features/cart-list/cart-list-item/cart-list-item.component.ts",
+            "id": "component-CartListItemComponent-286453a972d1779e59c25217c782ef6b30f0e00a1ea4a6b819a502e15856a5145ee909a095894c36ae02bfa9b5c9e7ed7ba4d7910ef11f6f16de0ba8a551fcaf",
+            "file": "src/app/cart/cart-list-item/cart-list-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1550,11 +1565,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CartService } from '../../../services/cart.service';\n\n@Component({\n  selector: 'feature-cart-list-item',\n  templateUrl: './cart-list-item.component.html',\n  styleUrls: ['./cart-list-item.component.scss'],\n})\nexport class CartListItemComponent {\n  @Input() id: string = '';\n  @Input() name: string = '';\n  @Input() size: string = '';\n  @Input() sku: string = '';\n  @Input() quantity: number = 0;\n  @Input() href: string = '';\n  @Input() src: string = '';\n  private _linePrice: string = '0.00';\n\n  @Input() set linePrice(updatedPrice: string) {\n    this._linePrice = parseInt(updatedPrice).toFixed(2);\n  }\n\n  get linePrice() {\n    return this._linePrice;\n  }\n\n  constructor(private cartService: CartService) {}\n\n  public handleDelete() {\n    this.cartService.removeItem(this.id);\n    this.cartService.getCartData();\n  }\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CartService } from '../cart.service';\n\n@Component({\n  selector: 'feature-cart-list-item',\n  templateUrl: './cart-list-item.component.html',\n  styleUrls: ['./cart-list-item.component.scss'],\n})\nexport class CartListItemComponent {\n  @Input() id: string = '';\n  @Input() name: string = '';\n  @Input() size: string = '';\n  @Input() sku: string = '';\n  @Input() quantity: number = 0;\n  @Input() href: string = '';\n  @Input() src: string = '';\n  private _linePrice: string = '0.00';\n\n  @Input() set linePrice(updatedPrice: string) {\n    this._linePrice = parseInt(updatedPrice).toFixed(2);\n  }\n\n  get linePrice() {\n    return this._linePrice;\n  }\n\n  constructor(private cartService: CartService) {}\n\n  public handleDelete() {\n    this.cartService.removeItem(this.id);\n    this.cartService.getCartData();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import '../../../../styles';\n\n.cart-list-item--container {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n\n\n  gap: 8px;\n\n  & > :first-child {\n    flex: 2 2;\n  }\n\n  @include large {\n    flex-direction: row;\n    align-items: center;\n    gap: 32px\n  }\n}\n\n.cart-list-item--column {\n  flex: 1 1;\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n\n  padding: 32px 0;\n}\n\n.cart-list-item--image-container {\n  display: grid;\n\n  justify-content: center;\n  align-items: center;\n\n  grid-template-columns: auto 1fr;\n  grid-template-rows: 1fr auto 1fr;\n\n\n  padding: 0;\n\n  & > :nth-child(2) {\n    align-self: end;\n  }\n\n  & > :last-child {\n    align-self: start;\n  }\n\n  & > img {\n    grid-row: 1 / span 3;\n    border: 1px solid $border;\n    border-radius: 8px;\n  }\n}\n\n.sub-row-container {\n  display: flex;\n  gap: 0.25rem;\n\n  & a:link, & a:visited {\n    color: $foreground;\n    text-decoration: none;\n  }\n\n  & a:hover {\n    text-decoration: underline;\n  }\n\n}\n\n.details-text {\n  color: $muted-foreground;\n}\n\n.cart-list-item--align-right {\n  justify-content: flex-end;\n  text-align: right;\n}\n",
+                    "data": "@import '../../../styles';\n\n.cart-list-item--container {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n\n\n  gap: 8px;\n\n  & > :first-child {\n    flex: 2 2;\n  }\n\n  @include large {\n    flex-direction: row;\n    align-items: center;\n    gap: 32px\n  }\n}\n\n.cart-list-item--column {\n  flex: 1 1;\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n\n  padding: 32px 0;\n}\n\n.cart-list-item--image-container {\n  display: grid;\n\n  justify-content: center;\n  align-items: center;\n\n  grid-template-columns: auto 1fr;\n  grid-template-rows: 1fr auto 1fr;\n\n\n  padding: 0;\n\n  & > :nth-child(2) {\n    align-self: end;\n  }\n\n  & > :last-child {\n    align-self: start;\n  }\n\n  & > img {\n    grid-row: 1 / span 3;\n    border: 1px solid $border;\n    border-radius: 8px;\n  }\n}\n\n.sub-row-container {\n  display: flex;\n  gap: 0.25rem;\n\n  & a:link, & a:visited {\n    color: $foreground;\n    text-decoration: none;\n  }\n\n  & a:hover {\n    text-decoration: underline;\n  }\n\n}\n\n.details-text {\n  color: $muted-foreground;\n}\n\n.cart-list-item--align-right {\n  justify-content: flex-end;\n  text-align: right;\n}\n",
                     "styleUrl": "./cart-list-item.component.scss"
                 }
             ],
@@ -1624,12 +1639,12 @@
                     }
                 }
             },
-            "templateData": "<li class=\"cart-list-item--container\" *transloco=\"let t; read: 'cartList.item'\">\n  <div class=\"cart-list-item--column cart-list-item--image-container\">\n    <img [ngSrc]=\"src\" [alt]=\"name\" width=\"150\" height=\"150\"/>\n\n    <div class=\"sub-row-container\">\n      <h3><a [routerLink]=\"[href]\">{{name}}</a></h3>\n    </div>\n\n    <div class=\"sub-row-container\">\n      <span><strong>{{t('size')}}: </strong></span>\n      <span class=\"details-text\">{{size}}</span>\n    </div>\n\n    <div class=\"sub-row-container\">\n      <span><strong>SKU: </strong></span>\n      <span class=\"details-text\">{{sku}}</span>\n    </div>\n  </div>\n\n\n  <div class=\"cart-list-item--column\">\n    <app-cart-update-form [quantity]=\"quantity\"/>\n    <ui-button\n      i18n-label=\"@@CartListRemoveBtn\"\n      [label]=\"t('removeLabel')\"\n      size=\"small\"\n      variant=\"secondary\"\n      (onClick)=\"handleDelete()\"/>\n  </div>\n\n  <div class=\"cart-list-item--column cart-list-item--align-right\">\n    <span>€{{linePrice}}</span>\n  </div>\n\n</li>\n"
+            "templateData": "<li class=\"cart-list-item--container\" *transloco=\"let t; read: 'cartList.item'\">\n  <div class=\"cart-list-item--column cart-list-item--image-container\">\n    <img [ngSrc]=\"src\" [alt]=\"name\" width=\"150\" height=\"150\"/>\n\n    <div class=\"sub-row-container\">\n      <h3><a [routerLink]=\"[href]\">{{name}}</a></h3>\n    </div>\n\n    <div class=\"sub-row-container\">\n      <span><strong>{{t('size')}}: </strong></span>\n      <span class=\"details-text\">{{size}}</span>\n    </div>\n\n    <div class=\"sub-row-container\">\n      <span><strong>SKU: </strong></span>\n      <span class=\"details-text\">{{sku}}</span>\n    </div>\n  </div>\n\n\n  <div class=\"cart-list-item--column\">\n    <app-cart-update-form [quantity]=\"quantity\"/>\n    <ui-button\n      [label]=\"t('removeLabel')\"\n      size=\"small\"\n      variant=\"secondary\"\n      (onClick)=\"handleDelete()\"/>\n  </div>\n\n  <div class=\"cart-list-item--column cart-list-item--align-right\">\n    <span>€{{linePrice}}</span>\n  </div>\n\n</li>\n"
         },
         {
             "name": "CartOrderOverviewComponent",
             "id": "component-CartOrderOverviewComponent-786facf916813f15cdd1cfa6ce48c00cbb908186855437c4cd27ffdea9062620befc3163ac98d6a3770b1a736662d57b54233a775a93cfa869fbf3013d6e1be1",
-            "file": "src/app/features/cart-order-overview/cart-order-overview.component.ts",
+            "file": "src/app/cart/cart-order-overview/cart-order-overview.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1682,8 +1697,8 @@
         },
         {
             "name": "CartPageComponent",
-            "id": "component-CartPageComponent-9519775b8479b6f13e06dd5ca6c2164e32676d96921355e3d9b315ab95ba984ecebdc6d149707f3780e278fcdde399c5e9dcf533e37e61df5a52b94ae3d91ce8",
-            "file": "src/app/pages/cart-page/cart-page.component.ts",
+            "id": "component-CartPageComponent-347d4b38f681eaf3d3dfafcd72a49bf2a5de3b4bab6737b237bb5694f8c275740e262aa17c4acbe68db33d1776c532e4f1b36eff2afec4639d8e8fb3df2477a7",
+            "file": "src/app/cart/cart-page/cart-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1778,7 +1793,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { CartService } from '../../services/cart.service';\n\n@Component({\n  selector: 'cart-page',\n  templateUrl: './cart-page.component.html',\n  styleUrls: ['./cart-page.component.scss'],\n})\nexport class CartPageComponent implements OnInit {\n  subtotal: string = '0.00';\n  itemCount: number = 0;\n\n  constructor(private cartService: CartService) {}\n\n  public ngOnInit() {\n    this.cartService.data$.subscribe((cart) => {\n      this.subtotal = cart.subtotal;\n      this.itemCount = cart.items.length;\n    });\n  }\n\n  public formatPrice(intPrice: number) {\n    return `${intPrice / 100}`;\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { CartService } from '../cart.service';\n\n@Component({\n  selector: 'cart-page',\n  templateUrl: './cart-page.component.html',\n  styleUrls: ['./cart-page.component.scss'],\n})\nexport class CartPageComponent implements OnInit {\n  subtotal: string = '0.00';\n  itemCount: number = 0;\n\n  constructor(private cartService: CartService) {}\n\n  public ngOnInit() {\n    this.cartService.data$.subscribe((cart) => {\n      this.subtotal = cart.subtotal;\n      this.itemCount = cart.items.length;\n    });\n  }\n\n  public formatPrice(intPrice: number) {\n    return `${intPrice / 100}`;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1822,7 +1837,7 @@
         {
             "name": "CartUpdateFormComponent",
             "id": "component-CartUpdateFormComponent-1f75c228fcdb98bec7c043c5110ff54fe1b700aa135dcae8b7e117b72368e1b6fab6600bfc11c57a87f6cb57fb5d375354edaace7147866255e7520897fa6b90",
-            "file": "src/app/features/cart-update-form/cart-update-form.component.ts",
+            "file": "src/app/cart/cart-update-form/cart-update-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1956,8 +1971,8 @@
         },
         {
             "name": "CategoryComponent",
-            "id": "component-CategoryComponent-4302afc800eeb74861e4b74d44e46cf351c4d3d063af6522f55df76b4190bca1b8fb5c00fa879889ba579c080e76b1c5d21d723bc6b00c568067ff3ce2c73df4",
-            "file": "src/app/pages/category/category.component.ts",
+            "id": "component-CategoryComponent-2326c22fcb4669961368e8b3f1b5291dd54a54dc8d1b1b4eb3525f355eea7f0b2c0a1221884db4d5b9e2c06549cd9c557bbed22fa6d9f72f30aa806fab62236a",
+            "file": "src/app/product/category/category.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -2008,7 +2023,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { Product } from '../../../types/Product';\nimport { ProductService } from '../../services/product.service';\nimport { ActivatedRoute } from '@angular/router';\n\n@Component({\n  selector: 'page-category',\n  templateUrl: './category.component.html',\n  styleUrls: ['./category.component.scss'],\n})\nexport class CategoryComponent {\n  products: Product[] | null = null;\n\n  constructor(\n    private productService: ProductService,\n    private activatedRoute: ActivatedRoute\n  ) {}\n\n  ngOnInit(): void {\n    // this.handle = <string>this.activatedRoute.snapshot.paramMap.get('handle');\n\n    this.productService\n      .getProductsByCategory('all')\n      .subscribe((products: Product[]): void => {\n        this.products = products;\n      });\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { Product } from '../../../types/Product';\nimport { ProductService } from '../product.service';\nimport { ActivatedRoute } from '@angular/router';\n\n@Component({\n  selector: 'page-category',\n  templateUrl: './category.component.html',\n  styleUrls: ['./category.component.scss'],\n})\nexport class CategoryComponent {\n  products: Product[] | null = null;\n\n  constructor(\n    private productService: ProductService,\n    private activatedRoute: ActivatedRoute\n  ) {}\n\n  ngOnInit(): void {\n    // this.handle = <string>this.activatedRoute.snapshot.paramMap.get('handle');\n\n    this.productService\n      .getProductsByCategory('all')\n      .subscribe((products: Product[]): void => {\n        this.products = products;\n      });\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2107,7 +2122,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-c1bc4eea6b5993a2ef0a677a85ae6e3b2174205c6f1c7d18786673ad3eb1dd2866dccd3d9ab74b6d05fe842205224936a6d9fc4b2b324aaf93a60b45edd0997f",
+            "id": "component-HeaderComponent-7c57d6cb51891685d1b00686aaf5dd738ab75b74b5c19f4fedff73addaef317b00d8dbbc758363eba0e1979addbc2f6db6745a02444441d0dc8adc9446ab282a",
             "file": "src/app/layout/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2169,7 +2184,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { CartService } from '../../services/cart.service';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'layout-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss'],\n})\nexport class HeaderComponent implements OnInit {\n  itemCount: number = -1;\n\n  constructor(private cartService: CartService, private router: Router) {}\n\n  ngOnInit() {\n    this.cartService.data$.subscribe((v) => {\n      this.itemCount = v.item_count;\n    });\n    this.cartService.getCartData();\n  }\n\n  toCart() {\n    this.router.navigate(['/cart']);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { CartService } from '../../cart/cart.service';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'layout-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss'],\n})\nexport class HeaderComponent implements OnInit {\n  itemCount: number = -1;\n\n  constructor(private cartService: CartService, private router: Router) {}\n\n  ngOnInit() {\n    this.cartService.data$.subscribe((v) => {\n      this.itemCount = v.item_count;\n    });\n    this.cartService.getCartData();\n  }\n\n  toCart() {\n    this.router.navigate(['/cart']);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2607,7 +2622,7 @@
         {
             "name": "LanguageSelectorComponent",
             "id": "component-LanguageSelectorComponent-a082a90ec5f9c63c64085d0f56613540824856d7070cdec0be086b8a58c3ae8f5d312eac0b87dbb15b8f4e622ffcdf1f89cc081cf50dd583408578c5098b2602",
-            "file": "src/app/features/language-selector/language-selector.component.ts",
+            "file": "src/app/shared/language-selector/language-selector.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -2744,7 +2759,7 @@
         {
             "name": "NavigationMenuComponent",
             "id": "component-NavigationMenuComponent-a55b954f63fc43c84d12169b96081597e204706559a49dc3bdf61628d68cf390f7016102455cc2faeba4736453c24713eeaad5bde3aa709b2e5c7827cbb3b2e7",
-            "file": "src/app/features/navigation-menu/navigation-menu.component.ts",
+            "file": "src/app/shared/navigation-menu/navigation-menu.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -2788,7 +2803,7 @@
         {
             "name": "ProductCardComponent",
             "id": "component-ProductCardComponent-7608c2454a3df0cf5d5eb7c5b2760d35c8b003ba0459f73a73c0689056decb6261735aa939095e3465e246a0bfb53c6da69da8b453a605aefc7230f37a644de1",
-            "file": "src/app/features/product-card/product-card.component.ts",
+            "file": "src/app/product/product-card/product-card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -2866,129 +2881,9 @@
             "templateData": "<div class=\"container\" [routerLink]=\"[href]\">\n    <div class=\"image-container\"><img [ngSrc]=\"image.src\" [alt]=\"name\" fill/></div>\n    <div class=\"product-card-footer\">\n        <h4>{{name}}</h4>\n        <h5 class=\"price-text\">€{{price}}</h5>\n    </div>\n</div>\n"
         },
         {
-            "name": "ProductComponent",
-            "id": "component-ProductComponent-0c92882c801199769d5a66ad2e8727f4d4f6eb86183dc2702fabc7c93839b8a3d5b204a720c2c9c78034f17a4dbf5b75dd615967a471c758f9283feebd604219",
-            "file": "src/app/pages/product/product.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "page-product",
-            "styleUrls": [
-                "./product.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./product.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "handle",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "product",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Product | null",
-                    "optional": false,
-                    "description": "",
-                    "line": 13
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 20,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Product } from '../../../types/Product';\nimport { ProductService } from '../../services/product.service';\nimport { ActivatedRoute } from '@angular/router';\n\n@Component({\n  selector: 'page-product',\n  templateUrl: './product.component.html',\n  styleUrls: ['./product.component.scss'],\n})\nexport class ProductComponent implements OnInit {\n  handle: string = '';\n  product: Product | null = null;\n\n  constructor(\n    private productService: ProductService,\n    private activatedRoute: ActivatedRoute\n  ) {}\n\n  ngOnInit(): void {\n    this.handle = <string>this.activatedRoute.snapshot.paramMap.get('handle');\n\n    this.productService\n      .getProductByHandle(this.handle)\n      .subscribe((product: Product): void => {\n        this.product = product;\n      });\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@import '../../../styles';\n\n:host {\n  flex: 1 1 calc(100vh - 64px);\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  width: 100%;\n\n  @include container;\n  padding: 32px 0;\n  box-sizing: border-box;\n\n  @include large {\n    flex-direction: row;\n  }\n}\n\n.product-page--image-container {\n  display: flex;\n  flex-direction: column;\n\n  position: relative;\n  overflow: hidden;\n  flex: 1 1;\n\n  img {\n    position: absolute;\n    object-fit: scale-down;\n    box-sizing: border-box;\n    object-position: top;\n\n    aspect-ratio: 1 / 1;\n  }\n}\n\n.product-page--title {\n  display: flex;\n  flex-direction: column;\n  text-align: center;\n  gap: 8px;\n\n  :not(:first-child) {\n    font-size: 1.75rem;\n    font-weight: 800;\n    text-transform: uppercase;\n  }\n\n  :first-child {\n    font-size: 1.5rem;\n    font-weight: 600;\n  }\n\n  @include large {\n    text-align: left;\n  }\n}\n\n.product-page--price {\n  font-size: 1.75rem;\n  font-weight: 700;\n}\n\n.product-page--description {\n  color: $muted-foreground;\n}\n\n.product-page--details {\n  flex: 0 0 520px;\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  padding: 16px;\n}\n",
-                    "styleUrl": "./product.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "productService",
-                        "type": "ProductService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "activatedRoute",
-                        "type": "ActivatedRoute",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 13,
-                "jsdoctags": [
-                    {
-                        "name": "productService",
-                        "type": "ProductService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "activatedRoute",
-                        "type": "ActivatedRoute",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "extends": [],
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<ng-container *ngIf=\"product !== null\">\n  <div class=\"product-page--image-container\">\n    <img\n      [ngSrc]=\"product.images[0].src\"\n      alt=\"product\"\n      fill\n    />\n  </div>\n\n  <div class=\"product-page--details\">\n    <h1 class=\"product-page--title\">\n      <span *ngFor=\"let part of product.title?.split(' - ')\">\n        {{part}}\n      </span>\n    </h1>\n\n    <div class=\"product-page--price\">€{{product.variants[0].price}}</div>\n    <ui-separator/>\n\n    <feature-product-form\n      [title]=\"product.title\"\n      [variants]=\"product.variants\"\n    />\n    <ui-separator/>\n\n    <div class=\"product-page--description\" [innerHTML]=\"product!.body_html\"></div>\n  </div>\n\n</ng-container>\n"
-        },
-        {
             "name": "ProductFormComponent",
-            "id": "component-ProductFormComponent-0199f5ec47395a91d651609a85ffece5257999858a6a284654ee18370d0f167c9d8115d40819d29e9c2ce318192d966f53fbd7736c1d0df043563fedb27a2298",
-            "file": "src/app/features/product-form/product-form.component.ts",
+            "id": "component-ProductFormComponent-ce576da3d5dba165ef97a78ac913c7a12260bec2eba64a30f6772ebf199a3f84ee2edcd9cc03951a05b24fda8db4d173ddc2459373ca403cfa78ae13d1e786ef",
+            "file": "src/app/product/product-form/product-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -3149,7 +3044,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Variant } from '../../../types/Product';\nimport { CartService } from '../../services/cart.service';\nimport products from '../../../mocks/products';\n\n@Component({\n  selector: 'feature-product-form',\n  templateUrl: './product-form.component.html',\n  styleUrls: ['./product-form.component.scss'],\n})\nexport class ProductFormComponent {\n  @Input() title = '';\n  @Input() variants: Variant[] = [];\n\n  public formData = {\n    variant: '',\n    quantity: '1',\n  };\n\n  constructor(private cartService: CartService) {}\n\n  public getSize(code: string) {\n    switch (code) {\n      case 'Size Small':\n        return 'S';\n      case 'Size Medium':\n        return 'M';\n      case 'Size Large':\n        return 'L';\n      case 'Size X-Large':\n        return 'XL';\n\n      default:\n        return code;\n    }\n  }\n\n  public getVariantFields = () => {\n    return this.variants.map((v) => ({\n      label: this.getSize(v.title),\n      value: v.id.toString(),\n    }));\n  };\n\n  public getProductId(variantId: number) {\n    return this.variants.find((v) => v.id === variantId)?.product_id;\n  }\n\n  public updateVariant = (value: string) => {\n    this.formData.variant = value;\n  };\n\n  onSubmit = () => {\n    const parsedVariant = parseInt(this.formData.variant);\n    const productId = this.getProductId(parsedVariant) + '';\n\n    this.cartService\n      .addToCart(productId, this.formData.variant, this.formData.quantity)\n      .subscribe({\n        complete: () => {\n          this.cartService.getCartData();\n        },\n        error: (err) => {},\n      });\n  };\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Variant } from '../../../types/Product';\nimport { CartService } from '../../cart/cart.service';\nimport products from '../../../mocks/products';\n\n@Component({\n  selector: 'feature-product-form',\n  templateUrl: './product-form.component.html',\n  styleUrls: ['./product-form.component.scss'],\n})\nexport class ProductFormComponent {\n  @Input() title = '';\n  @Input() variants: Variant[] = [];\n\n  public formData = {\n    variant: '',\n    quantity: '1',\n  };\n\n  constructor(private cartService: CartService) {}\n\n  public getSize(code: string) {\n    switch (code) {\n      case 'Size Small':\n        return 'S';\n      case 'Size Medium':\n        return 'M';\n      case 'Size Large':\n        return 'L';\n      case 'Size X-Large':\n        return 'XL';\n\n      default:\n        return code;\n    }\n  }\n\n  public getVariantFields = () => {\n    return this.variants.map((v) => ({\n      label: this.getSize(v.title),\n      value: v.id.toString(),\n    }));\n  };\n\n  public getProductId(variantId: number) {\n    return this.variants.find((v) => v.id === variantId)?.product_id;\n  }\n\n  public updateVariant = (value: string) => {\n    this.formData.variant = value;\n  };\n\n  onSubmit = () => {\n    const parsedVariant = parseInt(this.formData.variant);\n    const productId = this.getProductId(parsedVariant) + '';\n\n    this.cartService\n      .addToCart(productId, this.formData.variant, this.formData.quantity)\n      .subscribe({\n        complete: () => {\n          this.cartService.getCartData();\n        },\n        error: (err) => {},\n      });\n  };\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -3186,6 +3081,126 @@
             },
             "extends": [],
             "templateData": "<form class=\"product-form\" (ngSubmit)=\"onSubmit()\" *transloco=\"let t; read: 'cartAddForm'\">\n  <ui-radio-button-group\n    name=\"variant-id\"\n    [options]=\"getVariantFields()\"\n    (onChange)=\"updateVariant($event)\"\n  />\n\n  <div class=\"input-container\">\n    <ui-label htmlFor=\"quantity\">{{t('quantity')}}</ui-label>\n    <ui-input\n            id=\"quantity\"\n            name=\"quantity\"\n            [(ngModel)]=\"formData.quantity\"\n    />\n  </div>\n\n  <ui-button\n    [label]=\"t('submitBtn')\"\n    type=\"submit\"\n  />\n</form>\n"
+        },
+        {
+            "name": "ProductPageComponent",
+            "id": "component-ProductPageComponent-97fefc999797fea2b0689cc41e356662511b8a315286131d6227b94522748866b6778a93408dbadc8f74e3f304fad22b635a4009428af5e039995665b8176fed",
+            "file": "src/app/product/product-page/product-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "product-page",
+            "styleUrls": [
+                "./product-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./product-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "handle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "product",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Product | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Product } from '../../../types/Product';\nimport { ProductService } from '../product.service';\nimport { ActivatedRoute } from '@angular/router';\n\n@Component({\n  selector: 'product-page',\n  templateUrl: './product-page.component.html',\n  styleUrls: ['./product-page.component.scss'],\n})\nexport class ProductPageComponent implements OnInit {\n  handle: string = '';\n  product: Product | null = null;\n\n  constructor(\n    private productService: ProductService,\n    private activatedRoute: ActivatedRoute\n  ) {}\n\n  ngOnInit(): void {\n    this.handle = <string>this.activatedRoute.snapshot.paramMap.get('handle');\n\n    this.productService\n      .getProductByHandle(this.handle)\n      .subscribe((product: Product): void => {\n        this.product = product;\n      });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../styles';\n\n:host {\n  flex: 1 1 calc(100vh - 64px);\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  width: 100%;\n\n  @include container;\n  padding: 32px 0;\n  box-sizing: border-box;\n\n  @include large {\n    flex-direction: row;\n  }\n}\n\n.product-page--image-container {\n  display: flex;\n  flex-direction: column;\n\n  position: relative;\n  overflow: hidden;\n  flex: 1 1;\n\n  img {\n    position: absolute;\n    object-fit: scale-down;\n    box-sizing: border-box;\n    object-position: top;\n\n    aspect-ratio: 1 / 1;\n  }\n}\n\n.product-page--title {\n  display: flex;\n  flex-direction: column;\n  text-align: center;\n  gap: 8px;\n\n  :not(:first-child) {\n    font-size: 1.75rem;\n    font-weight: 800;\n    text-transform: uppercase;\n  }\n\n  :first-child {\n    font-size: 1.5rem;\n    font-weight: 600;\n  }\n\n  @include large {\n    text-align: left;\n  }\n}\n\n.product-page--price {\n  font-size: 1.75rem;\n  font-weight: 700;\n}\n\n.product-page--description {\n  color: $muted-foreground;\n}\n\n.product-page--details {\n  flex: 0 0 520px;\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  padding: 16px;\n}\n",
+                    "styleUrl": "./product-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "productService",
+                        "type": "ProductService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "activatedRoute",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "productService",
+                        "type": "ProductService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "activatedRoute",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ng-container *ngIf=\"product !== null\">\n  <div class=\"product-page--image-container\">\n    <img\n      [ngSrc]=\"product.images[0].src\"\n      alt=\"product\"\n      fill\n    />\n  </div>\n\n  <div class=\"product-page--details\">\n    <h1 class=\"product-page--title\">\n      <span *ngFor=\"let part of product.title?.split(' - ')\">\n        {{part}}\n      </span>\n    </h1>\n\n    <div class=\"product-page--price\">€{{product.variants[0].price}}</div>\n    <ui-separator/>\n\n    <feature-product-form\n      [title]=\"product.title\"\n      [variants]=\"product.variants\"\n    />\n    <ui-separator/>\n\n    <div class=\"product-page--description\" [innerHTML]=\"product!.body_html\"></div>\n  </div>\n\n</ng-container>\n"
         },
         {
             "name": "RadioButtonGroupComponent",
@@ -3463,18 +3478,109 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  width=\"24\"\n  height=\"24\"\n  viewBox=\"0 0 24 24\"\n  fill=\"none\"\n  stroke=\"currentColor\"\n  stroke-width=\"2\"\n  stroke-linecap=\"round\"\n  stroke-linejoin=\"round\"\n>\n  <path d=\"M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z\"/><line x1=\"3\" y1=\"6\" x2=\"21\" y2=\"6\"/><path d=\"M16 10a4 4 0 0 1-8 0\"/>\n</svg>\n"
+        },
+        {
+            "name": "StoryTranslocoWrapper",
+            "id": "component-StoryTranslocoWrapper-39cec7d67c7b9011108b05b731b69b163079d57ae5169549899ecd6795495e2e8f7979dfb1c79fd5c4fd4dfcecea6ac0b4edb908f317e85b0e7a4d54a85b823e",
+            "file": "src/app/transloco/with-transloco.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "story-transloco-wrapper",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<ng-content></ng-content>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "language",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_translocoService",
+                    "defaultValue": "inject(TranslocoService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {Component, importProvidersFrom, inject, Input} from \"@angular/core\";\nimport {applicationConfig, componentWrapperDecorator, Decorator, moduleMetadata} from \"@storybook/angular\";\nimport {TranslocoService} from \"@ngneat/transloco\";\nimport {TranslocoStorybookModule} from \"./transloco-storybook.module\";\n\n@Component({\n  selector: 'story-transloco-wrapper',\n  template: '<ng-content></ng-content>'\n})\nclass StoryTranslocoWrapper {\n  private readonly _translocoService = inject(TranslocoService);\n\n  @Input() set language(value: string) {\n    if (value) this._translocoService.setActiveLang(value);\n  }\n}\n\nconst withTranslocoDecorator: Decorator = (storyFn, context) => {\n  const { language } = context.globals;\n  return componentWrapperDecorator(StoryTranslocoWrapper, { language })(storyFn, context);\n};\n\nexport const translocoDecorators = [\n  moduleMetadata({\n    declarations: [StoryTranslocoWrapper]\n  }),\n  applicationConfig({\n    providers: [importProvidersFrom(TranslocoStorybookModule)]\n  }),\n  withTranslocoDecorator\n];\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "language": {
+                    "name": "language",
+                    "setSignature": {
+                        "name": "language",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "value",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 13,
+                        "jsdoctags": [
+                            {
+                                "name": "value",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-a8b25331c31673157bcf32b445358ce76d3328714e9058572d6e5e35d50271657f34c629cee97b14b66cfbf44f2e5c2f6a8766a529078603cf78c49df724444f",
+            "id": "module-AppModule-cd175727ade8f89f10463f6317c77fed6216d8b38ecb3bfddef415230aab87a82eb401b1f3d465fbada9fd44710492635a3b120357ec56b4cf32e2b9098e3a52",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { AppComponent } from './app.component';\nimport { ProductComponent } from './pages/product/product.component';\nimport { CartPageComponent } from './pages/cart-page/cart-page.component';\nimport { RouterModule, Routes } from '@angular/router';\nimport { PagesModule } from './pages/pages.module';\nimport { LayoutModule } from './layout/layout.module';\nimport { HttpClientModule } from '@angular/common/http';\nimport { TranslocoRootModule } from './transloco-root.module';\nimport { CategoryComponent } from './pages/category/category.component';\n\nconst appRoutes: Routes = [\n  { path: 'categories/:category', component: CategoryComponent },\n  { path: 'products/:handle', component: ProductComponent },\n  { path: 'cart', component: CartPageComponent },\n];\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [\n    RouterModule.forRoot(appRoutes),\n    LayoutModule,\n    PagesModule,\n    HttpClientModule,\n    TranslocoRootModule,\n  ],\n  exports: [RouterModule],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { AppComponent } from './app.component';\nimport { ProductPageComponent } from './product/product-page/product-page.component';\nimport { CartPageComponent } from './cart/cart-page/cart-page.component';\nimport { RouterModule, Routes } from '@angular/router';\nimport { LayoutModule } from './layout/layout.module';\nimport { HttpClientModule } from '@angular/common/http';\nimport { TranslocoRootModule } from './transloco/transloco-root.module';\nimport { CategoryComponent } from './product/category/category.component';\nimport {BrowserModule} from \"@angular/platform-browser\";\n\nconst appRoutes: Routes = [\n  { path: 'categories/:category', component: CategoryComponent },\n  { path: 'products/:handle', component: ProductPageComponent },\n  { path: 'cart', component: CartPageComponent },\n];\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [\n    BrowserModule,\n    RouterModule.forRoot(appRoutes),\n    LayoutModule,\n    HttpClientModule,\n    TranslocoRootModule,\n  ],\n  exports: [RouterModule],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3493,9 +3599,6 @@
                     "elements": [
                         {
                             "name": "LayoutModule"
-                        },
-                        {
-                            "name": "PagesModule"
                         },
                         {
                             "name": "TranslocoRootModule"
@@ -3521,23 +3624,20 @@
             ]
         },
         {
-            "name": "FeaturesModule",
-            "id": "module-FeaturesModule-0fb257b0875299274e9e3038eae6955c1e72e6bf92de86ee951e4b7b248a060859337befc21e4219a23c010b53e501bc556d0564161a288a9858a99e431334f6",
+            "name": "CartModule",
+            "id": "module-CartModule-cc7fb6c8849b6e90056b924c194a097fe805ca47fc1c13b1e60560936790997cab179371b7f9d46b538bd076cc8bcfa4288889050e9b98b5d7e6ec8a305cc88a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/features/features.module.ts",
+            "file": "src/app/cart/cart.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { ProductFormComponent } from './product-form/product-form.component';\nimport { CartListItemComponent } from './cart-list/cart-list-item/cart-list-item.component';\nimport { UiModule } from '../ui/ui.module';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { HttpClientModule } from '@angular/common/http';\nimport { ProductService } from '../services/product.service';\nimport { CartService } from '../services/cart.service';\nimport { CartUpdateFormComponent } from './cart-update-form/cart-update-form.component';\nimport { CartListComponent } from './cart-list/cart-list.component';\nimport { CartOrderOverviewComponent } from './cart-order-overview/cart-order-overview.component';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';\nimport { TranslocoDirective } from '@ngneat/transloco';\nimport { RouterLink } from '@angular/router';\nimport { LanguageSelectorComponent } from './language-selector/language-selector.component';\nimport { ProductCardComponent } from './product-card/product-card.component';\n\n@NgModule({\n  imports: [\n    CommonModule,\n    BrowserModule,\n    UiModule,\n    NgOptimizedImage,\n    FormsModule,\n    ReactiveFormsModule,\n    HttpClientModule,\n    TranslocoDirective,\n    RouterLink,\n  ],\n  providers: [ProductService, CartService],\n  declarations: [\n    CartListItemComponent,\n    CartUpdateFormComponent,\n    ProductFormComponent,\n    CartListComponent,\n    CartOrderOverviewComponent,\n    NavigationMenuComponent,\n    LanguageSelectorComponent,\n    ProductCardComponent,\n  ],\n  exports: [\n    CartListItemComponent,\n    CartUpdateFormComponent,\n    ProductFormComponent,\n    CartListComponent,\n    CartOrderOverviewComponent,\n    NavigationMenuComponent,\n    LanguageSelectorComponent,\n    ProductCardComponent,\n  ],\n})\nexport class FeaturesModule {}\n",
+            "sourceCode": " import { NgModule } from '@angular/core';\nimport {CommonModule, NgOptimizedImage} from '@angular/common';\n import {HttpClientModule} from \"@angular/common/http\";\n import {CartService} from \"./cart.service\";\n import {CartListComponent} from \"./cart-list/cart-list.component\";\n import {CartListItemComponent} from \"./cart-list-item/cart-list-item.component\";\n import {CartOrderOverviewComponent} from \"./cart-order-overview/cart-order-overview.component\";\n import {CartPageComponent} from \"./cart-page/cart-page.component\";\n import {UiModule} from \"../ui/ui.module\";\n import {TranslocoModule} from \"@ngneat/transloco\";\n import {IconsModule} from \"../icons/icons.module\";\n import {RouterLink} from \"@angular/router\";\n import {CartUpdateFormComponent} from \"./cart-update-form/cart-update-form.component\";\n\n@NgModule({\n  declarations: [CartListComponent, CartListItemComponent, CartUpdateFormComponent, CartOrderOverviewComponent, CartPageComponent],\n  providers: [CartService],\n  imports: [\n    UiModule,\n    CommonModule,\n    HttpClientModule,\n    TranslocoModule,\n    // TranslocoDirective,\n    IconsModule,\n    NgOptimizedImage,\n    RouterLink\n  ],\n   exports: [CartListComponent, CartListItemComponent, CartUpdateFormComponent, CartOrderOverviewComponent, CartPageComponent]\n})\nexport class CartModule { }\n",
             "children": [
                 {
                     "type": "providers",
                     "elements": [
                         {
                             "name": "CartService"
-                        },
-                        {
-                            "name": "ProductService"
                         }
                     ]
                 },
@@ -3554,25 +3654,19 @@
                             "name": "CartOrderOverviewComponent"
                         },
                         {
+                            "name": "CartPageComponent"
+                        },
+                        {
                             "name": "CartUpdateFormComponent"
-                        },
-                        {
-                            "name": "LanguageSelectorComponent"
-                        },
-                        {
-                            "name": "NavigationMenuComponent"
-                        },
-                        {
-                            "name": "ProductCardComponent"
-                        },
-                        {
-                            "name": "ProductFormComponent"
                         }
                     ]
                 },
                 {
                     "type": "imports",
                     "elements": [
+                        {
+                            "name": "IconsModule"
+                        },
                         {
                             "name": "NgOptimizedImage"
                         },
@@ -3597,21 +3691,48 @@
                             "name": "CartOrderOverviewComponent"
                         },
                         {
+                            "name": "CartPageComponent"
+                        },
+                        {
                             "name": "CartUpdateFormComponent"
-                        },
-                        {
-                            "name": "LanguageSelectorComponent"
-                        },
-                        {
-                            "name": "NavigationMenuComponent"
-                        },
-                        {
-                            "name": "ProductCardComponent"
-                        },
-                        {
-                            "name": "ProductFormComponent"
                         }
                     ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CheckoutModule",
+            "id": "module-CheckoutModule-0ecba1a9f92e999568c8a0b7adddff59f0ac8e58b1e5e03ef14d3332cbd1056ae0a29322da3616cd26da57e2ca5d2cc958520f1602bcb504af7775b9396194ba",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/checkout/checkout.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class CheckoutModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -3669,13 +3790,13 @@
         },
         {
             "name": "LayoutModule",
-            "id": "module-LayoutModule-a80f45e35e6835ca235f2c000fc5f11fcec563b1930851e59952091c34814613f90be175150fbe9741e94dd86dcf686b10208d08ab9b8e42509866a199daef06",
+            "id": "module-LayoutModule-41383ff6a35545eff3fe381af69d3b94788e818cb2e7c96d3533b36326a7cfa28cf6887351ac4f7d46f6c2050bf607bd78df51d416f6dab67878e1fa41547df6",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/layout/layout.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { HeaderComponent } from './header/header.component';\nimport { IconsModule } from '../icons/icons.module';\nimport { FooterComponent } from './footer/footer.component';\nimport { FeaturesModule } from '../features/features.module';\nimport { RouterLink } from '@angular/router';\nimport { UiModule } from '../ui/ui.module';\n\n@NgModule({\n  declarations: [HeaderComponent, FooterComponent],\n  imports: [\n    CommonModule,\n    NgOptimizedImage,\n    IconsModule,\n    FeaturesModule,\n    RouterLink,\n    UiModule,\n  ],\n  exports: [HeaderComponent, FooterComponent],\n})\nexport class LayoutModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { HeaderComponent } from './header/header.component';\nimport { IconsModule } from '../icons/icons.module';\nimport { FooterComponent } from './footer/footer.component';\nimport { RouterLink } from '@angular/router';\nimport { UiModule } from '../ui/ui.module';\n\n@NgModule({\n  declarations: [HeaderComponent, FooterComponent],\n  imports: [\n    CommonModule,\n    NgOptimizedImage,\n    IconsModule,\n    //FeaturesModule,\n    RouterLink,\n    UiModule,\n  ],\n  exports: [HeaderComponent, FooterComponent],\n})\nexport class LayoutModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3695,9 +3816,6 @@
                 {
                     "type": "imports",
                     "elements": [
-                        {
-                            "name": "FeaturesModule"
-                        },
                         {
                             "name": "IconsModule"
                         },
@@ -3734,14 +3852,14 @@
             ]
         },
         {
-            "name": "PagesModule",
-            "id": "module-PagesModule-14c6c0ac8492f1f6ac4a6cb2f56a77f3ed86b54dea506db5aac33a0c7068e65374552fb33908a18b27b042e449c03c4877a5359e41622d54cbda478150b9050f",
+            "name": "ProductModule",
+            "id": "module-ProductModule-50c6e078fef8c1340020fa7b541606b921e49030dddb4fc40228e0736d2a90c6722288820fe1ed23cd117335fa1c817ca4ce7f99adf26b934bddf9c88c66bc6e",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/pages/pages.module.ts",
+            "file": "src/app/product/product.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule, NgOptimizedImage } from '@angular/common';\nimport { UiModule } from '../ui/ui.module';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { HttpClientModule } from '@angular/common/http';\nimport { FeaturesModule } from '../features/features.module';\nimport { ProductComponent } from './product/product.component';\nimport { TranslocoDirective } from '@ngneat/transloco';\nimport { IconsModule } from '../icons/icons.module';\nimport { RouterLink } from '@angular/router';\nimport { CategoryComponent } from './category/category.component';\nimport { CartPageComponent } from './cart-page/cart-page.component';\n\n@NgModule({\n  declarations: [CartPageComponent, ProductComponent, CategoryComponent],\n  imports: [\n    CommonModule,\n    UiModule,\n    BrowserModule,\n    NgOptimizedImage,\n    HttpClientModule,\n    FeaturesModule,\n    TranslocoDirective,\n    IconsModule,\n    RouterLink,\n  ],\n})\nexport class PagesModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class ProductModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -3749,37 +3867,47 @@
                 },
                 {
                     "type": "declarations",
-                    "elements": [
-                        {
-                            "name": "CartPageComponent"
-                        },
-                        {
-                            "name": "CategoryComponent"
-                        },
-                        {
-                            "name": "ProductComponent"
-                        }
-                    ]
+                    "elements": []
                 },
                 {
                     "type": "imports",
-                    "elements": [
-                        {
-                            "name": "FeaturesModule"
-                        },
-                        {
-                            "name": "IconsModule"
-                        },
-                        {
-                            "name": "NgOptimizedImage"
-                        },
-                        {
-                            "name": "RouterLink"
-                        },
-                        {
-                            "name": "UiModule"
-                        }
-                    ]
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SharedModule",
+            "id": "module-SharedModule-183ede447108eea17d98ca2ab008f39499b128ca0894b75a50655364fb41afe822dfad5c8cf2731faa39ac4dcfaf5c3b954b9786de22296de915fd9a3a41c3ec",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/shared.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class SharedModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
                 },
                 {
                     "type": "exports",
@@ -3797,13 +3925,49 @@
         },
         {
             "name": "TranslocoRootModule",
-            "id": "module-TranslocoRootModule-3a9f42ae668cb8416dc13025780d092ba31b781d31d0d4b4ea506e92bf2e879493dff1c17dacf4dbceef9868023ac14a5fdab4164a90be6b0ada595d02e75918",
+            "id": "module-TranslocoRootModule-3ec516d5a15b5d43f66d3c482627a8e80f05658ee534719fc07e9343b5243ddee64396059e165dba3264609eed24c2750a5851d5b4a318a6b24b5f7361436fc7",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/transloco-root.module.ts",
+            "file": "src/app/transloco/transloco-root.module.ts",
             "methods": [],
-            "sourceCode": "import { provideTransloco, TranslocoModule } from '@ngneat/transloco';\nimport { NgModule } from '@angular/core';\nimport { TranslocoHttpLoader } from './transloco-loader';\nimport { environment } from '../environments/environment.development';\n@NgModule({\n  exports: [TranslocoModule],\n  providers: [\n    provideTransloco({\n      config: {\n        availableLangs: ['en', 'de'],\n        defaultLang: 'de',\n        // Remove this option if your application doesn't support changing language in runtime.\n        reRenderOnLangChange: true,\n        prodMode: environment.production,\n      },\n      loader: TranslocoHttpLoader,\n    }),\n  ],\n})\nexport class TranslocoRootModule {}\n",
+            "sourceCode": "import {provideTransloco, TRANSLOCO_LOADER, TranslocoModule} from '@ngneat/transloco';\nimport { NgModule } from '@angular/core';\nimport { TranslocoHttpLoader } from './transloco-loader';\nimport { environment } from '../../environments/environment.development';\nimport {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from \"./supported-languages\";\nimport {provideHttpClient} from \"@angular/common/http\";\n@NgModule({\n  exports: [TranslocoModule],\n  providers: [\n    provideHttpClient(),\n    provideTransloco({\n      config: {\n        availableLangs: SUPPORTED_LANGUAGES.map(l => l.code),\n        defaultLang: DEFAULT_LANGUAGE.code,\n        // Remove this option if your application doesn't support changing language in runtime.\n        reRenderOnLangChange: true,\n        prodMode: environment.production,\n      },\n      loader: TranslocoHttpLoader\n    }),\n  ],\n})\nexport class TranslocoRootModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "TranslocoStorybookModule",
+            "id": "module-TranslocoStorybookModule-ff9f958f2405279214aa09dd6c2de51998b76345c2853d2143ad9142b014a26dfc483c6e2d6d6a66b34a69059ef0427daee73aaff983fa0071197dc987c354e8",
+            "description": "<p>This module provides translations for Storybook.\nIt must not be imported outside of Storybook stories.</p>\n",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/transloco/transloco-storybook.module.ts",
+            "methods": [],
+            "sourceCode": "import { HttpClientModule } from '@angular/common/http';\nimport { forceReRender, Story } from '@storybook/angular';\nimport {\n  TRANSLOCO_LOADER,\n  TRANSLOCO_CONFIG,\n  translocoConfig,\n  TranslocoModule,\n  TranslocoService,\n} from '@ngneat/transloco';\nimport { APP_INITIALIZER, NgModule } from '@angular/core';\nimport { distinctUntilChanged, tap } from 'rxjs/operators';\nimport { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from './supported-languages';\nimport { TranslocoHttpLoader } from './transloco-loader';\n\nlet translocoServiceInstance: TranslocoService | null = null;\n\nexport function translocoStorybookInitializer(\n  translocoService: TranslocoService\n) {\n  return () => {\n    const subscription = translocoService.langChanges$\n      .pipe(\n        distinctUntilChanged(),\n        tap(() => forceReRender())\n      )\n      .subscribe();\n\n    translocoServiceInstance = translocoService;\n\n    const onDestroyCb = translocoService.ngOnDestroy.bind(translocoService);\n    translocoService.ngOnDestroy = () => {\n      onDestroyCb();\n      subscription?.unsubscribe();\n    };\n  };\n}\n\n/**\n * This module provides translations for Storybook.\n * It must not be imported outside of Storybook stories.\n *\n * @private\n */\n@NgModule({\n  exports: [TranslocoModule],\n  imports: [HttpClientModule],\n  providers: [\n    {\n      provide: TRANSLOCO_CONFIG,\n      useValue: translocoConfig({\n        availableLangs: SUPPORTED_LANGUAGES.map((l) => l.code),\n        defaultLang: DEFAULT_LANGUAGE.code,\n        reRenderOnLangChange: true,\n        missingHandler: {\n          logMissingKey: false,\n        },\n        fallbackLang: DEFAULT_LANGUAGE.code,\n        prodMode: false,\n      }),\n    },\n    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },\n    {\n      provide: APP_INITIALIZER,\n      useFactory: translocoStorybookInitializer,\n      multi: true,\n      deps: [TranslocoService],\n    },\n  ],\n})\nexport class TranslocoStorybookModule {}\n\nexport const TranslocoStory: Story = (args, { globals, ...rest }: any) => {\n  if (globals.language) {\n    translocoServiceInstance?.setActiveLang(globals.language);\n  }\n\n  return {\n    globals,\n    props: {\n      ...args,\n    },\n    ...rest,\n  };\n};\n",
             "children": [
                 {
                     "type": "providers",
@@ -3970,7 +4134,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/features/cart-list/cart-list.stories.ts",
+                "file": "src/app/cart/cart-list/cart-list.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3980,7 +4144,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/features/cart-update-form/cart-update-form.stories.ts",
+                "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    name: 'STONE ISLAND\\n' + \"DSM Men's David-TC Heavy Coat\\n\" + '(Black)\\n',\n    size: 'Size small',\n    sku: '123456789',\n    quantity: 1,\n  },\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/cart/cart-page/cart-page.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3990,7 +4164,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/features/product-form/product-form.stories.ts",
+                "file": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/product/product-form/product-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4000,17 +4184,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/pages/cart-page/cart-page.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {},\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/pages/product/product.stories.ts",
+                "file": "src/app/product/product-page/product-page.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4037,16 +4211,6 @@
                 "defaultValue": "{\n  args: {},\n}"
             },
             {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {\n    name: 'STONE ISLAND\\n' + \"DSM Men's David-TC Heavy Coat\\n\" + '(Black)\\n',\n    size: 'Size small',\n    sku: '123456789',\n    quantity: 1,\n  },\n}"
-            },
-            {
                 "name": "DEFAULT_CART",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4055,6 +4219,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  item_count: -1,\n  items: [],\n  subtotal: '0.00',\n}"
+            },
+            {
+                "name": "DEFAULT_LANGUAGE",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/transloco/supported-languages.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "SUPPORTED_LANGUAGES[0]"
             },
             {
                 "name": "Disabled",
@@ -4157,6 +4331,16 @@
                 "defaultValue": "rest.get<any[]>(\n  `${productUrl}`,\n  (req, res, ctx) => {\n    return res(ctx.status(200), ctx.json(products));\n  }\n)"
             },
             {
+                "name": "globalTypes",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  // add a dropdown menu in the Storybook UI toolbar\n  language: {\n    name: \"Language\",\n    description: `Choose a language`,\n    defaultValue: DEFAULT_LANGUAGE.code,\n    toolbar: {\n      icon: \"globe\",\n      items: SUPPORTED_LANGUAGES.map((language) => ({\n        value: language.code,\n        right: language.icon,\n        title: language.title,\n      })),\n    },\n  },\n}"
+            },
+            {
                 "name": "handlers",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4170,21 +4354,11 @@
                 "name": "httpOptions",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/services/cart.service.ts",
+                "file": "src/app/cart/cart.service.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  headers: new HttpHeaders({\n    'Content-Type': 'application/json',\n  }),\n}"
-            },
-            {
-                "name": "i18nDecorators",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": ".storybook/preview.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "i18n?.decorators || []"
             },
             {
                 "name": "imageA",
@@ -4260,27 +4434,47 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/features/cart-list/cart-list.stories.ts",
+                "file": "src/app/cart/cart-list/cart-list.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<CartListComponent>",
-                "defaultValue": "{\n  title: 'Components/CartList',\n  component: CartListComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                "defaultValue": "{\n  title: 'Cart/CartList',\n  component: CartListComponent,\n  // subcomponents: [CartListItemComponent],\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
             },
             {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/features/cart-update-form/cart-update-form.stories.ts",
+                "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CartListItemComponent>",
+                "defaultValue": "{\n  title: 'Cart/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [CartModule, UiModule]\n    }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/cart/cart-page/cart-page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<CartPageComponent>",
+                "defaultValue": "{\n  title: 'Cart/CartPage',\n  component: CartPageComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<CartUpdateFormComponent>",
-                "defaultValue": "{\n  title: 'Forms/CartUpdateForm',\n  component: CartUpdateFormComponent,\n  tags: ['autodocs'],\n\n  decorators: [\n    moduleMetadata({\n      imports: [UiModule, FeaturesModule],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: CartUpdateFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                "defaultValue": "{\n  title: 'Forms/CartUpdateForm',\n  component: CartUpdateFormComponent,\n  tags: ['autodocs'],\n\n  decorators: [\n    moduleMetadata({\n      imports: [\n        CartModule,\n        UiModule, TranslocoRootModule\n      ],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: CartUpdateFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
             },
             {
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/features/product-form/product-form.stories.ts",
+                "file": "src/app/product/product-form/product-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ProductFormComponent>",
@@ -4290,21 +4484,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/pages/cart-page/cart-page.stories.ts",
+                "file": "src/app/product/product-page/product-page.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<CartPageComponent>",
-                "defaultValue": "{\n  component: CartPageComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        FeaturesModule,\n        UiModule,\n        CommonModule,\n        UiModule,\n        BrowserModule,\n        NgOptimizedImage,\n        HttpClientModule,\n        FeaturesModule,\n        TranslocoDirective,\n        IconsModule,\n      ],\n      providers: [],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/pages/product/product.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<ProductComponent>",
-                "defaultValue": "{\n  title: 'Pages/Product',\n  component: ProductComponent,\n  tags: ['autodocs'],\n  decorators: [\n    // moduleMetadata({\n    //   declarations: [HeaderComponent],\n    //   imports: [HttpClientModule, FeaturesModule, UiModule, CommonModule],\n    //   providers: [ProductService],\n    // }),\n  ],\n\n  render: (args: ProductComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                "type": "Meta<ProductPageComponent>",
+                "defaultValue": "{\n  title: 'Pages/Product',\n  component: ProductPageComponent,\n  tags: ['autodocs'],\n  decorators: [\n    // moduleMetadata({\n    //   declarations: [HeaderComponent],\n    //   imports: [HttpClientModule, FeaturesModule, UiModule, CommonModule],\n    //   providers: [ProductService],\n    // }),\n  ],\n\n  render: (args: ProductPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
             },
             {
                 "name": "meta",
@@ -4337,16 +4521,6 @@
                 "defaultValue": "{\n  title: 'UI/Label',\n  component: LabelComponent,\n  tags: ['autodocs'],\n\n  render: (args: LabelComponent) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <ui-label>Hey</ui-label>\n    `,\n  }),\n}"
             },
             {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<CartListItemComponent>",
-                "defaultValue": "{\n  title: 'Features/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    // moduleMetadata({\n    //   imports: [UiModule, FeaturesModule],\n    //   providers: [CartService],\n    // }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
-            },
-            {
                 "name": "preview",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4354,7 +4528,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  ...i18n,\n  decorators: [...i18nDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
+                "defaultValue": "{\n  //...i18n,\n  decorators: [...translocoDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        //order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
             },
             {
                 "name": "Primary",
@@ -4487,6 +4661,46 @@
                 "defaultValue": "{\n  id: stoneIslandHeavyCoatId,\n  title: \"Stone Island - DSM Men's David-TC Heavy Coat - (Black)\",\n  handle: 'stone-island-mens-giaccone-black-aw23-791571649',\n  body_html:\n    '<p>Exclusively produced for Dover Street Market London.</p>\\n<p>Iconic Stone Island pieces are reimagined in all black with a serigraphic Dover Street Market print under the Stone Island badge.</p>\\n<p>Collar with snap to wear it standing.<br> Epaulettes.<br> Two slanting hand pockets with fixed flap.<br> Stone Island badge on the left sleeve. <br>Adjustable buttoned straps at cuffs.<br> Fastened through two ways zip hidden under hidden buttons placket.</p>',\n  published_at: '2023-10-13T11:00:22+01:00',\n  created_at: '2023-10-12T16:46:32+01:00',\n  updated_at: '2023-10-13T15:21:33+01:00',\n  vendor: 'Stone Island',\n  product_type: 'Jackets',\n  tags: [\n    '1600000584851',\n    '1600000584852',\n    '1600000584853',\n    '1600000584854',\n    'attribute:BLACK',\n    'brand:STONE ISLAND',\n    'category:3',\n    'category:JACKETS',\n    'COO:',\n    'dayslive:number:0',\n    'Fabric Comp:',\n    'jackets',\n    'mens',\n    'outerwear',\n    'Related Product:STONE ISLAND GIACCONE',\n    'season:AW23',\n    'sex:MENS',\n    'SHARED STOCK:FALSE',\n    'sizeguide:mens',\n    'Status:In Stock',\n    'Status:InStock',\n    'Supplier SKU:791571649-BLACK',\n    'whatsnew',\n  ],\n  variants: [sizeSmall, sizeMedium, sizeLarge, sizeXLarge],\n  images: [imageA, imageB, imageC, imageD],\n  options: [sizeOption],\n}"
             },
             {
+                "name": "SUPPORTED_LANGUAGES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/transloco/supported-languages.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  { code: \"en\", icon: \"🇬🇧\", title: \"English\" },\n  { code: \"de\", icon: \"🇩🇪\", title: \"German\" },\n]"
+            },
+            {
+                "name": "translocoDecorators",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/transloco/with-transloco.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n  moduleMetadata({\n    declarations: [StoryTranslocoWrapper]\n  }),\n  applicationConfig({\n    providers: [importProvidersFrom(TranslocoStorybookModule)]\n  }),\n  withTranslocoDecorator\n]"
+            },
+            {
+                "name": "translocoServiceInstance",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/transloco/transloco-storybook.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "TranslocoService | null",
+                "defaultValue": "null"
+            },
+            {
+                "name": "TranslocoStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/transloco/transloco-storybook.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "(args, { globals, ...rest }: any) => {\n  if (globals.language) {\n    translocoServiceInstance?.setActiveLang(globals.language);\n  }\n\n  return {\n    globals,\n    props: {\n      ...args,\n    },\n    ...rest,\n  };\n}"
+            },
+            {
                 "name": "withButton",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4507,6 +4721,16 @@
                 "defaultValue": "{\n  decorators: [labelDecorator],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  }),\n}"
             },
             {
+                "name": "withTranslocoDecorator",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/transloco/with-transloco.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Decorator",
+                "defaultValue": "(storyFn, context) => {\n  const { language } = context.globals;\n  return componentWrapperDecorator(StoryTranslocoWrapper, { language })(storyFn, context);\n}"
+            },
+            {
                 "name": "worker",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4517,7 +4741,36 @@
                 "defaultValue": "setupWorker(...handlers)"
             }
         ],
-        "functions": [],
+        "functions": [
+            {
+                "name": "translocoStorybookInitializer",
+                "file": "src/app/transloco/transloco-storybook.module.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "translocoService",
+                        "type": "TranslocoService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "translocoService",
+                        "type": "TranslocoService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
         "typealiases": [
             {
                 "name": "Cart",
@@ -4546,7 +4799,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "literal type",
-                "file": "src/app/features/cart-update-form/cart-update-form.component.ts",
+                "file": "src/app/cart/cart-update-form/cart-update-form.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4612,7 +4865,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<CartListComponent>",
-                "file": "src/app/features/cart-list/cart-list.stories.ts",
+                "file": "src/app/cart/cart-list/cart-list.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4622,19 +4875,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<CartUpdateFormComponent>",
-                "file": "src/app/features/cart-update-form/cart-update-form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<ProductFormComponent>",
-                "file": "src/app/features/product-form/product-form.stories.ts",
+                "rawtype": "StoryObj<CartListItemComponent>",
+                "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4645,7 +4887,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<CartPageComponent>",
-                "file": "src/app/pages/cart-page/cart-page.stories.ts",
+                "file": "src/app/cart/cart-page/cart-page.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4655,8 +4897,30 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<ProductComponent>",
-                "file": "src/app/pages/product/product.stories.ts",
+                "rawtype": "StoryObj<CartUpdateFormComponent>",
+                "file": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ProductFormComponent>",
+                "file": "src/app/product/product-form/product-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ProductPageComponent>",
+                "file": "src/app/product/product-page/product-page.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4690,17 +4954,6 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<LabelComponent>",
                 "file": "src/app/ui/label/Label.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<CartListItemComponent>",
-                "file": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4927,12 +5180,12 @@
                     "defaultValue": "{\n  decorators: [labelDecorator],\n  render: (args) => ({\n    props: {\n      id: 'email',\n      inputType: 'email',\n      placeholder: 'Email',\n    },\n  }),\n}"
                 }
             ],
-            "src/app/features/cart-list/cart-list.stories.ts": [
+            "src/app/cart/cart-list/cart-list.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/features/cart-list/cart-list.stories.ts",
+                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4942,19 +5195,41 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/features/cart-list/cart-list.stories.ts",
+                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<CartListComponent>",
-                    "defaultValue": "{\n  title: 'Components/CartList',\n  component: CartListComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                    "defaultValue": "{\n  title: 'Cart/CartList',\n  component: CartListComponent,\n  // subcomponents: [CartListItemComponent],\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n\n  render: (args: CartListComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
                 }
             ],
-            "src/app/features/cart-update-form/cart-update-form.stories.ts": [
+            "src/app/cart/cart-list-item/cart-list-item.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/features/cart-update-form/cart-update-form.stories.ts",
+                    "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    name: 'STONE ISLAND\\n' + \"DSM Men's David-TC Heavy Coat\\n\" + '(Black)\\n',\n    size: 'Size small',\n    sku: '123456789',\n    quantity: 1,\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CartListItemComponent>",
+                    "defaultValue": "{\n  title: 'Cart/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [CartModule, UiModule]\n    }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                }
+            ],
+            "src/app/cart/cart-page/cart-page.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/cart/cart-page/cart-page.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4964,19 +5239,41 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/features/cart-update-form/cart-update-form.stories.ts",
+                    "file": "src/app/cart/cart-page/cart-page.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<CartUpdateFormComponent>",
-                    "defaultValue": "{\n  title: 'Forms/CartUpdateForm',\n  component: CartUpdateFormComponent,\n  tags: ['autodocs'],\n\n  decorators: [\n    moduleMetadata({\n      imports: [UiModule, FeaturesModule],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: CartUpdateFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                    "type": "Meta<CartPageComponent>",
+                    "defaultValue": "{\n  title: 'Cart/CartPage',\n  component: CartPageComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      imports: [ CartModule, UiModule, TranslocoRootModule ],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
                 }
             ],
-            "src/app/features/product-form/product-form.stories.ts": [
+            "src/app/cart/cart-update-form/cart-update-form.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/features/product-form/product-form.stories.ts",
+                    "file": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<CartUpdateFormComponent>",
+                    "defaultValue": "{\n  title: 'Forms/CartUpdateForm',\n  component: CartUpdateFormComponent,\n  tags: ['autodocs'],\n\n  decorators: [\n    moduleMetadata({\n      imports: [\n        CartModule,\n        UiModule, TranslocoRootModule\n      ],\n      providers: [CartService],\n    }),\n  ],\n\n  render: (args: CartUpdateFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                }
+            ],
+            "src/app/product/product-form/product-form.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/product/product-form/product-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4986,41 +5283,19 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/features/product-form/product-form.stories.ts",
+                    "file": "src/app/product/product-form/product-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ProductFormComponent>",
                     "defaultValue": "{\n  title: 'Features/ProductForm',\n  component: ProductFormComponent,\n  tags: ['autodocs'],\n  decorators: [\n    moduleMetadata({\n      //imports: [FeaturesModule],\n    }),\n  ],\n\n  render: (args: ProductFormComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
                 }
             ],
-            "src/app/pages/cart-page/cart-page.stories.ts": [
+            "src/app/product/product-page/product-page.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/pages/cart-page/cart-page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {},\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/pages/cart-page/cart-page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<CartPageComponent>",
-                    "defaultValue": "{\n  component: CartPageComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        FeaturesModule,\n        UiModule,\n        CommonModule,\n        UiModule,\n        BrowserModule,\n        NgOptimizedImage,\n        HttpClientModule,\n        FeaturesModule,\n        TranslocoDirective,\n        IconsModule,\n      ],\n      providers: [],\n    }),\n  ],\n  render: (args: CartPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  tags: ['autodocs'],\n\n  title: 'Pages/Cart',\n}"
-                }
-            ],
-            "src/app/pages/product/product.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/pages/product/product.stories.ts",
+                    "file": "src/app/product/product-page/product-page.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -5030,11 +5305,11 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/pages/product/product.stories.ts",
+                    "file": "src/app/product/product-page/product-page.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<ProductComponent>",
-                    "defaultValue": "{\n  title: 'Pages/Product',\n  component: ProductComponent,\n  tags: ['autodocs'],\n  decorators: [\n    // moduleMetadata({\n    //   declarations: [HeaderComponent],\n    //   imports: [HttpClientModule, FeaturesModule, UiModule, CommonModule],\n    //   providers: [ProductService],\n    // }),\n  ],\n\n  render: (args: ProductComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
+                    "type": "Meta<ProductPageComponent>",
+                    "defaultValue": "{\n  title: 'Pages/Product',\n  component: ProductPageComponent,\n  tags: ['autodocs'],\n  decorators: [\n    // moduleMetadata({\n    //   declarations: [HeaderComponent],\n    //   imports: [HttpClientModule, FeaturesModule, UiModule, CommonModule],\n    //   providers: [ProductService],\n    // }),\n  ],\n\n  render: (args: ProductPageComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
                 }
             ],
             "src/app/ui/label/Label.stories.ts": [
@@ -5059,28 +5334,6 @@
                     "defaultValue": "{\n  title: 'UI/Label',\n  component: LabelComponent,\n  tags: ['autodocs'],\n\n  render: (args: LabelComponent) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <ui-label>Hey</ui-label>\n    `,\n  }),\n}"
                 }
             ],
-            "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {\n    name: 'STONE ISLAND\\n' + \"DSM Men's David-TC Heavy Coat\\n\" + '(Black)\\n',\n    size: 'Size small',\n    sku: '123456789',\n    quantity: 1,\n  },\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<CartListItemComponent>",
-                    "defaultValue": "{\n  title: 'Features/CartListItem',\n  component: CartListItemComponent,\n  tags: ['autodocs'],\n  decorators: [\n    // moduleMetadata({\n    //   imports: [UiModule, FeaturesModule],\n    //   providers: [CartService],\n    // }),\n  ],\n\n  render: (args: CartListItemComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}"
-                }
-            ],
             "src/types/Cart.ts": [
                 {
                     "name": "DEFAULT_CART",
@@ -5091,6 +5344,28 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  item_count: -1,\n  items: [],\n  subtotal: '0.00',\n}"
+                }
+            ],
+            "src/app/transloco/supported-languages.ts": [
+                {
+                    "name": "DEFAULT_LANGUAGE",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/transloco/supported-languages.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "SUPPORTED_LANGUAGES[0]"
+                },
+                {
+                    "name": "SUPPORTED_LANGUAGES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/transloco/supported-languages.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  { code: \"en\", icon: \"🇬🇧\", title: \"English\" },\n  { code: \"de\", icon: \"🇩🇪\", title: \"German\" },\n]"
                 }
             ],
             "src/environments/environment.development.ts": [
@@ -5149,6 +5424,28 @@
                     "defaultValue": "`${environment.apiUrl}/products`"
                 }
             ],
+            ".storybook/preview.ts": [
+                {
+                    "name": "globalTypes",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  // add a dropdown menu in the Storybook UI toolbar\n  language: {\n    name: \"Language\",\n    description: `Choose a language`,\n    defaultValue: DEFAULT_LANGUAGE.code,\n    toolbar: {\n      icon: \"globe\",\n      items: SUPPORTED_LANGUAGES.map((language) => ({\n        value: language.code,\n        right: language.icon,\n        title: language.title,\n      })),\n    },\n  },\n}"
+                },
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n  //...i18n,\n  decorators: [...translocoDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        //order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
+                }
+            ],
             "src/mocks/handlers/index.ts": [
                 {
                     "name": "handlers",
@@ -5161,38 +5458,16 @@
                     "defaultValue": "[\n  getProductsByCategory,\n  getProductById,\n\n  getCart,\n  addToCart,\n  removeItem,\n]"
                 }
             ],
-            "src/app/services/cart.service.ts": [
+            "src/app/cart/cart.service.ts": [
                 {
                     "name": "httpOptions",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/services/cart.service.ts",
+                    "file": "src/app/cart/cart.service.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  headers: new HttpHeaders({\n    'Content-Type': 'application/json',\n  }),\n}"
-                }
-            ],
-            ".storybook/preview.ts": [
-                {
-                    "name": "i18nDecorators",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": ".storybook/preview.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "i18n?.decorators || []"
-                },
-                {
-                    "name": "preview",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": ".storybook/preview.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Preview",
-                    "defaultValue": "{\n  ...i18n,\n  decorators: [...i18nDecorators],\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    options: {\n      storySort: {\n        order: ['Pages', 'Features', 'Layout', 'UI'],\n      },\n    },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n    msw: { handlers },\n  },\n  loaders: [mswLoader],\n}"
                 }
             ],
             "src/mocks/products/stone-island-mens-giaccone-black-aw23-791571649/images.ts": [
@@ -5379,6 +5654,50 @@
                     "defaultValue": "{\n  id: stoneIslandHeavyCoatId,\n  title: \"Stone Island - DSM Men's David-TC Heavy Coat - (Black)\",\n  handle: 'stone-island-mens-giaccone-black-aw23-791571649',\n  body_html:\n    '<p>Exclusively produced for Dover Street Market London.</p>\\n<p>Iconic Stone Island pieces are reimagined in all black with a serigraphic Dover Street Market print under the Stone Island badge.</p>\\n<p>Collar with snap to wear it standing.<br> Epaulettes.<br> Two slanting hand pockets with fixed flap.<br> Stone Island badge on the left sleeve. <br>Adjustable buttoned straps at cuffs.<br> Fastened through two ways zip hidden under hidden buttons placket.</p>',\n  published_at: '2023-10-13T11:00:22+01:00',\n  created_at: '2023-10-12T16:46:32+01:00',\n  updated_at: '2023-10-13T15:21:33+01:00',\n  vendor: 'Stone Island',\n  product_type: 'Jackets',\n  tags: [\n    '1600000584851',\n    '1600000584852',\n    '1600000584853',\n    '1600000584854',\n    'attribute:BLACK',\n    'brand:STONE ISLAND',\n    'category:3',\n    'category:JACKETS',\n    'COO:',\n    'dayslive:number:0',\n    'Fabric Comp:',\n    'jackets',\n    'mens',\n    'outerwear',\n    'Related Product:STONE ISLAND GIACCONE',\n    'season:AW23',\n    'sex:MENS',\n    'SHARED STOCK:FALSE',\n    'sizeguide:mens',\n    'Status:In Stock',\n    'Status:InStock',\n    'Supplier SKU:791571649-BLACK',\n    'whatsnew',\n  ],\n  variants: [sizeSmall, sizeMedium, sizeLarge, sizeXLarge],\n  images: [imageA, imageB, imageC, imageD],\n  options: [sizeOption],\n}"
                 }
             ],
+            "src/app/transloco/with-transloco.ts": [
+                {
+                    "name": "translocoDecorators",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/transloco/with-transloco.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n  moduleMetadata({\n    declarations: [StoryTranslocoWrapper]\n  }),\n  applicationConfig({\n    providers: [importProvidersFrom(TranslocoStorybookModule)]\n  }),\n  withTranslocoDecorator\n]"
+                },
+                {
+                    "name": "withTranslocoDecorator",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/transloco/with-transloco.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Decorator",
+                    "defaultValue": "(storyFn, context) => {\n  const { language } = context.globals;\n  return componentWrapperDecorator(StoryTranslocoWrapper, { language })(storyFn, context);\n}"
+                }
+            ],
+            "src/app/transloco/transloco-storybook.module.ts": [
+                {
+                    "name": "translocoServiceInstance",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/transloco/transloco-storybook.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TranslocoService | null",
+                    "defaultValue": "null"
+                },
+                {
+                    "name": "TranslocoStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/transloco/transloco-storybook.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "(args, { globals, ...rest }: any) => {\n  if (globals.language) {\n    translocoServiceInstance?.setActiveLang(globals.language);\n  }\n\n  return {\n    globals,\n    props: {\n      ...args,\n    },\n    ...rest,\n  };\n}"
+                }
+            ],
             "src/mocks/browser.ts": [
                 {
                     "name": "worker",
@@ -5392,7 +5711,38 @@
                 }
             ]
         },
-        "groupedFunctions": {},
+        "groupedFunctions": {
+            "src/app/transloco/transloco-storybook.module.ts": [
+                {
+                    "name": "translocoStorybookInitializer",
+                    "file": "src/app/transloco/transloco-storybook.module.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "translocoService",
+                            "type": "TranslocoService",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "translocoService",
+                            "type": "TranslocoService",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
             "src/types/Cart.ts": [
@@ -5421,13 +5771,13 @@
                     "kind": 187
                 }
             ],
-            "src/app/features/cart-update-form/cart-update-form.component.ts": [
+            "src/app/cart/cart-update-form/cart-update-form.component.ts": [
                 {
                     "name": "CartUpdateForm",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "literal type",
-                    "file": "src/app/features/cart-update-form/cart-update-form.component.ts",
+                    "file": "src/app/cart/cart-update-form/cart-update-form.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5528,65 +5878,78 @@
                     "kind": 192
                 }
             ],
-            "src/app/features/cart-list/cart-list.stories.ts": [
+            "src/app/cart/cart-list/cart-list.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<CartListComponent>",
-                    "file": "src/app/features/cart-list/cart-list.stories.ts",
+                    "file": "src/app/cart/cart-list/cart-list.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 183
                 }
             ],
-            "src/app/features/cart-update-form/cart-update-form.stories.ts": [
+            "src/app/cart/cart-list-item/cart-list-item.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<CartUpdateFormComponent>",
-                    "file": "src/app/features/cart-update-form/cart-update-form.stories.ts",
+                    "rawtype": "StoryObj<CartListItemComponent>",
+                    "file": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 183
                 }
             ],
-            "src/app/features/product-form/product-form.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<ProductFormComponent>",
-                    "file": "src/app/features/product-form/product-form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "src/app/pages/cart-page/cart-page.stories.ts": [
+            "src/app/cart/cart-page/cart-page.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<CartPageComponent>",
-                    "file": "src/app/pages/cart-page/cart-page.stories.ts",
+                    "file": "src/app/cart/cart-page/cart-page.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 183
                 }
             ],
-            "src/app/pages/product/product.stories.ts": [
+            "src/app/cart/cart-update-form/cart-update-form.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<ProductComponent>",
-                    "file": "src/app/pages/product/product.stories.ts",
+                    "rawtype": "StoryObj<CartUpdateFormComponent>",
+                    "file": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "src/app/product/product-form/product-form.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ProductFormComponent>",
+                    "file": "src/app/product/product-form/product-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "src/app/product/product-page/product-page.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ProductPageComponent>",
+                    "file": "src/app/product/product-page/product-page.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5632,19 +5995,6 @@
                     "kind": 183
                 }
             ],
-            "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<CartListItemComponent>",
-                    "file": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "src/app/ui/radio-button-group/radio-button-group.component.ts": [
                 {
                     "name": "ValueChangeCallback",
@@ -5670,7 +6020,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "i18nDecorators",
+                "name": "globalTypes",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -5695,7 +6045,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-list/cart-list-item/cart-list-item.component.ts",
+                "filePath": "src/app/cart/cart-list-item/cart-list-item.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CartListItemComponent",
@@ -5704,7 +6054,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
+                "filePath": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5714,7 +6064,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-list/cart-list-item/cart-list-item.stories.ts",
+                "filePath": "src/app/cart/cart-list-item/cart-list-item.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5724,7 +6074,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-list/cart-list.component.ts",
+                "filePath": "src/app/cart/cart-list/cart-list.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CartListComponent",
@@ -5733,7 +6083,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-list/cart-list.stories.ts",
+                "filePath": "src/app/cart/cart-list/cart-list.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5743,7 +6093,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-list/cart-list.stories.ts",
+                "filePath": "src/app/cart/cart-list/cart-list.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5753,7 +6103,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-order-overview/cart-order-overview.component.ts",
+                "filePath": "src/app/cart/cart-order-overview/cart-order-overview.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CartOrderOverviewComponent",
@@ -5762,7 +6112,36 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-update-form/cart-update-form.component.ts",
+                "filePath": "src/app/cart/cart-page/cart-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CartPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/cart/cart-page/cart-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/cart/cart-page/cart-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/cart/cart-update-form/cart-update-form.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CartUpdateFormComponent",
@@ -5771,7 +6150,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-update-form/cart-update-form.stories.ts",
+                "filePath": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5781,7 +6160,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/cart-update-form/cart-update-form.stories.ts",
+                "filePath": "src/app/cart/cart-update-form/cart-update-form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5791,57 +6170,20 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/language-selector/language-selector.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "LanguageSelectorComponent",
+                "filePath": "src/app/cart/cart.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "CartService",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
-                "filePath": "src/app/features/navigation-menu/navigation-menu.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "NavigationMenuComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/features/product-card/product-card.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "ProductCardComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/features/product-form/product-form.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "ProductFormComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/10",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/features/product-form/product-form.stories.ts",
+                "filePath": "src/app/cart/cart.service.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/features/product-form/product-form.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
+                "name": "httpOptions",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -5874,36 +6216,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/pages/cart-page/cart-page.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "CartPageComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/6",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/pages/cart-page/cart-page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/pages/cart-page/cart-page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/pages/category/category.component.ts",
+                "filePath": "src/app/product/category/category.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CategoryComponent",
@@ -5912,16 +6225,25 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/pages/product/product.component.ts",
+                "filePath": "src/app/product/product-card/product-card.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "ProductComponent",
+                "name": "ProductCardComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
                 "status": "low"
             },
             {
-                "filePath": "src/app/pages/product/product.stories.ts",
+                "filePath": "src/app/product/product-form/product-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ProductFormComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/product/product-form/product-form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5931,7 +6253,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/pages/product/product.stories.ts",
+                "filePath": "src/app/product/product-form/product-form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5941,26 +6263,36 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/services/cart.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "CartService",
+                "filePath": "src/app/product/product-page/product-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ProductPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
-                "filePath": "src/app/services/cart.service.ts",
+                "filePath": "src/app/product/product-page/product-page.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "httpOptions",
+                "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/services/product.service.ts",
+                "filePath": "src/app/product/product-page/product-page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/product/product.service.ts",
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "ProductService",
@@ -5969,12 +6301,109 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/transloco-loader.ts",
+                "filePath": "src/app/shared/language-selector/language-selector.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LanguageSelectorComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/navigation-menu/navigation-menu.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavigationMenuComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/supported-languages.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DEFAULT_LANGUAGE",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/supported-languages.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SUPPORTED_LANGUAGES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/transloco-loader.ts",
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "TranslocoHttpLoader",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/transloco-storybook.module.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "translocoStorybookInitializer",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/transloco-storybook.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "translocoServiceInstance",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/transloco-storybook.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TranslocoStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/with-transloco.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StoryTranslocoWrapper",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/with-transloco.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "translocoDecorators",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/with-transloco.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "withTranslocoDecorator",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

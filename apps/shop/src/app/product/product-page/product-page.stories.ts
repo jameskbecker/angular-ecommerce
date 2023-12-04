@@ -1,16 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
-import { ProductComponent } from './product.component';
+import { ProductPageComponent } from './product-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../product.service';
 import { HeaderComponent } from '../../layout/header/header.component';
 import { UiModule } from '../../ui/ui.module';
-import { FeaturesModule } from '../../features/features.module';
 import { CommonModule } from '@angular/common';
 
-const meta: Meta<ProductComponent> = {
+const meta: Meta<ProductPageComponent> = {
   title: 'Pages/Product',
-  component: ProductComponent,
+  component: ProductPageComponent,
   tags: ['autodocs'],
   decorators: [
     // moduleMetadata({
@@ -20,7 +19,7 @@ const meta: Meta<ProductComponent> = {
     // }),
   ],
 
-  render: (args: ProductComponent) => ({
+  render: (args: ProductPageComponent) => ({
     props: {
       ...args,
     },
@@ -28,7 +27,7 @@ const meta: Meta<ProductComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<ProductComponent>;
+type Story = StoryObj<ProductPageComponent>;
 
 export const Default: Story = {
   args: {

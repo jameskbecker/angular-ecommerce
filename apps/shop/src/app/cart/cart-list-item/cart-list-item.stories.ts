@@ -1,19 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CartListItemComponent } from './cart-list-item.component';
-import { UiModule } from '../../../ui/ui.module';
-import { FeaturesModule } from '../../features.module';
-import { CartService } from '../../../services/cart.service';
+import { UiModule } from '../../ui/ui.module';
+import {CartModule} from "../cart.module";
 
 const meta: Meta<CartListItemComponent> = {
-  title: 'Features/CartListItem',
+  title: 'Cart/CartListItem',
   component: CartListItemComponent,
   tags: ['autodocs'],
   decorators: [
-    // moduleMetadata({
-    //   imports: [UiModule, FeaturesModule],
-    //   providers: [CartService],
-    // }),
+    moduleMetadata({
+      imports: [CartModule, UiModule]
+    }),
   ],
 
   render: (args: CartListItemComponent) => ({

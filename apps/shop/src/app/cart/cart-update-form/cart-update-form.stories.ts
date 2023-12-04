@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { CartUpdateFormComponent } from './cart-update-form.component';
 import { moduleMetadata } from '@storybook/angular';
 import { UiModule } from '../../ui/ui.module';
-import { FeaturesModule } from '../features.module';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../cart.service';
+import {CartModule} from "../cart.module";
+import {TranslocoRootModule} from "../../transloco/transloco-root.module";
 
 const meta: Meta<CartUpdateFormComponent> = {
   title: 'Forms/CartUpdateForm',
@@ -12,7 +13,10 @@ const meta: Meta<CartUpdateFormComponent> = {
 
   decorators: [
     moduleMetadata({
-      imports: [UiModule, FeaturesModule],
+      imports: [
+        CartModule,
+        UiModule, TranslocoRootModule
+      ],
       providers: [CartService],
     }),
   ],

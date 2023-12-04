@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart, DEFAULT_CART } from '../../../types/Cart';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'feature-cart-list',

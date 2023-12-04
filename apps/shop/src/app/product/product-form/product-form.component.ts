@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Variant } from '../../../types/Product';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../cart/cart.service';
 import products from '../../../mocks/products';
 
 @Component({
