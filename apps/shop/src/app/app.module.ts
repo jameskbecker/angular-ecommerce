@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { CartModule } from './cart/cart.module';
 
 const appRoutes: Routes = [
-  //...productRoutes,
+  ...productRoutes,
   { path: 'cart', component: CartPageComponent },
 ];
 

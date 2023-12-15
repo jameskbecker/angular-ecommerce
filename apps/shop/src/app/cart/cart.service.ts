@@ -29,6 +29,15 @@ export class CartService {
     });
   }
 
+  /**
+   * In der Komponente:
+   *     constructor(private cartService: CartService) {
+   *       this.cartService.data$.subscribe((cart) => {
+   *         this.cart = cart;
+   *       });
+   *     }
+   */
+
   public addToCart(productId: string, variantId: string, quantity: string) {
     const body: CartAddRequest = {
       form_type: 'product',

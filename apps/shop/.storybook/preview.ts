@@ -4,7 +4,6 @@ import docJson from '../documentation.json';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import handlers from '../src/mocks/handlers';
 import '@angular/localize/init';
-import { translocoDecorators } from './with-i18n/i18n-manager.component';
 import { applicationConfig, moduleMetadata } from '@storybook/angular';
 import {
   provideTransloco,

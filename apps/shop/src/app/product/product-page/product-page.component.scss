@@ -40,15 +40,16 @@
   text-align: center;
   gap: 8px;
 
-  :not(:first-child) {
+  :first-child {
     font-size: 1.75rem;
     font-weight: 800;
     text-transform: uppercase;
   }
 
-  :first-child {
-    font-size: 1.5rem;
-    font-weight: 600;
+  :not(:first-child) {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: $muted-foreground;
   }
 
   @include large {

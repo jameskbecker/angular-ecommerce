@@ -8,7 +8,7 @@ export type Cart = {
 
 export const DEFAULT_CART = {
   item_count: -1,
-  items: [],
+  items: <CartItem[]>[],
   subtotal: '0.00',
 };
 
